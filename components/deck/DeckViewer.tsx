@@ -14,6 +14,7 @@ import { DeckLoadingScreen } from "@/components/deck/DeckLoadingScreen";
 import { DeckProgressBar } from "@/components/deck/DeckProgressBar";
 import { IbdMark } from "@/components/deck/IbdMark";
 import { ASSETS } from "@/lib/assets";
+import { downloadPdf } from "@/lib/export-deck-pdf";
 import {
   SLIDE_COUNT,
   SLIDE_HEIGHT,
@@ -33,19 +34,19 @@ function computeDeckScale(navHeight: number, container?: HTMLElement | null) {
   return Math.min(availW / SLIDE_WIDTH, availH / SLIDE_HEIGHT);
 }
 
-function downloadProposalPdf() {
-  const anchor = document.createElement("a");
-  anchor.href = ASSETS.proposalPdf;
-  anchor.download = PROPOSAL_FILENAME;
-  anchor.rel = "noopener";
-  document.body.appendChild(anchor);
-  anchor.click();
-  document.body.removeChild(anchor);
+async function downloadProposalPdf() {
+  const response = await fetch(ASSETS.proposalPdf, { cache: "no-store" });
+  if (!response.ok) {
+    throw new Error("Could not fetch proposal PDF");
+  }
+  const bytes = new Uint8Array(await response.arrayBuffer());
+  downloadPdf(bytes, PROPOSAL_FILENAME);
 }
 
 export function DeckViewer() {
   const [current, setCurrent] = useState(0);
   const [scale, setScale] = useState<number | null>(null);
+  const [downloading, setDownloading] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const navRef = useRef<HTMLElement>(null);
 
@@ -55,9 +56,17 @@ export function DeckViewer() {
 
   const prev = useCallback(() => goTo(current - 1), [current, goTo]);
   const next = useCallback(() => goTo(current + 1), [current, goTo]);
-  const handleDownloadPdf = useCallback(() => {
-    downloadProposalPdf();
-  }, []);
+  const handleDownloadPdf = useCallback(async () => {
+    if (downloading) return;
+    setDownloading(true);
+    try {
+      await downloadProposalPdf();
+    } catch {
+      window.open(ASSETS.proposalPdf, "_blank", "noopener,noreferrer");
+    } finally {
+      setDownloading(false);
+    }
+  }, [downloading]);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -172,12 +181,13 @@ export function DeckViewer() {
           <button
             type="button"
             onClick={handleDownloadPdf}
-            disabled={scale === null}
+            disabled={scale === null || downloading}
             aria-label="Download proposal PDF"
             title="Download proposal PDF"
-            className="grid h-9 w-9 place-items-center rounded-full border border-[color:var(--gms-border)] bg-white text-[color:var(--gms-text-muted)] transition hover:border-[color:var(--gms-accent)]/30 hover:bg-[color:var(--ibd-gray)] disabled:opacity-30"
+            className="flex h-9 items-center gap-2 rounded-full border border-[color:var(--gms-border)] bg-white px-3 text-[13px] font-medium text-[color:var(--gms-text-muted)] transition hover:border-[color:var(--gms-accent)]/30 hover:bg-[color:var(--ibd-gray)] disabled:opacity-30"
           >
-            <Download className="h-4 w-4" />
+            <Download className={`h-4 w-4 ${downloading ? "animate-pulse" : ""}`} />
+            <span>{downloading ? "Downloading…" : "Download PDF"}</span>
           </button>
           <button
             type="button"
