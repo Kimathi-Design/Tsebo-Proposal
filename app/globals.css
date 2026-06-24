@@ -2370,6 +2370,20 @@ html:not(.light) {
 .deck-fixed-layout .sm\:text-\[26px\] {
   font-size: 26px;
 }
+.deck-print-root {
+  background: #ffffff;
+}
+.deck-print-slide {
+  width: 1240px;
+  height: 1754px;
+  overflow: hidden;
+  page-break-after: always;
+  break-after: page;
+}
+@page {
+  size: 1240px 1754px;
+  margin: 0;
+}
 @media (prefers-reduced-motion: reduce) {
   .deck-stage {
     transition: none !important;

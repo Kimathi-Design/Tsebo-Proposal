@@ -1,4 +1,4 @@
-import { toBlob } from "html-to-image";
+import { toJpeg } from "html-to-image";
 import { PDFDocument } from "pdf-lib";
 import { APPENDIX_START_SLIDE, appendices } from "@/lib/deck-content";
 
@@ -12,7 +12,6 @@ export type ExportDeckPdfOptions = {
   settleMs?: (index: number) => number;
 };
 
-/** Slides captured as PNG — appendix breaker slides are skipped (PDFs merged instead). */
 const PNG_SLIDE_COUNT = APPENDIX_START_SLIDE;
 
 export async function waitForSlideReady(root: HTMLElement | null) {
@@ -80,16 +79,13 @@ export async function exportDeckToPdf({
   height,
   renderSlide,
   onProgress,
-  settleMs = () => 75,
+  settleMs = () => 0,
 }: ExportDeckPdfOptions): Promise<Uint8Array> {
   const pdfDoc = await PDFDocument.create();
   const appendixBytesPromise = loadAppendixBytes();
-  let progressStep = 0;
-  const totalSteps = PNG_SLIDE_COUNT + appendices.length;
 
   for (let i = 0; i < PNG_SLIDE_COUNT; i++) {
-    progressStep += 1;
-    onProgress?.(progressStep, totalSteps);
+    onProgress?.(i + 1, PNG_SLIDE_COUNT + appendices.length);
 
     const el = await renderSlide(i);
     if (!el) {
@@ -106,44 +102,28 @@ export async function exportDeckToPdf({
       await new Promise((resolve) => setTimeout(resolve, delay));
     }
 
-    let blob: Blob | null;
-    try {
-      blob = await toBlob(el, {
-        width,
-        height,
-        pixelRatio: 1,
-        cacheBust: true,
-        skipFonts: false,
-      });
-    } catch (error) {
-      throw new Error(
-        `Failed to capture slide ${i + 1}: ${error instanceof Error ? error.message : "unknown error"}`,
-      );
-    }
-
-    if (!blob) {
-      throw new Error(`Failed to capture slide ${i + 1}: empty image`);
-    }
-
-    const pngBytes = await blob.arrayBuffer();
-    const image = await pdfDoc.embedPng(pngBytes);
-    const page = pdfDoc.addPage([width, height]);
-    page.drawImage(image, {
-      x: 0,
-      y: 0,
+    const dataUrl = await toJpeg(el, {
       width,
       height,
+      quality: 0.92,
+      pixelRatio: 1,
+      cacheBust: true,
     });
 
-    // Yield so the UI can update and the tab stays responsive.
-    await new Promise((resolve) => setTimeout(resolve, 0));
+    if (!dataUrl) {
+      throw new Error(`Failed to capture slide ${i + 1}`);
+    }
+
+    const jpgBytes = await fetch(dataUrl).then((response) => response.arrayBuffer());
+    const image = await pdfDoc.embedJpg(jpgBytes);
+    const page = pdfDoc.addPage([width, height]);
+    page.drawImage(image, { x: 0, y: 0, width, height });
   }
 
   const appendixBuffers = await appendixBytesPromise;
-  for (const appendixBytes of appendixBuffers) {
-    progressStep += 1;
-    onProgress?.(progressStep, totalSteps);
-    await appendAppendixPagesFromBytes(pdfDoc, appendixBytes);
+  for (let i = 0; i < appendixBuffers.length; i++) {
+    onProgress?.(PNG_SLIDE_COUNT + i + 1, PNG_SLIDE_COUNT + appendices.length);
+    await appendAppendixPagesFromBytes(pdfDoc, appendixBuffers[i]!);
   }
 
   return pdfDoc.save();
