@@ -1,4 +1,4 @@
-import { toPng } from "html-to-image";
+import { toBlob } from "html-to-image";
 import { PDFDocument } from "pdf-lib";
 import { APPENDIX_START_SLIDE, appendices } from "@/lib/deck-content";
 
@@ -59,24 +59,29 @@ async function appendAppendixPagesFromBytes(
   copied.forEach((page) => pdfDoc.addPage(page));
 }
 
-function downloadPdf(bytes: Uint8Array, filename: string) {
+export function downloadPdf(bytes: Uint8Array, filename: string) {
   const blob = new Blob([Uint8Array.from(bytes)], { type: "application/pdf" });
   const url = URL.createObjectURL(blob);
   const anchor = document.createElement("a");
   anchor.href = url;
   anchor.download = filename;
+  anchor.rel = "noopener";
+  anchor.style.display = "none";
+  document.body.appendChild(anchor);
   anchor.click();
-  URL.revokeObjectURL(url);
+  window.setTimeout(() => {
+    document.body.removeChild(anchor);
+    URL.revokeObjectURL(url);
+  }, 30_000);
 }
 
 export async function exportDeckToPdf({
   width,
   height,
-  filename = "DHL-Motheo-Proposal.pdf",
   renderSlide,
   onProgress,
   settleMs = () => 75,
-}: ExportDeckPdfOptions) {
+}: ExportDeckPdfOptions): Promise<Uint8Array> {
   const pdfDoc = await PDFDocument.create();
   const appendixBytesPromise = loadAppendixBytes();
   let progressStep = 0;
@@ -101,16 +106,26 @@ export async function exportDeckToPdf({
       await new Promise((resolve) => setTimeout(resolve, delay));
     }
 
-    const dataUrl = await toPng(el, {
-      width,
-      height,
-      pixelRatio: 1.5,
-      cacheBust: false,
-    });
+    let blob: Blob | null;
+    try {
+      blob = await toBlob(el, {
+        width,
+        height,
+        pixelRatio: 1,
+        cacheBust: true,
+        skipFonts: false,
+      });
+    } catch (error) {
+      throw new Error(
+        `Failed to capture slide ${i + 1}: ${error instanceof Error ? error.message : "unknown error"}`,
+      );
+    }
 
-    const pngBytes = await fetch(dataUrl).then((response) =>
-      response.arrayBuffer(),
-    );
+    if (!blob) {
+      throw new Error(`Failed to capture slide ${i + 1}: empty image`);
+    }
+
+    const pngBytes = await blob.arrayBuffer();
     const image = await pdfDoc.embedPng(pngBytes);
     const page = pdfDoc.addPage([width, height]);
     page.drawImage(image, {
@@ -119,6 +134,9 @@ export async function exportDeckToPdf({
       width,
       height,
     });
+
+    // Yield so the UI can update and the tab stays responsive.
+    await new Promise((resolve) => setTimeout(resolve, 0));
   }
 
   const appendixBuffers = await appendixBytesPromise;
@@ -128,6 +146,5 @@ export async function exportDeckToPdf({
     await appendAppendixPagesFromBytes(pdfDoc, appendixBytes);
   }
 
-  const bytes = await pdfDoc.save();
-  downloadPdf(bytes, filename);
+  return pdfDoc.save();
 }

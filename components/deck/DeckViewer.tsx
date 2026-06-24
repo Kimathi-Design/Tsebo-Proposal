@@ -21,7 +21,9 @@ import {
   SLIDE_WIDTH,
   slideTitles,
 } from "@/lib/deck-content";
-import { exportDeckToPdf } from "@/lib/export-deck-pdf";
+import { downloadPdf, exportDeckToPdf } from "@/lib/export-deck-pdf";
+
+const EXPORT_FILENAME = "DHL-Motheo-Proposal.pdf";
 
 const FIT_MARGIN = 20;
 
@@ -39,6 +41,11 @@ export function DeckViewer() {
   const [scale, setScale] = useState<number | null>(null);
   const [exporting, setExporting] = useState(false);
   const [exportSlideIndex, setExportSlideIndex] = useState<number | null>(null);
+  const [exportProgress, setExportProgress] = useState<{
+    current: number;
+    total: number;
+  } | null>(null);
+  const [exportReadyUrl, setExportReadyUrl] = useState<string | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const navRef = useRef<HTMLElement>(null);
   const exportHostRef = useRef<HTMLDivElement>(null);
@@ -54,13 +61,21 @@ export function DeckViewer() {
     if (exporting) return;
 
     setExporting(true);
+    setExportProgress(null);
+    if (exportReadyUrl) {
+      URL.revokeObjectURL(exportReadyUrl);
+      setExportReadyUrl(null);
+    }
     document.documentElement.dataset.deckExport = "true";
 
     try {
-      await exportDeckToPdf({
+      const bytes = await exportDeckToPdf({
         slideCount: APPENDIX_START_SLIDE,
         width: SLIDE_WIDTH,
         height: SLIDE_HEIGHT,
+        onProgress: (current, total) => {
+          setExportProgress({ current, total });
+        },
         renderSlide: async (index) => {
           flushSync(() => {
             setExportSlideIndex(index);
@@ -72,17 +87,34 @@ export function DeckViewer() {
             "section.deck-slide",
           ) as HTMLElement | null;
         },
-        settleMs: (index) => (index === 0 ? 350 : 0),
+        settleMs: (index) => (index === 0 ? 500 : 0),
       });
+
+      const blob = new Blob([Uint8Array.from(bytes)], { type: "application/pdf" });
+      const url = URL.createObjectURL(blob);
+      setExportReadyUrl(url);
+      downloadPdf(bytes, EXPORT_FILENAME);
     } catch (error) {
       console.error("PDF export failed:", error);
-      window.alert("PDF export failed. Please try again.");
+      window.alert(
+        error instanceof Error
+          ? `PDF export failed: ${error.message}`
+          : "PDF export failed. Please try again.",
+      );
     } finally {
       delete document.documentElement.dataset.deckExport;
       setExportSlideIndex(null);
       setExporting(false);
+      setExportProgress(null);
     }
-  }, [exporting]);
+  }, [exporting, exportReadyUrl]);
+
+  const dismissExportReady = useCallback(() => {
+    if (exportReadyUrl) {
+      URL.revokeObjectURL(exportReadyUrl);
+      setExportReadyUrl(null);
+    }
+  }, [exportReadyUrl]);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -237,16 +269,62 @@ export function DeckViewer() {
         aria-hidden
         className="deck-fixed-layout pointer-events-none fixed overflow-hidden"
         style={{
-          left: -SLIDE_WIDTH * 2,
+          left: 0,
           top: 0,
           width: SLIDE_WIDTH,
           height: SLIDE_HEIGHT,
-          zIndex: -1,
+          transform: "translateX(-200vw)",
+          zIndex: 0,
+          opacity: 1,
           visibility: exportSlideIndex !== null ? "visible" : "hidden",
         }}
       >
         {exportSlideIndex !== null && renderDeckSlide(exportSlideIndex)}
       </div>
+
+      {exporting && exportProgress && (
+        <div className="fixed inset-0 z-[80] flex items-center justify-center bg-[rgba(13,15,26,0.45)] px-6 backdrop-blur-sm">
+          <div className="w-full max-w-md rounded-2xl border border-[color:var(--gms-border)] bg-white p-6 text-center shadow-xl">
+            <Loader2 className="mx-auto h-8 w-8 animate-spin text-deck-accent" />
+            <p className="mt-4 text-[18px] font-semibold text-[color:var(--gms-text)]">
+              Building PDF…
+            </p>
+            <p className="mt-2 text-[15px] text-[color:var(--gms-text-muted)]">
+              Slide {exportProgress.current} of {exportProgress.total}
+            </p>
+            <p className="mt-3 text-[13px] text-[color:var(--gms-text-muted)]">
+              This can take a few minutes. Please keep this tab open.
+            </p>
+          </div>
+        </div>
+      )}
+
+      {exportReadyUrl && (
+        <div className="fixed inset-0 z-[80] flex items-center justify-center bg-[rgba(13,15,26,0.45)] px-6 backdrop-blur-sm">
+          <div className="w-full max-w-md rounded-2xl border border-[color:var(--gms-border)] bg-white p-6 text-center shadow-xl">
+            <p className="text-[18px] font-semibold text-[color:var(--gms-text)]">
+              PDF ready
+            </p>
+            <p className="mt-2 text-[15px] text-[color:var(--gms-text-muted)]">
+              If your download didn&apos;t start automatically, click below.
+            </p>
+            <a
+              href={exportReadyUrl}
+              download={EXPORT_FILENAME}
+              className="mt-5 inline-flex items-center justify-center rounded-full bg-deck-accent px-6 py-2.5 text-[14px] font-semibold text-white"
+            >
+              Download PDF
+            </a>
+            <button
+              type="button"
+              onClick={dismissExportReady}
+              className="mt-3 block w-full text-[13px] font-medium text-[color:var(--gms-text-muted)]"
+            >
+              Dismiss
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
