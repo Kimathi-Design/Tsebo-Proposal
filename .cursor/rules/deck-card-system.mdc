@@ -1,0 +1,65 @@
+---
+description: BWE proposal deck card layout — flow tiles, numbering, icons, margins
+globs: components/deck/**/*,app/globals.css
+alwaysApply: false
+---
+
+# Deck Card System (Executive Summary Reference)
+
+All list/flow cards in this deck follow the **Executive Summary visual** pattern (`ExecutiveSummaryVisual` + `VerticalFlowDiagram`).
+
+## Card shell
+
+- Use `gms-card rounded-2xl` for every card surface.
+- Row layout: `deck-flow-step-card__row` (flex, align center, gap `1rem`).
+- Title: `deck-flow-step-card__title` — **17px** default, **15px** compact (DHL-scale).
+
+## Numbering (left)
+
+When a step index is shown, wrap it in a **square stroke tile** — never bare text:
+
+```tsx
+<div className="deck-flow-step-card__number-col deck-flow-step-card__number-col--compact">
+  <div className="deck-flow-step-card__tile deck-flow-step-card__tile--compact">
+    <span className="deck-flow-step-card__number deck-flow-step-card__number--compact tabular-nums">01</span>
+  </div>
+</div>
+```
+
+## Icons (right or left)
+
+Icons use the **same tile** as numbering. Prefer **right** via `deck-flow-step-card__icon-col`; use left only when layout requires it.
+
+```tsx
+<div className="deck-flow-step-card__icon-col deck-flow-step-card__icon-col--compact">
+  <div className="deck-flow-step-card__tile deck-flow-step-card__tile--compact">
+    {deckIcon(Icon, "xs")}
+  </div>
+</div>
+```
+
+Reuse `FlowStepTile` in `ProposalDiagrams.tsx` or `DeckIconTile` in `deck-icons.tsx` (both map to `deck-flow-step-card__tile`).
+
+## Margins
+
+| Element | Default | Compact |
+|---------|---------|---------|
+| Number column | `padding-left: 2rem` | `1.125rem` |
+| Icon column | `padding-right: 2rem` | `1.125rem` |
+
+Classes: `deck-flow-step-card__number-col`, `deck-flow-step-card__icon-col`, `--compact` variants.
+
+## Tile sizes (CSS in `globals.css`)
+
+- `--compact`: 2rem (panel cards: 2.125rem in dense visuals)
+- `--default`: 2.5rem
+- `--hero`: 5rem (appendix / large marks)
+
+## Prefer existing components
+
+- Vertical stacks: `VerticalFlowDiagram` with `icons` prop
+- Multi-column flows: `FlowStepsVisual` / `FlowStepCard`
+- Outcome lists: `DeckOutcomeCardList` (icon right, `deck-outcome-card__icon-col`)
+- Feature grids: `DeckFeatureGrid` with `DeckIconTile`
+
+Do **not** use ad-hoc `rounded-md` / `rounded-xl` icon boxes or unboxed step numbers on new deck cards.
