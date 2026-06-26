@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { DeckPageClient } from "@/components/deck/DeckPageClient";
 
 export const metadata: Metadata = {
-  title: "Motheo Proposal — Barloworld Equipment (BWE)",
+  title: "Enterprise Compliance Gateway — Barloworld Equipment Lesotho",
   description:
-    "Barloworld Equipment proposal for Motheo Compliance Platform Compliance Gateway solution (EBS) by Infinity Business Dynamics.",
+    "Infinity Business Dynamics proposal for the Enterprise Compliance Gateway (EBS) — SAP ERP & CRM Integration for Barloworld Equipment Lesotho.",
   alternates: { canonical: "/" },
   robots: { index: false, follow: false },
 };

@@ -1,10 +1,17 @@
+import { BweFooterLogo } from "@/components/deck/IbdMark";
 import { SlideSectionCorner } from "@/components/deck/SlideEyebrow";
 import { coverMeta } from "@/lib/deck-content";
 
 const PREPARED_BY_LINES = [
   {
     icon: "📍",
-    lines: [coverMeta.preparedByDisplay, "Box 13145, Maseru 100, Lesotho"],
+    lines: [coverMeta.preparedByDisplay, coverMeta.tagline, coverMeta.location],
+  },
+  {
+    icon: "🌐",
+    label: "Website",
+    value: coverMeta.website,
+    href: `https://${coverMeta.website}`,
   },
   {
     icon: "✉️",
@@ -15,18 +22,7 @@ const PREPARED_BY_LINES = [
   {
     icon: "📞",
     label: "Tel",
-    value: `${coverMeta.phone1} / ${coverMeta.phone2}`,
-  },
-  {
-    icon: "🌐",
-    label: "Website",
-    value: coverMeta.website,
-    href: `https://${coverMeta.website}`,
-  },
-  {
-    icon: "🏛️",
-    label: "TIN",
-    value: coverMeta.tin,
+    value: coverMeta.phone1,
   },
 ] as const;
 
@@ -98,17 +94,24 @@ export function DeckCoverFooter() {
           <p className="deck-cover-footer__label deck-cover-footer__label--for">Prepared For</p>
           <div className="deck-cover-footer__lines">
             <div className="deck-cover-footer__client-row">
-              <p className="deck-cover-footer__client">{coverMeta.preparedForClient}</p>
+              <div className="deck-cover-footer__client-logo">
+                <BweFooterLogo className="h-10" />
+              </div>
+              <p className="deck-cover-footer__client">{coverMeta.preparedFor}</p>
             </div>
             <p className="deck-cover-footer__meta-line">
               <span className="deck-cover-footer__inline-label">Date:</span> {coverMeta.date}
             </p>
+            <p className="deck-cover-footer__meta-line deck-cover-footer__meta-line--reference">
+              <span className="deck-cover-footer__inline-label">Proposal Reference:</span>{" "}
+              {coverMeta.reference}
+            </p>
             <p className="deck-cover-footer__subject">
               <span className="deck-cover-footer__subject-label">Subject:</span>{" "}
               <span className="deck-cover-footer__subject-text">
-                {coverMeta.subjectLines.map((line, index) => (
+                {coverMeta.subjectLines.map((line, lineIndex) => (
                   <span key={line} className="deck-cover-footer__subject-line">
-                    {index > 0 && <br />}
+                    {lineIndex > 0 && <br />}
                     {line}
                   </span>
                 ))}

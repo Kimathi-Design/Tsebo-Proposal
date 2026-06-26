@@ -42,7 +42,7 @@ import {
   Wrench,
 } from "lucide-react";
 import type { ReactNode } from "react";
-import { DhlMark, IbdMark } from "@/components/deck/IbdMark";
+import { BweMark, IbdMark } from "@/components/deck/IbdMark";
 import { slideTitles, getTocSectionNumber } from "@/lib/deck-content";
 
 const SLIDE_ICONS: LucideIcon[] = [
@@ -50,53 +50,42 @@ const SLIDE_ICONS: LucideIcon[] = [
   Mail, // 1 Executive Letter
   LayoutList, // 2 Table of Contents
   FileText, // 3 Executive Summary
-  Target, // 4 Executive Benefits
-  ClipboardCheck, // 5 DHL Requirements
-  Building2, // 6 About IBD
-  Award, // 7 Why IBD
-  BadgeCheck, // 8 RSL Accreditation
-  Users, // 9 Project Team
-  Briefcase, // 10 Relevant Experience
-  Layers, // 11 Solution Overview
-  Network, // 12 Enterprise Architecture
-  GitBranch, // 13 SAP Integration Approach
-  Server, // 14 SAP Integration Architecture
-  Workflow, // 15 Motheo Layer
-  Route, // 16 Data Flow
-  Wrench, // 17 Technical Framework
-  RefreshCw, // 18 End-to-End Workflow
-  Receipt, // 19 Invoice Workflow
-  FileCheck, // 20 Credit & Debit Notes
-  QrCode, // 21 QR Code
-  BarChart3, // 22 Compliance Monitoring
-  Shield, // 23 Security
-  ShieldCheck, // 24 Business Continuity
-  Scale, // 25 Governance
-  Sparkles, // 26 Methodology
-  GitBranch, // 27 Implementation Plan
-  Calendar, // 28 Timeline
-  GraduationCap, // 29 Training
-  Headphones, // 30 Support
-  Timer, // 31 SLA
-  Banknote, // 32 Commercial
-  LineChart, // 33 Annual Subscription
-  Lock, // 34 Risk Management
+  Target, // 4 Strategic Business Outcomes
+  Building2, // 5 Understanding Barloworld Equipment
+  ClipboardCheck, // 6 Business Challenges
+  Building2, // 7 About Infinity
+  Award, // 8 Why Infinity
+  BadgeCheck, // 9 RSL Accreditation
+  Layers, // 10 Enterprise Compliance Gateway
+  Network, // 11 Enterprise Solution Architecture
+  Server, // 12 SAP ERP Integration
+  Users, // 13 CRM Integration
+  Workflow, // 14 API Integration Framework
+  Route, // 15 Motheo Compliance Engine
+  Shield, // 16 Security Architecture
+  RefreshCw, // 17 Transaction Lifecycle
+  GitBranch, // 18 Online & Offline Processing
+  Lock, // 19 Digital Certificate Management
+  QrCode, // 20 QR Code Management
+  BarChart3, // 21 Compliance Monitoring & Analytics
+  ShieldCheck, // 22 Business Continuity & DR
+  LineChart, // 23 Compliance Analytics & Reporting
+  Sparkles, // 24 Implementation Methodology
+  Scale, // 25 Project Governance
+  Users, // 26 Project Organisation & Delivery Team
+  GitBranch, // 27 Project Implementation Plan
+  Calendar, // 28 Project Timeline
+  FileCheck, // 29 Testing & Quality Assurance
+  GraduationCap, // 30 Training & Change Management
+  Headphones, // 31 Support & Managed Services
+  Timer, // 32 Service Level Commitments
+  Lock, // 33 Risk Management
+  Banknote, // 34 Commercial Proposal
   ClipboardList, // 35 Supplier Responses
-  FileSignature, // 36 DHL Acceptance
-  Award, // 37 Why Choose Infinity
-  Sparkles, // 38 Conclusion
-  FileSignature, // 39 Proposal Acceptance
-  Banknote, // 40 Banking
-  BookOpen, // 41 Appendices
-  FileText, // 42 Appendix A
-  BookOpen, // 43 Appendix B
-  Scale, // 44 Appendix C
-  Building2, // 45 Appendix D
-  Banknote, // 46 Appendix E
-  FileText, // 47 Appendix F
-  Handshake, // 48 Appendix G
-  Shield, // 49 Appendix H
-  FileSignature, // 50 Appendix I
+  Award, // 36 Why Infinity
+  Sparkles, // 37 Conclusion
+  FileSignature, // 38 Proposal Acceptance
+  BookOpen, // 39 Appendices
 ];
 
 type SectionBadgeProps = {
@@ -150,12 +139,12 @@ export function SlideEyebrow({ index }: { index: number }) {
   );
 }
 
-/** Slide header brand — DHL Lesotho + IBD on every slide */
+/** Slide header brand — BWE + IBD on every slide */
 export function DeckHeaderBrand() {
   return (
     <div className="gms-eyebrow inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-[11px] font-medium tracking-[0.2em] uppercase backdrop-blur">
-      <DhlMark size="sm" />
-      <span>DHL Express LS | Infinity Business Dynamics</span>
+      <BweMark size="sm" />
+      <span>BWE | Infinity Business Dynamics</span>
       <IbdMark size="sm" />
     </div>
   );

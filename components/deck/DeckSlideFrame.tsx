@@ -5,6 +5,8 @@ import { Children, Fragment, isValidElement, useEffect, useRef, useState, type R
 import { animate, useReducedMotion } from "framer-motion";
 import { GlowOrbs } from "@/components/effects/GlowOrbs";
 import { Particles } from "@/components/effects/Particles";
+import { deckIcon } from "@/components/deck/deck-icons";
+import type { LucideIcon } from "lucide-react";
 import { slideTitles } from "@/lib/deck-content";
 import { DeckNumberingProvider, useDeckNumbering } from "@/components/deck/DeckNumbering";
 import { DeckEyebrow, SlideEyebrow, SlideSectionCorner, DeckHeaderBrand } from "@/components/deck/SlideEyebrow";
@@ -74,16 +76,57 @@ export function DeckVisualPanel({
   );
 }
 
-/** Prose on top (shrink-0) + visual panel filling remaining slide body height */
+/** Prose + visual — vertical (default), horizontal, visual-top, or visual-bottom */
 export function DeckSlideBodySplit({
   children,
   visual,
   className = "",
+  layout = "vertical",
 }: {
   children: ReactNode;
   visual: ReactNode;
   className?: string;
+  layout?: "vertical" | "horizontal" | "visual-top" | "visual-bottom";
 }) {
+  if (layout === "horizontal") {
+    return (
+      <div
+        className={`deck-slide-body-split deck-slide-body-split--horizontal grid h-full min-h-0 flex-1 grid-cols-[minmax(0,0.82fr)_minmax(0,1.18fr)] gap-5 ${className}`.trim()}
+      >
+        <div className="deck-slide-body-split__prose flex min-h-0 flex-col gap-3 overflow-y-auto overscroll-contain pr-1">
+          {children}
+        </div>
+        <DeckVisualPanel className="h-full min-h-0">{visual}</DeckVisualPanel>
+      </div>
+    );
+  }
+
+  if (layout === "visual-top") {
+    return (
+      <div
+        className={`deck-slide-body-split deck-slide-body-split--visual-top flex h-full min-h-0 flex-1 flex-col gap-4 ${className}`.trim()}
+      >
+        <DeckVisualPanel className="min-h-0 flex-[1.45]">{visual}</DeckVisualPanel>
+        <div className="deck-slide-body-split__prose min-h-0 flex-1 overflow-y-auto overscroll-contain space-y-3">
+          {children}
+        </div>
+      </div>
+    );
+  }
+
+  if (layout === "visual-bottom") {
+    return (
+      <div
+        className={`deck-slide-body-split deck-slide-body-split--visual-bottom flex h-full min-h-0 flex-1 flex-col gap-4 ${className}`.trim()}
+      >
+        <div className="deck-slide-body-split__prose min-h-0 flex-1 overflow-y-auto overscroll-contain space-y-3">
+          {children}
+        </div>
+        <DeckVisualPanel className="min-h-0 flex-[2]">{visual}</DeckVisualPanel>
+      </div>
+    );
+  }
+
   return (
     <div className={`flex min-h-0 flex-1 flex-col gap-4 ${className}`.trim()}>
       <div className="shrink-0 space-y-4">{children}</div>
@@ -274,11 +317,7 @@ export function DeckTitle({
 }
 
 export function DeckBody({ children }: { children: ReactNode }) {
-  return (
-    <p className="text-[18px] font-medium leading-[1.6] text-[color:var(--gms-text)]">
-      {children}
-    </p>
-  );
+  return <p className="deck-type-body">{children}</p>;
 }
 
 function parseStatValue(value: string) {
@@ -367,7 +406,7 @@ export function DeckInsight({
       <p className="text-[12px] font-semibold tracking-[0.22em] text-deck-accent uppercase">
         {label}
       </p>
-      <div className="mt-3 text-[20px] leading-relaxed font-medium text-[color:var(--gms-text)]">
+      <div className="mt-3 deck-type-body text-[20px] leading-relaxed">
         {children}
       </div>
     </div>
@@ -394,10 +433,23 @@ function parseBulletItem(item: BulletItem) {
 export function DeckBulletList({
   items,
   compact = false,
+  columns,
 }: {
   items: BulletItem[];
   compact?: boolean;
+  /** Split items into side-by-side columns (e.g. 2 = left/right halves) */
+  columns?: 2;
 }) {
+  if (columns === 2 && items.length > 1) {
+    const mid = Math.ceil(items.length / 2);
+    return (
+      <div className="deck-bullet-list-columns grid grid-cols-2 gap-x-6">
+        <DeckBulletList items={items.slice(0, mid)} compact={compact} />
+        <DeckBulletList items={items.slice(mid)} compact={compact} />
+      </div>
+    );
+  }
+
   return (
     <ul className={compact ? "space-y-1" : "space-y-2.5"}>
       {items.map((item) => {
@@ -406,10 +458,8 @@ export function DeckBulletList({
         return (
           <li
             key={title}
-            className={`flex items-start font-medium text-[color:var(--gms-text)] ${
-              compact
-                ? "gap-2 text-[13px] leading-snug"
-                : "gap-3 text-[18px] leading-relaxed"
+            className={`flex items-start text-[color:var(--gms-text)] ${
+              compact ? "deck-type-body-compact gap-2" : "deck-type-body gap-3 leading-relaxed"
             }`}
           >
             <span
@@ -418,7 +468,7 @@ export function DeckBulletList({
             />
             <div className="min-w-0">
               {inline && description ? (
-                <p className="text-[18px] font-medium leading-[1.6] text-[color:var(--gms-text)]">
+                <p className="deck-type-body">
                   <span className="font-semibold">{title}</span>
                   {" — "}
                   {description}
@@ -428,14 +478,14 @@ export function DeckBulletList({
                   <p
                     className={
                       description
-                        ? "text-[18px] font-semibold leading-[1.6] text-[color:var(--gms-text)]"
-                        : "text-[18px] leading-relaxed"
+                        ? "deck-type-body font-semibold"
+                        : "deck-type-body"
                     }
                   >
                     {title}
                   </p>
                   {description && (
-                    <p className="mt-1 text-[18px] font-medium leading-[1.6] text-[color:var(--gms-text)]">
+                    <p className="deck-type-body mt-1">
                       {description}
                     </p>
                   )}
@@ -467,6 +517,19 @@ export function DeckSectionLabel({ children }: { children: ReactNode }) {
       {labelPrefix}
       {children}
     </p>
+  );
+}
+
+/** Visual panel column/section heading — same typography as DeckSectionLabel, without auto-numbering */
+export function DeckVisualPanelLabel({
+  children,
+  className = "",
+}: {
+  children: ReactNode;
+  className?: string;
+}) {
+  return (
+    <p className={`deck-title-lg shrink-0 font-semibold ${className}`.trim()}>{children}</p>
   );
 }
 
@@ -617,35 +680,94 @@ export function DeckTable({
   );
 }
 
+export function DeckOutcomeCardList({
+  items,
+  icons,
+  fill = true,
+}: {
+  items: { title: string; description?: string; subtitle?: string; icon?: ReactNode }[];
+  icons?: readonly LucideIcon[];
+  fill?: boolean;
+}) {
+  return (
+    <div
+      className={`deck-outcome-card-list flex flex-col ${
+        fill ? "h-full min-h-0 flex-1 gap-3" : "gap-5"
+      }`}
+    >
+      {items.map((item, index) => (
+        <div
+          key={item.title}
+          className={`deck-outcome-card gms-card rounded-2xl p-5${
+            fill ? " flex min-h-0 flex-1 flex-col justify-center" : ""
+          }`}
+        >
+          <div className="flex items-center gap-6">
+            <div className="min-w-0 flex-1">
+              <p className="deck-type-card-title-accent">{item.title}</p>
+              {item.description && (
+                <p className="deck-type-card-body mt-2">{item.description}</p>
+              )}
+              {item.subtitle && (
+                <p className="deck-type-outcome-kicker mt-3">{item.subtitle}</p>
+              )}
+            </div>
+            <div className="deck-outcome-card__icon-col">
+              <DeckIconTile
+                icon={
+                  item.icon ??
+                  (icons ? deckIcon(icons[index] ?? icons[icons.length - 1]!, "sm") : null)
+                }
+              />
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function DeckIconTile({ icon }: { icon?: ReactNode }) {
+  if (!icon) return null;
+  return (
+    <div className="deck-flow-step-card__tile deck-flow-step-card__tile--default">{icon}</div>
+  );
+}
+
 export function DeckFeatureGrid({
   items,
   uniform = false,
   layout = "stack",
+  variant = "feature",
+  columns = 2,
 }: {
   items: { title: string; description?: string; icon?: ReactNode }[];
   uniform?: boolean;
   layout?: "stack" | "inline";
+  variant?: "feature" | "premium" | "capability";
+  columns?: 1 | 2;
 }) {
+  const gridClass =
+    columns === 1 ? "grid-cols-1" : variant === "premium" ? "deck-premium-card-grid" : "grid-cols-2";
+
   return (
     <div
-      className={`grid grid-cols-2 gap-4 ${
+      className={`grid gap-4 ${gridClass} ${
         uniform ? "deck-feature-grid--uniform items-stretch" : ""
-      }${layout === "inline" ? " deck-feature-grid--inline" : ""}`}
+      }${layout === "inline" ? " deck-feature-grid--inline" : ""}${
+        variant === "premium" ? " deck-why-infinity-grid" : ""
+      }${variant === "capability" ? " deck-feature-grid--capability" : ""}`}
     >
       {items.map((item) =>
         layout === "inline" ? (
           <div
             key={item.title}
-            className="deck-feature-grid__inline-card gms-card flex items-center gap-3 rounded-2xl p-4"
+            className="deck-feature-grid__inline-card gms-card flex items-center gap-4 rounded-2xl p-4"
           >
-            {item.icon && (
-              <div className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-[color:var(--gms-border)] bg-[color:var(--ibd-gray)] text-deck-accent">
-                {item.icon}
-              </div>
-            )}
+            <DeckIconTile icon={item.icon} />
             <div className="flex min-w-0 flex-1 items-center gap-2.5">
               <span className="deck-bullet shrink-0" aria-hidden />
-              <p className="min-w-0 text-[15px] font-medium leading-snug text-[color:var(--gms-text)]">
+              <p className="deck-type-inline-feature min-w-0">
                 <span className="font-semibold">{item.title}</span>
                 {item.description && (
                   <>
@@ -658,18 +780,34 @@ export function DeckFeatureGrid({
               </p>
             </div>
           </div>
+        ) : variant === "capability" ? (
+          <div key={item.title} className="deck-capability-card gms-card rounded-2xl">
+            <div className="deck-capability-card__icon shrink-0">
+              <DeckIconTile icon={item.icon} />
+            </div>
+            <div className="deck-capability-card__copy min-w-0 flex-1">
+              <p className="deck-type-card-title">{item.title}</p>
+              {item.description && (
+                <p className="deck-type-card-body mt-2">{item.description}</p>
+              )}
+            </div>
+          </div>
+        ) : variant === "premium" ? (
+          <div key={item.title} className="gms-card rounded-2xl p-5">
+            <DeckIconTile icon={item.icon} />
+            <p className="deck-type-premium-label mt-3">{item.title}</p>
+            {item.description && (
+              <p className="deck-type-card-body mt-2">{item.description}</p>
+            )}
+          </div>
         ) : (
           <div key={item.title} className="gms-card rounded-2xl p-5">
-            {item.icon && (
-              <div className="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-xl border border-[color:var(--gms-border)] bg-[color:var(--ibd-gray)] text-deck-accent">
-                {item.icon}
-              </div>
-            )}
-            <p className="text-[17px] font-semibold text-[color:var(--gms-text)]">{item.title}</p>
+            <div className="mb-3">
+              <DeckIconTile icon={item.icon} />
+            </div>
+            <p className="deck-type-card-title">{item.title}</p>
             {item.description && (
-              <p className="deck-feature-grid__description mt-2 text-[17px] font-medium leading-relaxed text-[color:var(--gms-text)]">
-                {item.description}
-              </p>
+              <p className="deck-feature-grid__description deck-type-card-body mt-2">{item.description}</p>
             )}
           </div>
         ),

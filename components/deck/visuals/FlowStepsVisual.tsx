@@ -17,22 +17,60 @@ export function FlowConnector({ className = "" }: { className?: string }) {
 function FlowStepCard({
   step,
   Icon,
+  compact = false,
 }: {
   step: Step;
   Icon?: LucideIcon;
+  compact?: boolean;
 }) {
   const stepLabel = step.step?.replace(/^step\s*/i, "").trim();
 
   return (
-    <div className="deck-flow-step-card gms-card h-full w-full rounded-2xl p-5">
+    <div
+      className={`deck-flow-step-card gms-card h-full w-full rounded-2xl ${
+        compact ? "p-2.5" : "p-5"
+      }`}
+    >
       <div className="deck-flow-step-card__row">
         {stepLabel && (
-          <span className="deck-flow-step-card__number tabular-nums">{stepLabel}</span>
+          <div
+            className={`deck-flow-step-card__number-col${
+              compact ? " deck-flow-step-card__number-col--compact" : ""
+            }`}
+          >
+            <div
+              className={`deck-flow-step-card__tile${
+                compact ? " deck-flow-step-card__tile--compact" : " deck-flow-step-card__tile--default"
+              }`}
+            >
+              <span
+                className={`deck-flow-step-card__number tabular-nums${
+                  compact ? " deck-flow-step-card__number--compact" : ""
+                }`}
+              >
+                {stepLabel}
+              </span>
+            </div>
+          </div>
         )}
-        <p className="deck-flow-step-card__title">{step.title}</p>
+        <p
+          className={`deck-flow-step-card__title${
+            compact ? " deck-flow-step-card__title--compact" : ""
+          }`}
+        >
+          {step.title}
+        </p>
         {Icon && (
-          <div className="deck-flow-step-card__icon-col">
-            <div className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-[color:var(--gms-border)] bg-[color:var(--ibd-gray)] text-deck-accent">
+          <div
+            className={`deck-flow-step-card__icon-col${
+              compact ? " deck-flow-step-card__icon-col--compact" : ""
+            }`}
+          >
+            <div
+              className={`deck-flow-step-card__tile${
+                compact ? " deck-flow-step-card__tile--compact" : " deck-flow-step-card__tile--default"
+              }`}
+            >
               {deckIcon(Icon, "sm")}
             </div>
           </div>
@@ -112,7 +150,7 @@ export function ArchitectureStackVisual({
   icons,
   fill = false,
 }: {
-  items: string[];
+  items: readonly string[];
   icons?: readonly LucideIcon[];
   fill?: boolean;
 }) {
@@ -131,6 +169,7 @@ export function ArchitectureStackVisual({
                   title,
                 }}
                 Icon={icons[index]}
+                compact
               />
             </div>
             {index < items.length - 1 && <FlowConnector />}

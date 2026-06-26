@@ -18,6 +18,7 @@ import {
   Database,
   Eye,
   FileBadge,
+  FileCheck,
   FileCode,
   FileSearch,
   FileSignature,
@@ -36,6 +37,7 @@ import {
   MapPin,
   Maximize2,
   Network,
+  Package,
   PenLine,
   Plug,
   QrCode,
@@ -54,7 +56,10 @@ import {
   Zap,
 } from "lucide-react";
 
-export function deckIcon(Icon: LucideIcon, size: "sm" | "md" | "hero" | "lg" = "sm"): ReactNode {
+export function deckIcon(
+  Icon: LucideIcon,
+  size: "xs" | "sm" | "md" | "hero" | "lg" = "sm",
+): ReactNode {
   const config =
     size === "lg"
       ? { className: "h-12 w-12", strokeWidth: 1.2 }
@@ -62,7 +67,9 @@ export function deckIcon(Icon: LucideIcon, size: "sm" | "md" | "hero" | "lg" = "
         ? { className: "h-10 w-10", strokeWidth: 2 }
         : size === "md"
           ? { className: "h-7 w-7", strokeWidth: 2 }
-          : { className: "h-5 w-5", strokeWidth: 2 };
+          : size === "xs"
+            ? { className: "h-3.5 w-3.5", strokeWidth: 2 }
+            : { className: "h-5 w-5", strokeWidth: 2 };
 
   return createElement(Icon, {
     ...config,
@@ -76,15 +83,18 @@ export function DeckIconTile({
   className = "",
 }: {
   icon: LucideIcon;
-  size?: "sm" | "hero";
+  size?: "sm" | "hero" | "compact";
   className?: string;
 }) {
-  const tileSize = size === "hero" ? "h-20 w-20" : "h-10 w-10";
+  const tileClass =
+    size === "hero"
+      ? "deck-flow-step-card__tile deck-flow-step-card__tile--hero"
+      : size === "compact"
+        ? "deck-flow-step-card__tile deck-flow-step-card__tile--compact"
+        : "deck-flow-step-card__tile deck-flow-step-card__tile--default";
 
   return (
-    <div
-      className={`inline-flex ${tileSize} items-center justify-center rounded-xl border border-[color:var(--gms-border)] bg-[color:var(--ibd-gray)] text-deck-accent ${className}`.trim()}
-    >
+    <div className={`${tileClass} ${className}`.trim()}>
       {deckIcon(Icon, size === "hero" ? "hero" : "sm")}
     </div>
   );
@@ -97,7 +107,7 @@ export function mapDeckIcons<T extends object>(
 ) {
   return items.map((item, index) => ({
     ...item,
-    icon: deckIcon(icons[index], size),
+    icon: deckIcon(icons[index] ?? icons[icons.length - 1]!, size),
   }));
 }
 
@@ -150,6 +160,120 @@ export const DEBIT_NOTE_STEP_ICONS = [
   FolderOpen,
 ] as const;
 
+export const STRATEGIC_OUTCOME_ICONS = [
+  Shield,
+  Workflow,
+  BarChart3,
+  ClipboardCheck,
+  Network,
+] as const;
+
+export const TESTING_ACTIVITY_ICONS = [
+  Hammer,
+  Network,
+  FileCheck,
+  Activity,
+  Shield,
+  ClipboardCheck,
+] as const;
+
+export const TESTING_PYRAMID_ICONS = [
+  ClipboardCheck,
+  Activity,
+  Network,
+  Hammer,
+] as const;
+
+export const BUSINESS_CHALLENGE_ICONS = [
+  Server,
+  Network,
+  FileBadge,
+  Activity,
+  Eye,
+  RefreshCw,
+] as const;
+
+export const GATEWAY_CAPABILITY_ICONS = [
+  Layers,
+  Shield,
+  Lock,
+  Zap,
+  ClipboardCheck,
+  Scale,
+] as const;
+
+export const BWE_HUB_UNIT_ICONS = [
+  BarChart3,
+  RefreshCw,
+  Package,
+  Hammer,
+  MapPin,
+  Banknote,
+  Users,
+] as const;
+
+export const EXECUTIVE_SUMMARY_CURRENT_ICONS = [
+  Database,
+  Users,
+  PenLine,
+] as const;
+
+export const EXECUTIVE_SUMMARY_FUTURE_ICONS = [
+  Zap,
+  Flag,
+  Rocket,
+] as const;
+
+export const SOLUTION_OVERVIEW_FLOW_ICONS = [
+  Users,
+  Handshake,
+  Network,
+  Scale,
+  Building2,
+] as const;
+
+export const SOLUTION_ECOSYSTEM_SIDE_ICONS = [
+  Shield,
+  Activity,
+  FileSearch,
+  BarChart3,
+  TrendingUp,
+] as const;
+
+export const API_GATEWAY_FLOW_ICONS = [
+  Server,
+  Network,
+  ShieldCheck,
+  Workflow,
+  Scale,
+  Building2,
+] as const;
+
+export const CRM_FLOW_ICONS = [
+  Handshake,
+  Network,
+  Database,
+  Scale,
+  Building2,
+] as const;
+
+export const SOLUTION_ECOSYSTEM_STEP_ICONS = [
+  Users,
+  Database,
+  Handshake,
+  Network,
+  Scale,
+  Building2,
+] as const;
+
+export const RSL_ACCREDITATION_FLOW_ICONS = [
+  Users,
+  Database,
+  Network,
+  Scale,
+  Building2,
+] as const;
+
 export const EXECUTIVE_SUMMARY_OUTCOME_ICONS = [
   Shield,
   Workflow,
@@ -181,9 +305,10 @@ export const CORE_SERVICE_AREA_ICONS = [
   Building2,
   Plug,
   ShieldCheck,
+  Network,
+  Cloud,
   Headphones,
   Lightbulb,
-  BookOpen,
 ] as const;
 
 export const RSL_BWE_BENEFIT_ICONS = [
@@ -221,8 +346,17 @@ export const DELIVERY_PHILOSOPHY_ICONS = [
   Flag,
 ] as const;
 
+export const ARCHITECTURE_LAYER_ICONS = [
+  Users,
+  Layers,
+  Network,
+  ShieldCheck,
+  Building2,
+] as const;
+
 export const SOLUTION_COMPONENT_ICONS = [
   Server,
+  Users,
   Layers,
   Workflow,
   Building,
@@ -235,6 +369,35 @@ export const SAP_ARCHITECTURE_PANEL_ICONS = [
   Target,
 ] as const;
 
+export const SAP_INTEGRATION_FLOW_ICONS = [
+  BarChart3,
+  Package,
+  Users,
+  Banknote,
+  Plug,
+  Network,
+  Scale,
+  Building2,
+] as const;
+
+export const SAP_INTEGRATION_SIDE_ICONS = [
+  Activity,
+  FileSearch,
+  RefreshCw,
+  Mail,
+] as const;
+
+export const MOTHEO_RADIAL_NODE_ICONS = [
+  CheckCircle2,
+  Scale,
+  QrCode,
+  ClipboardCheck,
+  Eye,
+  Activity,
+  RefreshCw,
+  Network,
+] as const;
+
 export const MOTHEO_COMPONENT_ICONS = [
   CheckCircle2,
   Scale,
@@ -244,6 +407,51 @@ export const MOTHEO_COMPONENT_ICONS = [
   RefreshCw,
   Globe,
   AlertCircle,
+] as const;
+
+export const ONLINE_PROCESSING_ICONS = [
+  CheckCircle2,
+  Zap,
+  BadgeCheck,
+  Activity,
+] as const;
+
+export const OFFLINE_PROCESSING_ICONS = [
+  Lock,
+  RefreshCw,
+  Eye,
+  Scale,
+] as const;
+
+export const RECOVERY_WORKFLOW_ICONS = [
+  AlertCircle,
+  Eye,
+  RefreshCw,
+  ShieldCheck,
+  Network,
+  FileSearch,
+] as const;
+
+export const CERTIFICATE_LIFECYCLE_ICONS = [
+  FileSignature,
+  ClipboardCheck,
+  ShieldCheck,
+  Award,
+  Server,
+  RefreshCw,
+  FileBadge,
+  AlertCircle,
+] as const;
+
+export const TRANSACTION_WORKFLOW_ICONS = [
+  PenLine,
+  CheckCircle2,
+  Workflow,
+  Scale,
+  QrCode,
+  Network,
+  FileCheck,
+  FolderOpen,
 ] as const;
 
 export const TRANSACTION_TYPE_ICONS = [
@@ -273,6 +481,13 @@ export const QR_CODE_BENEFIT_ICONS = [
   Lock,
 ] as const;
 
+export const QR_CALLOUT_ICONS = [
+  FileText,
+  BadgeCheck,
+  Globe,
+  QrCode,
+] as const;
+
 export const DASHBOARD_FEATURE_ICONS = [
   Activity,
   Eye,
@@ -282,6 +497,27 @@ export const DASHBOARD_FEATURE_ICONS = [
   TrendingUp,
   Users,
   Clock,
+] as const;
+
+export const DASHBOARD_MODULE_ICONS = [
+  BarChart3,
+  CheckCircle2,
+  Clock,
+  AlertCircle,
+  Activity,
+  TrendingUp,
+  ShieldCheck,
+  BadgeCheck,
+] as const;
+
+export const AVAILABLE_REPORT_ICONS = [
+  FileText,
+  ClipboardCheck,
+  TrendingUp,
+  AlertCircle,
+  FileSearch,
+  FileBadge,
+  Activity,
 ] as const;
 
 export const SECURITY_OBJECTIVE_ICONS = [
@@ -314,6 +550,7 @@ export const SOLUTION_ARCHITECTURE_FLOW_ICONS = [
   Workflow,
   QrCode,
   Building2,
+  Flag,
 ] as const;
 
 export const GOVERNANCE_OBJECTIVE_ICONS = [
@@ -345,6 +582,38 @@ export const TRAINING_AUDIENCE_ICONS = [
   Shield,
   Server,
   BarChart3,
+] as const;
+
+export const LEARNING_JOURNEY_ICONS = [
+  Lightbulb,
+  BookOpen,
+  Hammer,
+  BadgeCheck,
+  Sparkles,
+] as const;
+
+export const SUPPORT_LIFECYCLE_ICONS = [
+  Eye,
+  Headphones,
+  TrendingUp,
+  RefreshCw,
+  ShieldCheck,
+] as const;
+
+export const ESCALATION_LEVEL_ICONS = [
+  Headphones,
+  Server,
+  ShieldCheck,
+  Users,
+  Building2,
+] as const;
+
+export const RISK_TREATMENT_ICONS = [
+  Search,
+  ClipboardCheck,
+  ShieldCheck,
+  Activity,
+  CheckCircle2,
 ] as const;
 
 export const SUPPORT_SERVICE_ICONS = [
@@ -385,14 +654,20 @@ export const WHY_INFINITY_CARD_ICONS = [
   MapPin,
   Sparkles,
   Handshake,
+  Server,
+  RefreshCw,
 ] as const;
 
 export const SUPPLIER_RESPONSE_ICONS = [
   ShieldCheck,
-  Award,
+  Server,
+  Users,
+  Globe,
   Plug,
-  Clock,
+  FileBadge,
+  QrCode,
   Headphones,
+  BookOpen,
   RefreshCw,
 ] as const;
 
@@ -402,6 +677,13 @@ export const IMPLEMENTATION_PHASE_ICONS = [
   Hammer,
   FlaskConical,
   Rocket,
+] as const;
+
+export const WORKSTREAM_ICONS = [
+  Users,
+  Server,
+  ShieldCheck,
+  BookOpen,
 ] as const;
 
 export const DHL_STANDARDS_CARD_ICONS = [

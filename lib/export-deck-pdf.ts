@@ -13,8 +13,8 @@ export type ExportDeckPdfOptions = {
 };
 
 const PNG_SLIDE_COUNT = APPENDIX_START_SLIDE;
-const PDF_APPENDIX_COUNT = appendices.filter((a) =>
-  a.file.toLowerCase().endsWith(".pdf"),
+const PDF_APPENDIX_COUNT = appendices.filter(
+  (a) => "file" in a && typeof a.file === "string" && a.file.toLowerCase().endsWith(".pdf"),
 ).length;
 
 export async function waitForSlideReady(root: HTMLElement | null) {
@@ -38,8 +38,11 @@ export async function waitForSlideReady(root: HTMLElement | null) {
 }
 
 async function loadAppendixBytes() {
-  const pdfAppendices = appendices.filter((appendix) =>
-    appendix.file.toLowerCase().endsWith(".pdf"),
+  const pdfAppendices = appendices.filter(
+    (appendix): appendix is (typeof appendices)[number] & { file: string } =>
+      "file" in appendix &&
+      typeof appendix.file === "string" &&
+      appendix.file.toLowerCase().endsWith(".pdf"),
   );
   return Promise.all(
     pdfAppendices.map(async (appendix) => {

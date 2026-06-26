@@ -12,18 +12,22 @@ const SIZES = {
   lg: { px: 28, className: "h-7 w-7" },
 } as const;
 
-/** BWE mark — public/images/brands/bwe-favicon.png */
+/** BWE mark — public/images/brands/bwe-logo.png */
 export function BweMark({ size = "sm", className = "" }: IbdMarkProps) {
-  const { px, className: sizeClass } = SIZES[size];
+  const heights = {
+    sm: "h-3.5",
+    md: "h-4",
+    lg: "h-5",
+  } as const;
 
   return (
     <Image
-      src={ASSETS.brands.bweFavicon}
+      src={ASSETS.brands.bweLogo}
       alt=""
-      width={px}
-      height={px}
+      width={1799}
+      height={483}
       aria-hidden
-      className={`shrink-0 object-contain ${sizeClass} ${className}`.trim()}
+      className={`w-auto shrink-0 object-contain ${heights[size]} ${className}`.trim()}
     />
   );
 }
@@ -65,6 +69,19 @@ export function MotheoMark({ size = "sm", className = "" }: IbdMarkProps) {
       height={3290}
       aria-hidden
       className={`w-auto shrink-0 object-contain ${heights[size]} ${className}`.trim()}
+    />
+  );
+}
+
+/** Horizontal BWE wordmark for cover footer */
+export function BweFooterLogo({ className = "" }: { className?: string }) {
+  return (
+    <Image
+      src={ASSETS.brands.bweLogo}
+      alt="Barloworld Equipment"
+      width={1799}
+      height={483}
+      className={`h-8 w-auto shrink-0 object-contain object-left ${className}`.trim()}
     />
   );
 }
