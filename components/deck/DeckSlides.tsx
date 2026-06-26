@@ -27,7 +27,7 @@ import {
   DEBIT_NOTE_STEP_ICONS,
   DELIVERY_PHILOSOPHY_ICONS,
   DESIGN_PRINCIPLE_ICONS,
-  DHL_SUCCESS_FACTOR_ICONS,
+  BWE_SUCCESS_FACTOR_ICONS,
   EXECUTIVE_BENEFIT_ICONS,
   EXECUTIVE_SUMMARY_OUTCOME_ICONS,
   EXPERIENCE_AREA_ICONS,
@@ -40,7 +40,7 @@ import {
   MOTHEO_COMPONENT_ICONS,
   QR_CODE_BENEFIT_ICONS,
   RESILIENCE_FEATURE_ICONS,
-  RSL_DHL_BENEFIT_ICONS,
+  RSL_BWE_BENEFIT_ICONS,
   SAP_ARCHITECTURE_PANEL_ICONS,
   SECURITY_OBJECTIVE_ICONS,
   SOLUTION_COMPONENT_ICONS,
@@ -70,6 +70,7 @@ import {
   annualBusinessBenefits,
   annualIncludedServices,
   appendices,
+  coverMeta,
   getAppendixIndexForSlide,
   architecturePrinciples,
   bankingDetails,
@@ -84,9 +85,9 @@ import {
   dashboardBenefits,
   dataFlowSteps,
   debitNoteSteps,
-  dhlBusinessValue,
-  dhlRequirementMatrix,
-  dhlSuccessFactors,
+  bweBusinessValue,
+  bweRequirementMatrix,
+  bweSuccessFactors,
   escalationLevels,
   executiveBenefits,
   executiveSummaryOutcomes,
@@ -106,7 +107,7 @@ import {
   projectTeamRoles,
   projectTimeline,
   qrCodeBenefits,
-  qrDhlBenefits,
+  qrBweBenefits,
   resilienceFeatures,
   riskMitigation,
   sapArchitecturePanels,
@@ -134,7 +135,7 @@ import {
   yearOneIncluded,
 } from "@/lib/deck-content";
 
-const RSL_DHL_BENEFITS = [
+const RSL_BWE_BENEFITS = [
   {
     title: "Reduced Compliance Risk",
     description:
@@ -168,13 +169,13 @@ const RSL_DHL_BENEFITS = [
 ];
 
 const TEAM_EXPERTISE = [
-  "SAP Integration — Connecting DHL's ERP environment to the compliance platform.",
+  "SAP Integration — Connecting BWE's ERP environment to the compliance platform.",
   "Enterprise Architecture — Designing secure, scalable integration and data flows.",
   "Compliance Automation — Automating regulatory reporting and validation workflows.",
   "Tax Technology — Applying fiscal rules and tax validation for RSL compliance.",
   "Project Management — Coordinating delivery, governance and stakeholder engagement.",
   "Managed Services — Ongoing platform operation, monitoring and support.",
-  "User Enablement — Training and knowledge transfer for DHL teams.",
+  "User Enablement — Training and knowledge transfer for BWE teams.",
 ];
 
 const SOLUTION_BUSINESS_BENEFITS = [
@@ -319,87 +320,94 @@ export function renderDeckSlide(index: number) {
           <div className="space-y-4">
             <div className="text-[18px] font-medium leading-[1.6] text-[color:var(--gms-text)]">
               <p>
-                <span className="font-medium text-[color:var(--gms-text)]">To:</span> Sandana
-                Armoogum, Purchasing Manager
+                <span className="font-medium text-[color:var(--gms-text)]">To:</span>{" "}
+                {coverMeta.rfqContact}
               </p>
-              <p className="mt-1">GBS Procurement Sub-Saharan Africa</p>
-              <p>Purchasing Center Mauritius</p>
-              <p>Port Louis, Mauritius</p>
+              <p className="mt-1">Barloworld Equipment (BWE)</p>
               <p>
                 <span className="font-medium text-[color:var(--gms-text)]">Email:</span>{" "}
-                sandana.armoogum@dhl.com
+                {coverMeta.rfqContactEmail}
               </p>
             </div>
-            <p className="text-[18px] font-medium leading-[1.6] text-[color:var(--gms-text)]">Dear Sir/Madam,</p>
-            <DeckBody>
-              Infinity Business Dynamics is pleased to submit this proposal for
-              the implementation of a Lekuka-compliant electronic invoicing
-              solution for DHL Express Lesotho.
-            </DeckBody>
-            <DeckBody>
-              As Revenue Services Lesotho continues to strengthen fiscal
-              transparency through the Lekuka e-Invoicing framework, organisations
-              are required to ensure that qualifying transactions are accurately
-              reported, validated and monitored in accordance with regulatory
-              requirements.
-            </DeckBody>
-            <DeckBody>
-              For DHL Express Lesotho, compliance must be achieved without
-              compromising operational efficiency, business continuity or the
-              integrity of existing SAP ERP processes.
-            </DeckBody>
-            <DeckBody>
-              To address these requirements, Infinity Business Dynamics proposes
-              the implementation of the Motheo Compliance Platform, a Revenue
-              Services Lesotho accredited solution designed to automate fiscal
-              transaction reporting, QR code generation, compliance validation
-              and real-time submission of electronic invoices, credit notes and
-              debit notes to the Lekuka platform.
-            </DeckBody>
-            <DeckBody>
-              The proposed solution introduces a dedicated compliance layer
-              between DHL&apos;s SAP ERP environment and Revenue Services
-              Lesotho, ensuring that regulatory obligations are fulfilled
-              automatically while preserving existing business operations.
-            </DeckBody>
-            <p className="text-[18px] font-medium text-deck-accent">
-              The implementation includes:
+            <p className="text-[18px] font-medium leading-[1.6] text-[color:var(--gms-text)]">
+              Good day,
             </p>
+            <DeckBody>
+              I hope this message finds you well.
+            </DeckBody>
+            <DeckBody>
+              Infinity Business Dynamics is pleased to submit this quotation in
+              response to Barloworld Equipment&apos;s Request for Quotation (RFQ)
+              for the design, supply, implementation, and support of a Compliance
+              Gateway solution (Electronic Billing System – EBS).
+            </DeckBody>
+            <DeckBody>
+              BWE expects the selected service provider to deliver a robust and
+              compliant solution that integrates seamlessly with the existing
+              environment and ensures continuous, reliable operation in line with
+              regulatory requirements.
+            </DeckBody>
+            <DeckBody>
+              We have reviewed the RFQ documentation and submit our quotation in
+              accordance with the requirements outlined therein. Our proposal
+              presents the Motheo Compliance Platform — a Revenue Services
+              Lesotho accredited Compliance Gateway — designed to automate fiscal
+              transaction reporting, validation and submission in alignment with
+              Smart Invoicing Lesotho requirements.
+            </DeckBody>
+            <DeckBody>
+              Should you have any questions or require further clarification,
+              please contact {coverMeta.rfqContact} at {coverMeta.rfqContactEmail}.
+            </DeckBody>
+            <p className="text-[18px] font-medium text-deck-accent">Key Dates:</p>
             <DeckBulletList
-              items={[
-                "SAP ERP Integration",
-                "Lekuka API Configuration",
-                "Invoice Reporting",
-                "Credit Note Reporting",
-                "Debit Note Reporting",
-                "QR Code Generation",
-                "User Training",
-                "Testing & Go-Live Support",
-                "Managed Support Services",
-              ]}
+              items={coverMeta.keyDates.map((d) => `${d.label}: ${d.value}`)}
             />
-            <DeckBody>
-              Infinity Business Dynamics is committed to supporting DHL
-              throughout this transformation journey and delivering a solution
-              that strengthens compliance, improves visibility and protects
-              operational continuity.
-            </DeckBody>
-            <DeckBody>
-              We appreciate the opportunity to submit this proposal and look
-              forward to partnering with DHL Express Lesotho.
-            </DeckBody>
-          </div>
-          <div
-            className="mt-8 shrink-0 border-t border-[color:var(--gms-border)]"
-            aria-hidden
-          />
-          <div className="h-40 shrink-0" aria-hidden />
-          <div className="shrink-0">
-            <DeckBody>Yours faithfully,</DeckBody>
-            <p className="mt-3 text-[18px] font-semibold text-[color:var(--gms-text)]">
+            <DeckBody>We look forward to your consideration of our submission.</DeckBody>
+            <DeckBody>Kind regards,</DeckBody>
+            <p className="text-[18px] font-semibold text-[color:var(--gms-text)]">
               Infinity Business Dynamics (Pty) Ltd
             </p>
-            <SignoffTaglineLogo tagline="Harnessing the Power of Technology" />
+          </div>
+          <div
+            className="mt-6 shrink-0 border-t border-[color:var(--gms-border)] pt-4"
+          >
+            <p className="text-[11px] leading-[1.55] text-[color:var(--gms-text-muted)]">
+              This e-mail transmission may contain confidential information, which is the
+              property of Barloworld Equipment a division of Barloworld South Africa (Pty)
+              Ltd (&ldquo;Barloworld Equipment&rdquo;). No person, other than the recipient
+              (so indicated by the sender) may use or disclose the contents of this message,
+              links or attachments thereto, to any person. The information in this email,
+              links or attachments thereto is intended for the attention and use of the
+              recipient only – if you are not the intended recipient any use, disclosure,
+              copying or distribution thereof or the taking of any action in reliance thereon
+              is strictly prohibited. Should you have received this e-mail in error, kindly
+              notify the sender immediately by return e-mail and delete the original message.
+            </p>
+            <p className="mt-3 text-[11px] leading-[1.55] text-[color:var(--gms-text-muted)]">
+              The provisions of Sections 11, 12, and 13 of the Electronic Communications and
+              Transactions Act, 25 of 2002, in so far as e-contracting is concerned are
+              expressly excluded and contracted out of by Barloworld South Africa (Pty) Ltd
+              (&ldquo;Barloworld&rdquo;) and, unless clearly stated to the contrary in the
+              body of the data message or electronic communication no data message or
+              electronic communication will be recognised as having legal contractual status
+              as per the aforementioned provisions under any circumstances. All contracts
+              concluded by Barloworld, its Business Units, Divisions and Subsidiaries will
+              only be legally binding and recognised once reduced to physical writing and
+              physically signed by a duly authorised representative of Barloworld. All other
+              provisions of the Electronic Communications and Transactions Act, 25 of 2002 are
+              accepted.
+            </p>
+            <p className="mt-3 text-[11px] leading-[1.55] text-[color:var(--gms-text-muted)]">
+              Although Barloworld Equipment has taken all reasonable precautions to ensure
+              that this e-mail is virus free, Barloworld Equipment does not accept any
+              liability for any damage caused by any virus transmitted by this email.
+            </p>
+            <p className="mt-3 text-[11px] leading-[1.55] text-[color:var(--gms-text-muted)]">
+              Barloworld Equipment: 8 Values: Safety + Integrity + Uncompromising Customer
+              Service + Long Term Customer Relationships + Passion For Our Brands +
+              Professionalism + Effective Communication + Winning Through Team Work.
+            </p>
           </div>
         </DeckSlideFrame>
       );
@@ -427,7 +435,7 @@ export function renderDeckSlide(index: number) {
           <DeckTitle>Delivering Compliance Without Compromising Operations</DeckTitle>
           <DeckSlideBodySplit visual={<ExecutiveSummaryVisual />}>
             <DeckBody>
-              DHL Express Lesotho operates within a sophisticated SAP ERP
+              Barloworld Equipment (BWE) operates within a sophisticated SAP ERP
               environment that supports mission-critical financial and
               operational processes.
             </DeckBody>
@@ -443,12 +451,12 @@ export function renderDeckSlide(index: number) {
               between SAP ERP and Revenue Services Lesotho.
             </DeckBody>
             <DeckBody>
-              The solution enables DHL to achieve full regulatory compliance
+              The solution enables BWE to achieve full regulatory compliance
               while maintaining existing business processes and operational
               continuity.
             </DeckBody>
             <p className="text-[18px] font-medium text-deck-accent">
-              Through this implementation DHL will achieve:
+              Through this implementation BWE will achieve:
             </p>
             <DeckFeatureGrid
               items={mapDeckIcons(
@@ -457,7 +465,7 @@ export function renderDeckSlide(index: number) {
               )}
             />
             <DeckBody>
-              The proposed solution provides DHL Express Lesotho with a secure,
+              The proposed solution provides Barloworld Equipment (BWE) with a secure,
               scalable and enterprise-grade platform designed to support both
               current compliance obligations and future business growth.
             </DeckBody>
@@ -511,7 +519,7 @@ export function renderDeckSlide(index: number) {
           </DeckTitle>
           <div className="space-y-4">
             <DeckBody>
-              Infinity Business Dynamics understands that DHL Express Lesotho
+              Infinity Business Dynamics understands that Barloworld Equipment (BWE)
               requires more than a software implementation.
             </DeckBody>
             <DeckBody>
@@ -522,26 +530,26 @@ export function renderDeckSlide(index: number) {
             </DeckBody>
             <DeckBody>
               The proposed solution has been designed directly against
-              DHL&apos;s stated requirements and addresses both the technical
+              BWE&apos;s stated requirements and addresses both the technical
               and operational aspects of regulatory compliance.
             </DeckBody>
             <DeckBody>
-              The implementation approach focuses on maintaining existing DHL
+              The implementation approach focuses on maintaining existing BWE
               business processes while introducing automated compliance
               capabilities that operate transparently alongside SAP.
             </DeckBody>
           </div>
           <div className="mt-4 space-y-4">
-            <DeckSectionLabel>DHL Requirement Alignment Matrix</DeckSectionLabel>
+            <DeckSectionLabel>BWE Requirement Alignment Matrix</DeckSectionLabel>
             <DeckTable
-              headers={["DHL Requirement", "Infinity Business Dynamics Response"]}
-              rows={dhlRequirementMatrix.map((r) => [r.requirement, r.response])}
+              headers={["BWE Requirement", "Infinity Business Dynamics Response"]}
+              rows={bweRequirementMatrix.map((r) => [r.requirement, r.response])}
               compact
             />
-            <DeckSectionLabel>DHL Success Factors</DeckSectionLabel>
+            <DeckSectionLabel>BWE Success Factors</DeckSectionLabel>
             <DeckFeatureGrid
               uniform
-              items={mapDeckIcons(dhlSuccessFactors, DHL_SUCCESS_FACTOR_ICONS)}
+              items={mapDeckIcons(bweSuccessFactors, BWE_SUCCESS_FACTOR_ICONS)}
             />
           </div>
         </DeckSlideFrame>
@@ -605,10 +613,10 @@ export function renderDeckSlide(index: number) {
           </DeckTitle>
           <div className="shrink-0 space-y-4">
             <DeckBody>
-              DHL requires more than software.
+              BWE requires more than software.
             </DeckBody>
             <DeckBody>
-              DHL requires a partner capable of delivering compliance
+              BWE requires a partner capable of delivering compliance
               transformation, enterprise integration and long-term operational
               success.
             </DeckBody>
@@ -661,9 +669,9 @@ export function renderDeckSlide(index: number) {
             </DeckBody>
           </div>
           <div className="mt-4 space-y-4">
-            <DeckSectionLabel>What This Means for DHL</DeckSectionLabel>
+            <DeckSectionLabel>What This Means for BWE</DeckSectionLabel>
             <DeckFeatureGrid
-              items={mapDeckIcons(RSL_DHL_BENEFITS, RSL_DHL_BENEFIT_ICONS)}
+              items={mapDeckIcons(RSL_BWE_BENEFITS, RSL_BWE_BENEFIT_ICONS)}
             />
             <DeckSectionLabel>Accreditation Highlights</DeckSectionLabel>
             <DeckTable
@@ -686,7 +694,7 @@ export function renderDeckSlide(index: number) {
             <DeckBody>
               Infinity Business Dynamics has assembled a multidisciplinary team
               of business, compliance and integration specialists to ensure
-              successful delivery of the DHL Lekuka implementation project.
+              successful delivery of the BWE Lekuka implementation project.
             </DeckBody>
             <DeckBody>
               The project team combines expertise in:
@@ -708,7 +716,7 @@ export function renderDeckSlide(index: number) {
               )}
             />
             <DeckBody>
-              DHL requires a partner capable of balancing technical delivery,
+              BWE requires a partner capable of balancing technical delivery,
               compliance requirements and operational continuity. Infinity
               Business Dynamics brings this combination of expertise to every
               engagement.
@@ -760,7 +768,7 @@ export function renderDeckSlide(index: number) {
       return (
         <DeckSlideFrame index={11}>
           <SlideEyebrow index={11} />
-          <DeckTitle highlight="DHL">
+          <DeckTitle highlight="BWE">
             Enterprise Compliance Architecture for
           </DeckTitle>
           <DeckSlideBodySplit
@@ -769,7 +777,7 @@ export function renderDeckSlide(index: number) {
             <DeckBody>
               Infinity Business Dynamics proposes the implementation of the
               Motheo Compliance Platform as a dedicated compliance layer between
-              DHL&apos;s SAP ERP environment and Revenue Services Lesotho.
+              BWE&apos;s SAP ERP environment and Revenue Services Lesotho.
             </DeckBody>
             <DeckBody>
               This architecture ensures compliance obligations are automated
@@ -819,7 +827,7 @@ export function renderDeckSlide(index: number) {
           </DeckTitle>
           <DeckSlideBodySplit visual={<SolutionArchitectureVisual variant="tier" />}>
             <DeckBody>
-              The implementation approach focuses on leveraging DHL&apos;s
+              The implementation approach focuses on leveraging BWE&apos;s
               existing SAP ERP environment while introducing compliance
               capabilities that operate transparently alongside current business
               processes.
@@ -877,17 +885,17 @@ export function renderDeckSlide(index: number) {
           <div className="space-y-4">
             <DeckBody>
               The Motheo Compliance Platform serves as the central compliance
-              gateway between DHL&apos;s SAP ERP environment and Revenue
+              gateway between BWE&apos;s SAP ERP environment and Revenue
               Services Lesotho.
             </DeckBody>
             <DeckBody>
               The platform is specifically designed to separate compliance
-              requirements from DHL&apos;s operational systems, enabling
+              requirements from BWE&apos;s operational systems, enabling
               regulatory reporting to be managed independently without disrupting
               existing business processes.
             </DeckBody>
             <DeckBody>
-              By introducing a dedicated compliance layer, DHL benefits from
+              By introducing a dedicated compliance layer, BWE benefits from
               increased visibility, reduced complexity and improved control over
               compliance activities.
             </DeckBody>
@@ -934,7 +942,7 @@ export function renderDeckSlide(index: number) {
               and reporting accuracy.
             </DeckBody>
             <DeckBody>
-              This architecture enables DHL to maintain SAP as the system of
+              This architecture enables BWE to maintain SAP as the system of
               record while centralising compliance activities within a dedicated
               platform.
             </DeckBody>
@@ -1130,7 +1138,7 @@ export function renderDeckSlide(index: number) {
               validates QR codes for all qualifying transactions.
             </DeckBody>
             <DeckBody>
-              This functionality ensures that DHL&apos;s fiscal documents meet
+              This functionality ensures that BWE&apos;s fiscal documents meet
               regulatory requirements while reducing administrative effort.
             </DeckBody>
           </div>
@@ -1139,8 +1147,8 @@ export function renderDeckSlide(index: number) {
             <DeckFeatureGrid
               items={mapDeckIcons(qrCodeBenefits, QR_CODE_BENEFIT_ICONS)}
             />
-            <DeckSectionLabel>DHL Benefits</DeckSectionLabel>
-            <DeckBulletList items={qrDhlBenefits} />
+            <DeckSectionLabel>BWE Benefits</DeckSectionLabel>
+            <DeckBulletList items={qrBweBenefits} />
           </div>
         </DeckSlideFrame>
       );
@@ -1154,7 +1162,7 @@ export function renderDeckSlide(index: number) {
           </DeckTitle>
           <div className="space-y-4">
             <DeckBody>
-              The Motheo Compliance Platform provides DHL with a centralised
+              The Motheo Compliance Platform provides BWE with a centralised
               monitoring environment for managing compliance activities.
             </DeckBody>
             <DeckBody>
@@ -1186,7 +1194,7 @@ export function renderDeckSlide(index: number) {
           </DeckTitle>
           <div className="space-y-4">
             <DeckBody>
-              DHL operates within an environment where information security,
+              BWE operates within an environment where information security,
               data integrity and operational resilience are essential business
               requirements.
             </DeckBody>
@@ -1197,7 +1205,7 @@ export function renderDeckSlide(index: number) {
             <DeckBody>
               The Motheo Compliance Platform incorporates security controls that
               protect information throughout its lifecycle while supporting
-              DHL&apos;s governance requirements.
+              BWE&apos;s governance requirements.
             </DeckBody>
           </div>
           <div className="mt-4 space-y-4">
@@ -1360,7 +1368,7 @@ export function renderDeckSlide(index: number) {
           </DeckTitle>
           <div className="space-y-4">
             <DeckBody>
-              The implementation approach focuses on leveraging DHL&apos;s
+              The implementation approach focuses on leveraging BWE&apos;s
               existing SAP environment while introducing automated compliance
               capabilities that operate transparently alongside current business
               processes.
@@ -1438,7 +1446,7 @@ export function renderDeckSlide(index: number) {
             </DeckBody>
             <DeckBody>
               Infinity Business Dynamics provides structured training and
-              knowledge transfer programmes to ensure DHL personnel are fully
+              knowledge transfer programmes to ensure BWE personnel are fully
               equipped to operate and support the solution.
             </DeckBody>
           </div>
@@ -1465,7 +1473,7 @@ export function renderDeckSlide(index: number) {
           <div className="space-y-4">
             <DeckBody>
               Infinity Business Dynamics provides comprehensive support services
-              designed to ensure the continued success of DHL&apos;s compliance
+              designed to ensure the continued success of BWE&apos;s compliance
               environment.
             </DeckBody>
             <DeckBody>
@@ -1499,7 +1507,7 @@ export function renderDeckSlide(index: number) {
             </DeckBody>
             <DeckBody>
               Our support framework defines clear response times, escalation paths
-              and service principles so DHL always knows who to contact, how
+              and service principles so BWE always knows who to contact, how
               quickly issues will be addressed and what to expect at each stage.
             </DeckBody>
             <DeckBody>
@@ -1547,7 +1555,7 @@ export function renderDeckSlide(index: number) {
             </DeckBody>
             <DeckBody>
               Year-one pricing covers everything required to go live and sustain
-              reporting to Revenue Services Lesotho, giving DHL predictable costs
+              reporting to Revenue Services Lesotho, giving BWE predictable costs
               and a clear view of total value.
             </DeckBody>
           </div>
@@ -1580,11 +1588,11 @@ export function renderDeckSlide(index: number) {
             </DeckBody>
             <DeckBody>
               Infinity Business Dynamics provides a comprehensive annual support
-              model that ensures DHL remains compliant as Revenue Services
+              model that ensures BWE remains compliant as Revenue Services
               Lesotho requirements evolve.
             </DeckBody>
             <DeckBody>
-              Beyond the first year, DHL benefits from a predictable annual
+              Beyond the first year, BWE benefits from a predictable annual
               subscription covering platform access, technical support, compliance
               monitoring and regulatory updates—protecting reporting continuity
               without the cost of a new implementation.
@@ -1650,10 +1658,10 @@ export function renderDeckSlide(index: number) {
       return (
         <DeckSlideFrame index={35}>
           <SlideEyebrow index={35} />
-          <DeckTitle>DHL Supplier Questionnaire Response</DeckTitle>
+          <DeckTitle>BWE Supplier Questionnaire Response</DeckTitle>
           <DeckBody>
             Infinity Business Dynamics appreciates the opportunity to respond to
-            DHL Express Lesotho&apos;s supplier evaluation questions.
+            Barloworld Equipment (BWE)&apos;s supplier evaluation questions.
           </DeckBody>
           <DeckBody>
             The following responses address the specific requirements outlined
@@ -1681,38 +1689,28 @@ export function renderDeckSlide(index: number) {
       return (
         <DeckSlideFrame index={36}>
           <SlideEyebrow index={36} />
-          <DeckTitle highlight="DHL Standards">
+          <DeckTitle highlight="BWE Standards">
             Commitment to
           </DeckTitle>
           <div className="space-y-4">
             <DeckBody>
               Infinity Business Dynamics recognises the importance of governance,
-              compliance, ethics and information security within DHL&apos;s
+              compliance, ethics and information security within BWE&apos;s
               supplier ecosystem.
             </DeckBody>
             <DeckBody>
               We confirm our commitment to operating in accordance with
-              DHL&apos;s procurement and supplier governance requirements.
+              BWE&apos;s procurement and supplier governance requirements.
             </DeckBody>
           </div>
           <div className="mt-4 space-y-4">
             <div className="gms-card rounded-2xl p-5">
               <p className="text-[18px] font-semibold text-deck-accent">
-                DHL Group Purchasing Terms &amp; Conditions
+                BW Group Supplier Code of Conduct
               </p>
               <p className="mt-2 text-[17px] font-medium leading-relaxed text-[color:var(--gms-text)]">
-                Infinity Business Dynamics confirms acceptance of the DHL Group
-                Purchasing Terms &amp; Conditions, subject to final contract
-                execution and mutual agreement.
-              </p>
-            </div>
-            <div className="gms-card rounded-2xl p-5">
-              <p className="text-[18px] font-semibold text-deck-accent">
-                DHL Group Supplier Code of Conduct
-              </p>
-              <p className="mt-2 text-[17px] font-medium leading-relaxed text-[color:var(--gms-text)]">
-                Infinity Business Dynamics confirms adherence to ethical
-                business practices and responsible corporate conduct.
+                Infinity Business Dynamics confirms adherence to the BW Group
+                Supplier Code of Conduct and ethical business practices.
               </p>
               <p className="mt-2 text-[14px] text-[color:var(--gms-text-muted)]">
                 Our organisation is committed to:
@@ -1726,23 +1724,31 @@ export function renderDeckSlide(index: number) {
             </div>
             <div className="gms-card rounded-2xl p-5">
               <p className="text-[18px] font-semibold text-deck-accent">
-                DHL Information Security Code of Practice
+                Non-Disclosure Agreement
               </p>
               <p className="mt-2 text-[17px] font-medium leading-relaxed text-[color:var(--gms-text)]">
-                Infinity Business Dynamics confirms its commitment to
-                maintaining appropriate information security controls designed to
-                protect DHL information assets and support secure service
-                delivery.
+                Infinity Business Dynamics confirms willingness to execute the
+                BWE RFP ICT Annexure D Non-Disclosure Agreement as required.
               </p>
             </div>
             <div className="gms-card rounded-2xl p-5">
               <p className="text-[18px] font-semibold text-deck-accent">
-                Framework Agreement
+                Consulting &amp; IT Service Agreement
               </p>
               <p className="mt-2 text-[17px] font-medium leading-relaxed text-[color:var(--gms-text)]">
                 Infinity Business Dynamics confirms its willingness to enter into
-                the DHL Framework Agreement subject to final contractual review
-                and mutual agreement between both parties.
+                the Consulting &amp; IT Service Agreement subject to final
+                contractual review and mutual agreement between both parties.
+              </p>
+            </div>
+            <div className="gms-card rounded-2xl p-5">
+              <p className="text-[18px] font-semibold text-deck-accent">
+                Supplier Self Assessment Questionnaire
+              </p>
+              <p className="mt-2 text-[17px] font-medium leading-relaxed text-[color:var(--gms-text)]">
+                Infinity Business Dynamics has completed the Supplier Self
+                Assessment Questionnaire (In-Depth version 2023) as attached in
+                Appendix I.
               </p>
             </div>
             <DeckSectionLabel>Organisational Commitments</DeckSectionLabel>
@@ -1762,17 +1768,17 @@ export function renderDeckSlide(index: number) {
           </DeckTitle>
           <div className="space-y-4">
             <DeckBody>
-              DHL requires more than a software provider.
+              BWE requires more than a software provider.
             </DeckBody>
             <DeckBody>
-              DHL requires a partner capable of delivering regulatory compliance,
+              BWE requires a partner capable of delivering regulatory compliance,
               enterprise integration, operational continuity and long-term
               support.
             </DeckBody>
             <DeckBody>
               Infinity Business Dynamics brings together regulatory expertise,
               SAP integration capability and local support resources to deliver a
-              solution specifically designed for DHL&apos;s requirements.
+              solution specifically designed for BWE&apos;s requirements.
             </DeckBody>
           </div>
           <div className="mt-4 space-y-4">
@@ -1783,15 +1789,15 @@ export function renderDeckSlide(index: number) {
                 WHY_INFINITY_VALUE_ICONS,
               )}
             />
-            <DeckSectionLabel>DHL Business Value</DeckSectionLabel>
+            <DeckSectionLabel>BWE Business Value</DeckSectionLabel>
             <DeckTable
-              headers={["DHL Objective", "Infinity Outcome"]}
-              rows={dhlBusinessValue.map((r) => [r.objective, r.outcome])}
+              headers={["BWE Objective", "Infinity Outcome"]}
+              rows={bweBusinessValue.map((r) => [r.objective, r.outcome])}
               compact
             />
             <DeckSectionLabel>Our Commitment</DeckSectionLabel>
             <DeckBody>
-              We are committed to delivering a solution that enables DHL Express
+              We are committed to delivering a solution that enables BWE Express
               Lesotho to meet regulatory obligations confidently while
               maintaining operational excellence and business continuity.
             </DeckBody>
@@ -1815,20 +1821,20 @@ export function renderDeckSlide(index: number) {
               </DeckBody>
               <DeckBody>
                 Infinity Business Dynamics proposes a secure, scalable and fully
-                compliant solution that integrates seamlessly with DHL&apos;s SAP
+                compliant solution that integrates seamlessly with BWE&apos;s SAP
                 ERP environment while supporting the reporting requirements of
                 Revenue Services Lesotho.
               </DeckBody>
               <p className="text-[18px] font-medium text-deck-accent">
                 Through the implementation of the Motheo Compliance Platform,
-                DHL will benefit from:
+                BWE will benefit from:
               </p>
               <DeckFeatureGrid
                 items={mapDeckIcons(conclusionBenefits, CONCLUSION_BENEFIT_ICONS)}
               />
               <DeckSectionLabel>Final Value Statement</DeckSectionLabel>
               <DeckBody>
-                Infinity Business Dynamics is uniquely positioned to support DHL
+                Infinity Business Dynamics is uniquely positioned to support BWE
                 Express Lesotho through this compliance transformation
                 initiative.
               </DeckBody>
@@ -1843,13 +1849,13 @@ export function renderDeckSlide(index: number) {
                 ]}
               />
               <DeckBody>
-                provides DHL with a trusted partner capable of delivering
+                provides BWE with a trusted partner capable of delivering
                 successful outcomes today while supporting future growth and
                 regulatory requirements.
               </DeckBody>
               <DeckInsight label="Closing Statement">
                 We appreciate the opportunity to submit this proposal and look
-                forward to partnering with DHL Express Lesotho.
+                forward to partnering with Barloworld Equipment (BWE).
               </DeckInsight>
             </div>
           </ClosingBackdrop>
@@ -1867,7 +1873,7 @@ export function renderDeckSlide(index: number) {
           </DeckBody>
           <div className="deck-signature-grid">
             <div className="space-y-8">
-              <DeckSectionLabel>For DHL Express Lesotho</DeckSectionLabel>
+              <DeckSectionLabel>For Barloworld Equipment (BWE)</DeckSectionLabel>
               <div className="deck-signature-fields">
                 {["Name", "Position", "Signature", "Date"].map((field) => (
                   <div key={field}>

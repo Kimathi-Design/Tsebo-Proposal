@@ -12,13 +12,13 @@ const SIZES = {
   lg: { px: 28, className: "h-7 w-7" },
 } as const;
 
-/** DHL mark — public/dhl-favicon.png */
-export function DhlMark({ size = "sm", className = "" }: IbdMarkProps) {
+/** BWE mark — public/images/brands/bwe-favicon.png */
+export function BweMark({ size = "sm", className = "" }: IbdMarkProps) {
   const { px, className: sizeClass } = SIZES[size];
 
   return (
     <Image
-      src={ASSETS.brands.dhlFavicon}
+      src={ASSETS.brands.bweFavicon}
       alt=""
       width={px}
       height={px}
@@ -26,6 +26,11 @@ export function DhlMark({ size = "sm", className = "" }: IbdMarkProps) {
       className={`shrink-0 object-contain ${sizeClass} ${className}`.trim()}
     />
   );
+}
+
+/** @deprecated Use BweMark */
+export function DhlMark(props: IbdMarkProps) {
+  return <BweMark {...props} />;
 }
 
 /** IBD mark — public/favicon-ibd.png */

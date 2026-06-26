@@ -167,12 +167,15 @@ export const EXECUTIVE_BENEFIT_ICONS = [
   TrendingUp,
 ] as const;
 
-export const DHL_SUCCESS_FACTOR_ICONS = [
+export const BWE_SUCCESS_FACTOR_ICONS = [
   BadgeCheck,
   Activity,
   Lock,
   Eye,
 ] as const;
+
+/** @deprecated Use BWE_SUCCESS_FACTOR_ICONS */
+export const DHL_SUCCESS_FACTOR_ICONS = BWE_SUCCESS_FACTOR_ICONS;
 
 export const CORE_SERVICE_AREA_ICONS = [
   Building2,
@@ -183,7 +186,7 @@ export const CORE_SERVICE_AREA_ICONS = [
   BookOpen,
 ] as const;
 
-export const RSL_DHL_BENEFIT_ICONS = [
+export const RSL_BWE_BENEFIT_ICONS = [
   ShieldCheck,
   FileBadge,
   Scale,
@@ -191,6 +194,9 @@ export const RSL_DHL_BENEFIT_ICONS = [
   Award,
   RefreshCw,
 ] as const;
+
+/** @deprecated Use RSL_BWE_BENEFIT_ICONS */
+export const RSL_DHL_BENEFIT_ICONS = RSL_BWE_BENEFIT_ICONS;
 
 export const IMPLEMENTATION_EXPERIENCE_ICONS = [
   Database,
@@ -412,7 +418,10 @@ export const APPENDIX_ICONS = [
   Building,
   Banknote,
   FileText,
+  BookOpen,
   Handshake,
-  Shield,
+  ClipboardCheck,
+  PenLine,
+  Lock,
   FileSignature,
 ] as const;

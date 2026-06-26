@@ -11,13 +11,13 @@ const APPENDIX_FILES = [
   "appendix-c-tax-clearance-certificate.pdf",
   "appendix-d-business-registration-certificate.pdf",
   "appendix-e-banking-confirmation-letter.pdf",
-  "appendix-f-dhl-group-purchasing-terms.pdf",
-  "appendix-g-dhl-supplier-code-of-conduct.pdf",
-  "appendix-h-dhl-information-security-code-of-practice.pdf",
-  "appendix-i-dhl-framework-agreement-template.pdf",
+  "appendix-f-bwe-rfq-smart-invoicing.pdf",
+  "appendix-g-bwe-e-invoicing-gateway-api-spec.pdf",
+  "appendix-h-bw-group-supplier-code-of-conduct.pdf",
+  "appendix-i-bwe-supplier-self-assessment.pdf",
 ];
 
-const outputPath = join(process.cwd(), "public/DHL-Motheo-Proposal.pdf");
+const outputPath = join(process.cwd(), "public/BW-Group-Motheo-Proposal.pdf");
 const port = Number(process.env.DECK_PORT ?? 3010);
 const baseUrl = process.env.DECK_URL ?? `http://localhost:${port}`;
 const printUrl = `${baseUrl.replace(/\/$/, "")}/print`;
@@ -55,7 +55,7 @@ try {
   await page.waitForFunction(() => document.fonts.ready);
   await page.waitForTimeout(1500);
 
-  const slidesPath = join(tmpdir(), "dhl-proposal-slides.pdf");
+  const slidesPath = join(tmpdir(), "bwe-proposal-slides.pdf");
   await page.emulateMedia({ media: "print" });
   await page.pdf({
     path: slidesPath,

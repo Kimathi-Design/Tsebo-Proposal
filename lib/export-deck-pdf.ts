@@ -13,6 +13,9 @@ export type ExportDeckPdfOptions = {
 };
 
 const PNG_SLIDE_COUNT = APPENDIX_START_SLIDE;
+const PDF_APPENDIX_COUNT = appendices.filter((a) =>
+  a.file.toLowerCase().endsWith(".pdf"),
+).length;
 
 export async function waitForSlideReady(root: HTMLElement | null) {
   await document.fonts.ready;
@@ -35,8 +38,11 @@ export async function waitForSlideReady(root: HTMLElement | null) {
 }
 
 async function loadAppendixBytes() {
+  const pdfAppendices = appendices.filter((appendix) =>
+    appendix.file.toLowerCase().endsWith(".pdf"),
+  );
   return Promise.all(
-    appendices.map(async (appendix) => {
+    pdfAppendices.map(async (appendix) => {
       const response = await fetch(appendix.file);
       if (!response.ok) {
         throw new Error(`Failed to load ${appendix.file}`);
@@ -85,7 +91,7 @@ export async function exportDeckToPdf({
   const appendixBytesPromise = loadAppendixBytes();
 
   for (let i = 0; i < PNG_SLIDE_COUNT; i++) {
-    onProgress?.(i + 1, PNG_SLIDE_COUNT + appendices.length);
+    onProgress?.(i + 1, PNG_SLIDE_COUNT + PDF_APPENDIX_COUNT);
 
     const el = await renderSlide(i);
     if (!el) {
@@ -122,7 +128,7 @@ export async function exportDeckToPdf({
 
   const appendixBuffers = await appendixBytesPromise;
   for (let i = 0; i < appendixBuffers.length; i++) {
-    onProgress?.(PNG_SLIDE_COUNT + i + 1, PNG_SLIDE_COUNT + appendices.length);
+    onProgress?.(PNG_SLIDE_COUNT + i + 1, PNG_SLIDE_COUNT + PDF_APPENDIX_COUNT);
     await appendAppendixPagesFromBytes(pdfDoc, appendixBuffers[i]!);
   }
 

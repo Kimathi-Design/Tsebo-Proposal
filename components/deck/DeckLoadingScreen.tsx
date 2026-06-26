@@ -20,7 +20,7 @@ export function DeckLoadingScreen() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.55, delay: 0.12, ease: [0.16, 1, 0.3, 1] }}
         >
-          DHL Express Lesotho — Motheo Compliance Platform
+          Barloworld Equipment (BWE) — Motheo Compliance Platform
         </motion.p>
       </div>
     </div>

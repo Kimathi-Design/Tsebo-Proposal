@@ -1,6 +1,4 @@
-import Image from "next/image";
 import { SlideSectionCorner } from "@/components/deck/SlideEyebrow";
-import { ASSETS } from "@/lib/assets";
 import { coverMeta } from "@/lib/deck-content";
 
 const PREPARED_BY_LINES = [
@@ -100,15 +98,6 @@ export function DeckCoverFooter() {
           <p className="deck-cover-footer__label deck-cover-footer__label--for">Prepared For</p>
           <div className="deck-cover-footer__lines">
             <div className="deck-cover-footer__client-row">
-              <div className="deck-cover-footer__client-logo">
-                <Image
-                  src={ASSETS.brands.dhlFavicon}
-                  alt="DHL"
-                  width={80}
-                  height={80}
-                  className="deck-cover-footer__client-logo-img"
-                />
-              </div>
               <p className="deck-cover-footer__client">{coverMeta.preparedForClient}</p>
             </div>
             <p className="deck-cover-footer__meta-line">

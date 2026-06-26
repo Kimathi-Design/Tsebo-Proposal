@@ -11,9 +11,9 @@ const jost = Jost({
 });
 
 export const metadata: Metadata = {
-  title: "DHL Express Lesotho — Motheo Compliance Platform Proposal",
+  title: "Barloworld Equipment (BWE) — Motheo Compliance Platform Proposal",
   description:
-    "SAP Integration & Lekuka e-Invoicing Implementation — Infinity Business Dynamics.",
+    "Compliance Gateway Solution (EBS) — Infinity Business Dynamics proposal for Barloworld Equipment.",
   robots: { index: false, follow: false },
   icons: {
     icon: ASSETS.brands.ibdFavicon,

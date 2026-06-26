@@ -1,4 +1,4 @@
-export const APPENDIX_COUNT = 9;
+export const APPENDIX_COUNT = 12;
 export const APPENDIX_START_SLIDE = 42;
 export const SLIDE_COUNT = APPENDIX_START_SLIDE + APPENDIX_COUNT;
 /** A4 portrait at ~150 DPI (210mm × 297mm) */
@@ -18,7 +18,7 @@ export const slideTitles = [
   "Table of Contents",
   "Executive Summary",
   "Executive Benefits Summary",
-  "Understanding DHL Requirements",
+  "Understanding BWE Requirements",
   "About Infinity Business Dynamics",
   "Why Infinity Business Dynamics",
   "RSL Accreditation & Compliance",
@@ -49,8 +49,8 @@ export const slideTitles = [
   "Annual Subscription & Managed Services",
   "Risk Management & Mitigation",
   "Supplier Responses",
-  "Acceptance of DHL Requirements",
-  "Why DHL Should Choose Infinity",
+  "Acceptance of BWE Requirements",
+  "Why BWE Should Choose Infinity",
   "Conclusion",
   "Proposal Acceptance",
   "Banking Details",
@@ -64,15 +64,18 @@ export const slideTitles = [
   "Appendix G",
   "Appendix H",
   "Appendix I",
+  "Appendix J",
+  "Appendix K",
+  "Appendix L",
 ];
 
 export const coverMeta = {
   platform: "MOTHEO COMPLIANCE PLATFORM",
-  subtitle: "SAP INTEGRATION & LEKUKA E-INVOICING IMPLEMENTATION",
-  subjectLines: ["SAP Integration &", "Lekuka e-Invoicing Implementation"],
-  preparedFor: "DHL EXPRESS LESOTHO",
-  preparedForClient: "DHL Express Lesotho",
-  preparedForLocation: "Maseru, Lesotho",
+  subtitle: "COMPLIANCE GATEWAY SOLUTION (EBS)",
+  subjectLines: ["Compliance Gateway Solution", "Electronic Billing System (EBS)"],
+  preparedFor: "BARLOWORLD EQUIPMENT (BWE)",
+  preparedForClient: "Barloworld Equipment (BWE)",
+  preparedForLocation: "South Africa",
   preparedBy: "INFINITY BUSINESS DYNAMICS (PTY) LTD",
   preparedByDisplay: "Infinity Business Dynamics (Pty) Ltd",
   tagline: "Harnessing the Power of Technology",
@@ -83,9 +86,17 @@ export const coverMeta = {
   website: "www.ibd.co.ls",
   location: "Maseru, Lesotho",
   tin: "200116903-2",
-  date: "24th of June 2026",
-  reference: "IBD-DHL-LEKUKA-2026-01",
+  date: "26th of June 2026",
+  reference: "IBD-BWE-EBS-2026-01",
   accreditation: "Revenue Services Lesotho Accredited Solution Provider",
+  rfqContact: "Lesego Leboho",
+  rfqContactEmail: "Lesego.Leboho@barloworld-equipment.com",
+  keyDates: [
+    { label: "RFP Opening Date", value: "25 June 2026" },
+    { label: "Intent to Participate Submission Deadline", value: "29 June 2026 16:00" },
+    { label: "Clarifications Deadline", value: "03 July 2026" },
+    { label: "RFP Closing Date", value: "08 July 2026 12:00" },
+  ],
 };
 
 const TOC_TITLE_ALIASES: Record<string, string> = {
@@ -96,7 +107,7 @@ const TOC_TITLE_ALIASES: Record<string, string> = {
 const TOC_ENTRIES = [
   "Executive Summary",
   "Executive Benefits Summary",
-  "Understanding DHL Requirements",
+  "Understanding BWE Requirements",
   "About Infinity Business Dynamics",
   "Why Infinity Business Dynamics",
   "RSL Accreditation & Compliance",
@@ -125,8 +136,8 @@ const TOC_ENTRIES = [
   "Annual Subscription & Managed Services",
   "Risk Management & Governance",
   "Supplier Responses",
-  "Acceptance of DHL Requirements",
-  "Why DHL Should Choose Infinity",
+  "Acceptance of BWE Requirements",
+  "Why BWE Should Choose Infinity",
   "Conclusion",
   "Proposal Acceptance",
   "Banking Details",
@@ -231,7 +242,7 @@ export const executiveBenefits = [
   },
 ];
 
-export const dhlRequirementMatrix: { requirement: string; response: string }[] = [
+export const bweRequirementMatrix: { requirement: string; response: string }[] = [
   { requirement: "Lekuka-Compliant e-Invoicing Solution", response: "Motheo Compliance Platform" },
   { requirement: "SAP ERP Integration", response: "Enterprise SAP Integration Services" },
   { requirement: "API Configuration & Implementation", response: "Included" },
@@ -244,7 +255,7 @@ export const dhlRequirementMatrix: { requirement: string; response: string }[] =
   { requirement: "Post-Implementation Support", response: "Included" },
 ];
 
-export const dhlSuccessFactors = [
+export const bweSuccessFactors = [
   {
     title: "Regulatory Compliance",
     description:
@@ -308,7 +319,7 @@ export const whyInfinityCards = [
   },
   {
     title: "SAP INTEGRATION EXPERTISE",
-    body: "Our team possesses extensive experience integrating enterprise systems with compliance and reporting platforms. The proposed architecture has been specifically designed to support DHL's SAP environment.",
+    body: "Our team possesses extensive experience integrating enterprise systems with compliance and reporting platforms. The proposed architecture has been specifically designed to support BWE's SAP environment.",
   },
   {
     title: "LOCAL SUPPORT PRESENCE",
@@ -320,7 +331,7 @@ export const whyInfinityCards = [
   },
   {
     title: "LONG-TERM PARTNERSHIP",
-    body: "We are committed to supporting DHL beyond implementation through managed services, compliance monitoring and continuous improvement initiatives.",
+    body: "We are committed to supporting BWE beyond implementation through managed services, compliance monitoring and continuous improvement initiatives.",
   },
 ];
 
@@ -393,7 +404,7 @@ export const deliveryPhilosophy = ["Simplicity", "Reliability", "Compliance", "S
 
 export const solutionComponents = [
   {
-    title: "DHL SAP ERP",
+    title: "BWE SAP ERP",
     description: "System of record for all financial and operational transactions.",
   },
   {
@@ -636,7 +647,7 @@ export const qrCodeBenefits = [
   { title: "Data Integrity", description: "Ensures embedded fiscal data remains aligned with submitted RSL records." },
 ];
 
-export const qrDhlBenefits = [
+export const qrBweBenefits = [
   {
     title: "Automated Generation",
     description:
@@ -660,7 +671,7 @@ export const qrDhlBenefits = [
   {
     title: "Enhanced Customer Trust",
     description:
-      "Recipients can independently verify document authenticity, strengthening confidence in DHL fiscal invoices.",
+      "Recipients can independently verify document authenticity, strengthening confidence in BWE fiscal invoices.",
   },
   {
     title: "Audit Readiness",
@@ -757,7 +768,7 @@ export const securityBusinessBenefits = [
   {
     title: "Regulatory Compliance",
     description:
-      "Security controls align with DHL governance and Revenue Services Lesotho requirements.",
+      "Security controls align with BWE governance and Revenue Services Lesotho requirements.",
   },
   {
     title: "Reduced Risk",
@@ -780,7 +791,7 @@ export const resilienceFeatures = [
 ];
 
 export const governanceObjectives = [
-  { title: "Strategic Oversight", description: "Ensure alignment with DHL business objectives." },
+  { title: "Strategic Oversight", description: "Ensure alignment with BWE business objectives." },
   { title: "Risk Management", description: "Identify, assess and mitigate project risks." },
   { title: "Decision Making", description: "Enable rapid issue resolution and project decisions." },
   { title: "Stakeholder Engagement", description: "Maintain consistent communication across all teams." },
@@ -850,7 +861,7 @@ export const implementationPrinciples = [
   {
     title: "User Readiness",
     description:
-      "Training, documentation and hands-on support ensure DHL teams are confident using the platform from day one.",
+      "Training, documentation and hands-on support ensure BWE teams are confident using the platform from day one.",
   },
   {
     title: "Compliance Assurance",
@@ -919,12 +930,12 @@ export const trainingDeliverables = [
   {
     title: "Operational Procedures",
     description:
-      "Documented workflows for reporting, exception handling and escalation aligned to DHL processes.",
+      "Documented workflows for reporting, exception handling and escalation aligned to BWE processes.",
   },
   {
     title: "Knowledge Transfer Workshops",
     description:
-      "Structured sessions that pass operational know-how from the implementation team to DHL staff.",
+      "Structured sessions that pass operational know-how from the implementation team to BWE staff.",
   },
 ];
 
@@ -947,7 +958,7 @@ export const trainingOutcomes = [
   {
     title: "Improved Operational Readiness",
     description:
-      "DHL is prepared to operate, monitor and support the compliance environment post go-live.",
+      "BWE is prepared to operate, monitor and support the compliance environment post go-live.",
   },
 ];
 
@@ -968,7 +979,7 @@ export const supportObjectives = [
   {
     title: "Reliability",
     description:
-      "Reporting services remain available and submissions succeed with minimal disruption to DHL operations.",
+      "Reporting services remain available and submissions succeed with minimal disruption to BWE operations.",
   },
   {
     title: "Compliance",
@@ -1036,7 +1047,7 @@ export const servicePrinciples = [
   {
     title: "Transparency",
     description:
-      "DHL receives regular status updates and visibility into open incidents and progress.",
+      "BWE receives regular status updates and visibility into open incidents and progress.",
   },
   {
     title: "Resolution Focus",
@@ -1081,7 +1092,7 @@ export const yearOneIncluded = [
   {
     title: "SAP Integration",
     description:
-      "Full connection between DHL's SAP environment and the Motheo Compliance Platform, including mapping and testing.",
+      "Full connection between BWE's SAP environment and the Motheo Compliance Platform, including mapping and testing.",
   },
   {
     title: "API Configuration",
@@ -1158,7 +1169,7 @@ export const annualBusinessBenefits = [
   {
     title: "Predictable Costs",
     description:
-      "A fixed annual fee gives DHL budget certainty without unexpected licensing or support charges.",
+      "A fixed annual fee gives BWE budget certainty without unexpected licensing or support charges.",
   },
   {
     title: "Continuous Compliance",
@@ -1168,7 +1179,7 @@ export const annualBusinessBenefits = [
   {
     title: "Reduced Internal Support Burden",
     description:
-      "External expertise handles platform operation, freeing DHL teams to focus on core business.",
+      "External expertise handles platform operation, freeing BWE teams to focus on core business.",
   },
   {
     title: "Long-Term Sustainability",
@@ -1205,7 +1216,7 @@ export const governanceControls = [
   {
     title: "User Acceptance Testing",
     description:
-      "Formal UAT sign-off ensures DHL teams validate the solution before production deployment.",
+      "Formal UAT sign-off ensures BWE teams validate the solution before production deployment.",
   },
   {
     title: "Go-Live Readiness Reviews",
@@ -1229,12 +1240,12 @@ export const supplierResponses = [
   {
     question: "Have you successfully implemented Lekuka for other taxpayers?",
     answer:
-      "Yes. Infinity Business Dynamics has successfully deployed and supported Lekuka-compliant electronic billing solutions within Lesotho. Our implementation experience includes: Electronic Invoicing, Compliance Automation, ERP Integration, Regulatory Reporting, Managed Compliance Services. This experience provides DHL with confidence that the proposed solution is supported by practical implementation expertise.",
+      "Yes. Infinity Business Dynamics has successfully deployed and supported Lekuka-compliant electronic billing solutions within Lesotho. Our implementation experience includes: Electronic Invoicing, Compliance Automation, ERP Integration, Regulatory Reporting, Managed Compliance Services. This experience provides BWE with confidence that the proposed solution is supported by practical implementation expertise.",
   },
   {
     question: "Can your solution integrate with existing ERP/accounting systems?",
     answer:
-      "Yes. The Motheo Compliance Platform has been designed specifically to integrate with enterprise systems through secure API-based integration services. Supported integrations include: SAP ERP, SYSPRO ERP, Accounting Platforms, Custom Enterprise Applications. For DHL Express Lesotho, the proposed solution includes a dedicated SAP integration framework that enables seamless transaction exchange between SAP and Revenue Services Lesotho.",
+      "Yes. The Motheo Compliance Platform has been designed specifically to integrate with enterprise systems through secure API-based integration services. Supported integrations include: SAP ERP, SYSPRO ERP, Accounting Platforms, Custom Enterprise Applications. For Barloworld Equipment (BWE), the proposed solution includes a dedicated SAP integration framework that enables seamless transaction exchange between SAP and Revenue Services Lesotho.",
   },
   {
     question: "What is the estimated implementation timeline?",
@@ -1249,11 +1260,11 @@ export const supplierResponses = [
   {
     question: "Are future Lekuka changes included in your support agreement?",
     answer:
-      "Yes. Future regulatory changes issued by Revenue Services Lesotho relating to Lekuka compliance are included within the annual support and maintenance agreement. This ensures DHL remains compliant without requiring major redevelopment projects.",
+      "Yes. Future regulatory changes issued by Revenue Services Lesotho relating to Lekuka compliance are included within the annual support and maintenance agreement. This ensures BWE remains compliant without requiring major redevelopment projects.",
   },
 ];
 
-export const dhlBusinessValue: { objective: string; outcome: string }[] = [
+export const bweBusinessValue: { objective: string; outcome: string }[] = [
   { objective: "Compliance", outcome: "Automated Regulatory Reporting" },
   { objective: "Efficiency", outcome: "Reduced Manual Processes" },
   { objective: "Governance", outcome: "Improved Visibility" },
@@ -1339,31 +1350,52 @@ export const appendices = [
   },
   {
     id: "APPENDIX F",
-    title: "DHL Group Purchasing Terms & Conditions",
-    subtitle: "Attached per RFP requirement",
-    purpose: "",
-    file: "/appendices/appendix-f-dhl-group-purchasing-terms.pdf",
+    title: "RFQ — Smart Invoicing Lesotho",
+    subtitle: "Barloworld Equipment RFQ documentation",
+    purpose: "Request for Quotation for Compliance Gateway solution (EBS).",
+    file: "/appendices/appendix-f-bwe-rfq-smart-invoicing.pdf",
   },
   {
     id: "APPENDIX G",
-    title: "DHL Group Supplier Code of Conduct",
-    subtitle: "Attached per RFP requirement",
-    purpose: "",
-    file: "/appendices/appendix-g-dhl-supplier-code-of-conduct.pdf",
+    title: "E-Invoicing Gateway API Specification",
+    subtitle: "Annexure B — Technical specification v1.11",
+    purpose: "API specification for the Compliance Gateway integration.",
+    file: "/appendices/appendix-g-bwe-e-invoicing-gateway-api-spec.pdf",
   },
   {
     id: "APPENDIX H",
-    title: "DHL Group Information Security Code of Practice",
-    subtitle: "Attached per RFP requirement",
+    title: "BW Group Supplier Code of Conduct",
+    subtitle: "Attached per RFQ requirement",
     purpose: "",
-    file: "/appendices/appendix-h-dhl-information-security-code-of-practice.pdf",
+    file: "/appendices/appendix-h-bw-group-supplier-code-of-conduct.pdf",
   },
   {
     id: "APPENDIX I",
-    title: "DHL Framework Agreement Template",
-    subtitle: "To be executed upon award",
+    title: "Supplier Self Assessment Questionnaire",
+    subtitle: "In-Depth version 2023",
     purpose: "",
-    file: "/appendices/appendix-i-dhl-framework-agreement-template.pdf",
+    file: "/appendices/appendix-i-bwe-supplier-self-assessment.pdf",
+  },
+  {
+    id: "APPENDIX J",
+    title: "Consulting & IT Service Agreement",
+    subtitle: "Draft agreement template",
+    purpose: "",
+    file: "/appendices/appendix-j-bwe-consulting-it-service-agreement.docx",
+  },
+  {
+    id: "APPENDIX K",
+    title: "Non-Disclosure Agreement",
+    subtitle: "BWE RFP ICT Annexure D",
+    purpose: "",
+    file: "/appendices/appendix-k-bwe-non-disclosure-agreement.doc",
+  },
+  {
+    id: "APPENDIX L",
+    title: "Intent to Respond",
+    subtitle: "Annexure C",
+    purpose: "",
+    file: "/appendices/appendix-l-bwe-intent-to-respond.docx",
   },
 ] as const;
 
@@ -1385,7 +1417,7 @@ export function getAppendixIndexForSlide(slideIndex: number): number | null {
 
 /** Architecture flow for complement visuals */
 export const solutionArchitectureFlow = [
-  "DHL Users",
+  "BWE Users",
   "SAP ERP",
   "Integration Layer",
   "Motheo Compliance Platform",
