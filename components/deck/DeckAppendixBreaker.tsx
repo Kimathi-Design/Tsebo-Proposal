@@ -32,7 +32,7 @@ export function DeckAppendixBreaker({ slideIndex, appendix, appendixIndex }: Pro
         )}
         {file && (
           <a
-            href={file}
+            href={`/appendices/${file}`}
             target="_blank"
             rel="noopener noreferrer"
             className="deck-appendix-breaker__link mt-10 inline-flex items-center rounded-full border border-[color:var(--gms-border)] bg-white px-5 py-2 text-[12px] font-medium tracking-[0.14em] text-deck-accent uppercase"

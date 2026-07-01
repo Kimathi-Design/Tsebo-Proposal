@@ -1,6 +1,7 @@
 import { toJpeg } from "html-to-image";
 import { PDFDocument } from "pdf-lib";
-import { APPENDIX_START_SLIDE, appendices } from "@/lib/deck-content";
+import { APPENDIX_START_SLIDE } from "@/lib/deck-content";
+import { submissionPdfMergeOrder } from "@/lib/submission-pack";
 
 export type ExportDeckPdfOptions = {
   slideCount?: number;
@@ -13,9 +14,7 @@ export type ExportDeckPdfOptions = {
 };
 
 const PNG_SLIDE_COUNT = APPENDIX_START_SLIDE;
-const PDF_APPENDIX_COUNT = appendices.filter(
-  (a) => "file" in a && typeof a.file === "string" && a.file.toLowerCase().endsWith(".pdf"),
-).length;
+const PDF_APPENDIX_COUNT = submissionPdfMergeOrder.length;
 
 export async function waitForSlideReady(root: HTMLElement | null) {
   await document.fonts.ready;
@@ -38,17 +37,11 @@ export async function waitForSlideReady(root: HTMLElement | null) {
 }
 
 async function loadAppendixBytes() {
-  const pdfAppendices = appendices.filter(
-    (appendix): appendix is (typeof appendices)[number] & { file: string } =>
-      "file" in appendix &&
-      typeof appendix.file === "string" &&
-      appendix.file.toLowerCase().endsWith(".pdf"),
-  );
   return Promise.all(
-    pdfAppendices.map(async (appendix) => {
-      const response = await fetch(appendix.file);
+    submissionPdfMergeOrder.map(async (filename) => {
+      const response = await fetch(`/appendices/${filename}`);
       if (!response.ok) {
-        throw new Error(`Failed to load ${appendix.file}`);
+        throw new Error(`Failed to load /appendices/${filename}`);
       }
       return response.arrayBuffer();
     }),

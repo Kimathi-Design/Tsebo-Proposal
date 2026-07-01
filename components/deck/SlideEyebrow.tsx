@@ -85,7 +85,8 @@ const SLIDE_ICONS: LucideIcon[] = [
   Award, // 36 Why Infinity
   Sparkles, // 37 Conclusion
   FileSignature, // 38 Proposal Acceptance
-  BookOpen, // 39 Appendices
+  BookOpen, // 39 Barloworld RFQ Annexures
+  FileCheck, // 40 Mandatory Supporting Documents (RFQ §2)
 ];
 
 type SectionBadgeProps = {
@@ -125,11 +126,22 @@ export function SectionBadge({ index, className = "" }: SectionBadgeProps) {
 }
 
 /** Top-of-slide section label — always includes icon + title from slide metadata */
-export function SlideEyebrow({ index }: { index: number }) {
+export function SlideEyebrow({
+  index,
+  sectionNumber,
+}: {
+  index: number;
+  /** Override TOC numbering, e.g. "32.5" for appendix sub-sections */
+  sectionNumber?: string;
+}) {
   const Icon = SLIDE_ICONS[index] ?? Sparkles;
   const label = slideTitles[index] ?? "Proposal";
-  const tocSection = getTocSectionNumber(index);
-  const prefix = tocSection ? `${String(tocSection).padStart(2, "0")} · ` : "";
+  const tocSection =
+    sectionNumber ??
+    (getTocSectionNumber(index) !== null
+      ? String(getTocSectionNumber(index)).padStart(2, "0")
+      : null);
+  const prefix = tocSection ? `${tocSection} · ` : "";
 
   return (
     <DeckEyebrow icon={<Icon aria-hidden />}>

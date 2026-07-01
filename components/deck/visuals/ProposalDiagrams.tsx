@@ -2,13 +2,11 @@
 
 import Image from "next/image";
 import type { LucideIcon } from "lucide-react";
-import { ArrowDown, ArrowRight, BarChart3, CheckCircle2, FileText, QrCode, Rocket, Scale } from "lucide-react";
+import { ArrowDown, ArrowRight, BadgeCheck, CheckCircle2, QrCode, Rocket } from "lucide-react";
 import { Fragment, type ReactNode } from "react";
 import { ASSETS } from "@/lib/assets";
 import {
   deckIcon,
-  EXECUTIVE_SUMMARY_CURRENT_ICONS,
-  EXECUTIVE_SUMMARY_FUTURE_ICONS,
   SOLUTION_OVERVIEW_FLOW_ICONS,
   TRANSACTION_WORKFLOW_ICONS,
   ONLINE_PROCESSING_ICONS,
@@ -18,12 +16,17 @@ import {
   DASHBOARD_MODULE_ICONS,
   AVAILABLE_REPORT_ICONS,
   IMPLEMENTATION_PHASE_ICONS,
+  GANTT_PHASE_ICONS,
   WORKSTREAM_ICONS,
   TESTING_PYRAMID_ICONS,
   LEARNING_JOURNEY_ICONS,
   SUPPORT_LIFECYCLE_ICONS,
   ESCALATION_LEVEL_ICONS,
+  SLA_PRIORITY_ICONS,
   RISK_TREATMENT_ICONS,
+  SECURITY_FLOW_ICONS,
+  SECURITY_BADGE_ICONS,
+  GOVERNANCE_STRUCTURE_ICONS,
   SUPPLIER_RESPONSE_ICONS,
   MOTHEO_RADIAL_NODE_ICONS,
   SAP_INTEGRATION_FLOW_ICONS,
@@ -32,6 +35,7 @@ import {
   SOLUTION_ECOSYSTEM_STEP_ICONS,
 } from "@/components/deck/deck-icons";
 import { DeckVisualPanelLabel } from "@/components/deck/DeckSlideFrame";
+import { escalationLevels, governanceStructure, securityBadges, securityFlow, serviceLevels } from "@/lib/deck-content";
 
 function FlowArrow({ horizontal = false }: { horizontal?: boolean }) {
   return (
@@ -64,11 +68,13 @@ export function VerticalFlowDiagram({
   compact = true,
   icons,
   className,
+  centerContent = false,
 }: {
   items: readonly (string | { title: string; description?: string })[];
   compact?: boolean;
   icons?: readonly LucideIcon[];
   className?: string;
+  centerContent?: boolean;
 }) {
   const hasDescriptions = items.some(
     (item) => typeof item !== "string" && Boolean(item.description),
@@ -78,7 +84,9 @@ export function VerticalFlowDiagram({
     <div
       className={`deck-architecture-flow flex h-full min-h-0 w-full flex-1 flex-col${
         hasDescriptions ? " deck-architecture-flow--described" : ""
-      }${className ? ` ${className}` : ""}`}
+      }${centerContent ? " deck-architecture-flow--centered" : ""}${
+        className ? ` ${className}` : ""
+      }`}
     >
       {items.map((item, index) => {
         const title = typeof item === "string" ? item : item.title;
@@ -100,7 +108,7 @@ export function VerticalFlowDiagram({
               >
                 <div
                   className={`deck-flow-step-card__row ${
-                    description ? "items-start" : "items-center"
+                    centerContent || !description ? "items-center" : "items-start"
                   }`}
                 >
                   {compact && (
@@ -116,7 +124,11 @@ export function VerticalFlowDiagram({
                       </FlowStepTile>
                     </div>
                   )}
-                  <div className="min-w-0 flex-1">
+                  <div
+                    className={`min-w-0 flex-1${
+                      centerContent ? " deck-flow-step-card__content--centered" : ""
+                    }`}
+                  >
                     <p
                       className={`deck-flow-step-card__title${
                         compact ? " deck-flow-step-card__title--compact" : ""
@@ -160,24 +172,24 @@ function TransactionWorkflowStepCard({
   icon?: LucideIcon;
 }) {
   return (
-    <div className="deck-flow-step-card gms-card flex h-full min-h-0 w-full flex-col justify-center rounded-2xl px-2.5 py-2">
-      <div className="deck-flow-step-card__row items-center gap-2">
-        <div className="deck-flow-step-card__number-col deck-flow-step-card__number-col--compact shrink-0">
-          <FlowStepTile compact>
-            <span className="deck-flow-step-card__number deck-flow-step-card__number--compact tabular-nums">
-              {String(index + 1).padStart(2, "0")}
-            </span>
+    <div className="transaction-workflow-visual__card gms-card flex h-full min-h-0 w-full flex-col rounded-2xl">
+      <div className="transaction-workflow-visual__number-col flex shrink-0 justify-center">
+        <FlowStepTile>
+          <span className="transaction-workflow-visual__number deck-flow-step-card__number deck-flow-step-card__number--compact tabular-nums">
+            {String(index + 1).padStart(2, "0")}
+          </span>
+        </FlowStepTile>
+      </div>
+      <p className="transaction-workflow-visual__label deck-type-card-title min-h-0 flex-1">
+        {step}
+      </p>
+      {icon && (
+        <div className="transaction-workflow-visual__icon-col flex shrink-0 justify-center">
+          <FlowStepTile>
+            {deckIcon(icon, "md")}
           </FlowStepTile>
         </div>
-        <p className="deck-flow-step-card__title deck-flow-step-card__title--compact min-w-0 flex-1">
-          {step}
-        </p>
-        {icon && (
-          <div className="deck-flow-step-card__icon-col deck-flow-step-card__icon-col--compact shrink-0">
-            <FlowStepTile compact>{deckIcon(icon, "sm")}</FlowStepTile>
-          </div>
-        )}
-      </div>
+      )}
     </div>
   );
 }
@@ -194,7 +206,7 @@ export function TransactionWorkflowVisual({
 
   return (
     <div className="transaction-workflow-visual flex h-full min-h-0 w-full flex-col">
-      <div className="transaction-workflow-visual__row flex min-h-0 flex-1 items-stretch gap-1">
+      <div className="transaction-workflow-visual__row flex min-h-0 flex-1 items-stretch">
         {row1.map((step, index) => (
           <Fragment key={step}>
             <div className="flex min-h-0 min-w-0 flex-1">
@@ -212,7 +224,7 @@ export function TransactionWorkflowVisual({
           </Fragment>
         ))}
       </div>
-      <div className="transaction-workflow-visual__bridge grid shrink-0 grid-cols-4 gap-1">
+      <div className="transaction-workflow-visual__bridge grid shrink-0 grid-cols-4">
         <div aria-hidden />
         <div aria-hidden />
         <div aria-hidden />
@@ -220,7 +232,7 @@ export function TransactionWorkflowVisual({
           <FlowArrow />
         </div>
       </div>
-      <div className="transaction-workflow-visual__row flex min-h-0 flex-1 items-stretch gap-1">
+      <div className="transaction-workflow-visual__row flex min-h-0 flex-1 items-stretch">
         {row2.map((step, index) => (
           <Fragment key={step}>
             <div className="flex min-h-0 min-w-0 flex-1">
@@ -404,6 +416,205 @@ export function SplitCompareDiagram({
   );
 }
 
+const SECURITY_FLOW_LABELS = [
+  "Users",
+  "Authentication",
+  "API Gateway",
+  "Compliance Gateway",
+  "Encryption",
+  "RSL",
+] as const;
+
+function SecurityFlowStrip({
+  steps,
+  icons,
+  startIndex,
+}: {
+  steps: readonly string[];
+  icons: readonly LucideIcon[];
+  startIndex: number;
+}) {
+  return (
+    <div className="security-architecture-visual__strip flex min-h-0 flex-1 items-stretch">
+      {steps.map((step, index) => {
+        const absoluteIndex = startIndex + index;
+        const Icon = icons[index] ?? icons[icons.length - 1];
+
+        return (
+          <Fragment key={step}>
+            <div className="security-architecture-visual__step flex min-h-0 min-w-0 flex-1">
+              <div className="security-architecture-visual__card gms-card flex h-full w-full min-h-0 flex-col rounded-2xl">
+                <div className="security-architecture-visual__card-head flex items-center justify-between">
+                  <FlowStepTile compact>
+                    <span className="security-architecture-visual__number deck-flow-step-card__number deck-flow-step-card__number--compact tabular-nums">
+                      {String(absoluteIndex + 1).padStart(2, "0")}
+                    </span>
+                  </FlowStepTile>
+                  <FlowStepTile compact>{deckIcon(Icon, "sm")}</FlowStepTile>
+                </div>
+                <p className="security-architecture-visual__label deck-flow-step-card__title deck-flow-step-card__title--compact">
+                  {SECURITY_FLOW_LABELS[absoluteIndex] ?? step}
+                </p>
+              </div>
+            </div>
+            {index < steps.length - 1 && (
+              <div className="security-architecture-visual__arrow flex shrink-0 items-center">
+                <FlowArrow horizontal />
+              </div>
+            )}
+          </Fragment>
+        );
+      })}
+    </div>
+  );
+}
+
+export function SecurityArchitectureVisual() {
+  const midpoint = Math.ceil(securityFlow.length / 2);
+
+  return (
+    <div className="security-architecture-visual flex h-full min-h-0 w-full flex-col">
+      <DeckVisualPanelLabel>Defence-in-Depth Flow</DeckVisualPanelLabel>
+      <div className="security-architecture-visual__rows flex min-h-0 flex-1 flex-col">
+        <SecurityFlowStrip
+          steps={securityFlow.slice(0, midpoint)}
+          icons={SECURITY_FLOW_ICONS.slice(0, midpoint)}
+          startIndex={0}
+        />
+        <SecurityFlowStrip
+          steps={securityFlow.slice(midpoint)}
+          icons={SECURITY_FLOW_ICONS.slice(midpoint)}
+          startIndex={midpoint}
+        />
+      </div>
+      <div className="security-architecture-visual__badges shrink-0">
+        {securityBadges.map((badge, index) => (
+          <div key={badge} className="security-architecture-visual__badge gms-card rounded-xl">
+            <FlowStepTile compact>
+              {deckIcon(
+                SECURITY_BADGE_ICONS[index] ??
+                  SECURITY_BADGE_ICONS[SECURITY_BADGE_ICONS.length - 1]!,
+                "xs",
+              )}
+            </FlowStepTile>
+            <span className="security-architecture-visual__badge-label">{badge}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function GovernanceRoleCard({
+  item,
+  index,
+  icon,
+}: {
+  item: { title: string; description: string };
+  index: number;
+  icon: LucideIcon;
+}) {
+  return (
+    <div className="governance-framework-visual__card gms-card flex min-h-0 flex-1 flex-col rounded-2xl">
+      <div className="governance-framework-visual__card-head flex items-center">
+        <FlowStepTile>
+          <span className="governance-framework-visual__number deck-flow-step-card__number deck-flow-step-card__number--compact tabular-nums">
+            {String(index + 1).padStart(2, "0")}
+          </span>
+        </FlowStepTile>
+        <p className="governance-framework-visual__title deck-type-card-title min-w-0 flex-1">
+          {item.title}
+        </p>
+        <FlowStepTile>{deckIcon(icon, "sm")}</FlowStepTile>
+      </div>
+      <p className="governance-framework-visual__description deck-type-card-body">
+        {item.description}
+      </p>
+    </div>
+  );
+}
+
+export function GovernanceFrameworkVisual() {
+  const leadership = governanceStructure.slice(0, 3);
+  const workstreams = governanceStructure.slice(3);
+
+  return (
+    <div className="governance-framework-visual flex h-full min-h-0 w-full flex-col overflow-hidden">
+      <DeckVisualPanelLabel>Governance Structure</DeckVisualPanelLabel>
+      <div className="governance-framework-visual__sections flex min-h-0 flex-1 flex-col gap-3 overflow-hidden">
+        <div className="governance-framework-visual__section flex min-h-0 flex-1 flex-col gap-1.5">
+          <p className="governance-framework-visual__section-label deck-type-premium-label">
+            Executive Oversight
+          </p>
+          <div className="governance-framework-visual__list flex min-h-0 flex-1 flex-col gap-2">
+            {leadership.map((item, index) => (
+              <GovernanceRoleCard
+                key={item.title}
+                item={item}
+                index={index}
+                icon={
+                  GOVERNANCE_STRUCTURE_ICONS[index] ??
+                  GOVERNANCE_STRUCTURE_ICONS[GOVERNANCE_STRUCTURE_ICONS.length - 1]!
+                }
+              />
+            ))}
+          </div>
+        </div>
+        <div className="governance-framework-visual__section flex min-h-0 flex-1 flex-col gap-1.5">
+          <p className="governance-framework-visual__section-label deck-type-premium-label">
+            Delivery Workstreams
+          </p>
+          <div className="governance-framework-visual__list flex min-h-0 flex-1 flex-col gap-2">
+            {workstreams.map((item, index) => (
+              <GovernanceRoleCard
+                key={item.title}
+                item={item}
+                index={index + 3}
+                icon={
+                  GOVERNANCE_STRUCTURE_ICONS[index + 3] ??
+                  GOVERNANCE_STRUCTURE_ICONS[GOVERNANCE_STRUCTURE_ICONS.length - 1]!
+                }
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+const HUB_SPOKE_LAYOUTS: Record<number, readonly { x: number; y: number }[]> = {
+  7: [
+    { x: 50, y: 12 },
+    { x: 80, y: 20 },
+    { x: 88, y: 44 },
+    { x: 70, y: 76 },
+    { x: 30, y: 76 },
+    { x: 12, y: 44 },
+    { x: 20, y: 20 },
+  ],
+};
+
+function getHubNodePosition(
+  index: number,
+  total: number,
+  hubX: number,
+  hubY: number,
+  radiusX: number,
+  radiusY: number,
+) {
+  const layout = HUB_SPOKE_LAYOUTS[total];
+  if (layout?.[index]) {
+    return layout[index]!;
+  }
+
+  const angle = ((360 / total) * index - 90) * (Math.PI / 180);
+  return {
+    x: hubX + radiusX * Math.cos(angle),
+    y: hubY + radiusY * Math.sin(angle),
+  };
+}
+
 export function HubSpokeDiagram({
   center,
   nodes,
@@ -416,123 +627,122 @@ export function HubSpokeDiagram({
   icons?: readonly LucideIcon[];
 }) {
   const hubX = 50;
-  const hubY = 38;
-  const radiusX = 44;
-  const radiusY = 36;
+  const hubY = 46;
   const gatewayY = 94;
 
   return (
-    <div className="deck-hub-spoke flex h-full min-h-0 flex-1 flex-col gap-3">
-      <div className="relative min-h-0 flex-1">
-        <svg
-          className="pointer-events-none absolute inset-0 h-full w-full text-deck-accent/35"
-          viewBox="0 0 100 100"
-          preserveAspectRatio="none"
-          aria-hidden
-        >
+    <div className="hub-spoke-visual flex h-full min-h-0 w-full flex-1 flex-col gap-2">
+      <div className="hub-spoke-visual__diagram relative min-h-0 flex-1">
+        <div className="hub-spoke-visual__stage absolute inset-0">
+          <svg
+            className="pointer-events-none absolute inset-0 h-full w-full text-deck-accent/35"
+            viewBox="0 0 100 100"
+            preserveAspectRatio="none"
+            aria-hidden
+          >
+            {nodes.map((node, index) => {
+              const { x: nodeX, y: nodeY } = getHubNodePosition(
+                index,
+                nodes.length,
+                hubX,
+                hubY,
+                32,
+                26,
+              );
+
+              return (
+                <g key={`${node}-line`}>
+                  <line
+                    x1={hubX}
+                    y1={hubY}
+                    x2={nodeX}
+                    y2={nodeY}
+                    stroke="currentColor"
+                    strokeWidth="0.35"
+                    strokeDasharray="1.2 0.8"
+                  />
+                  <line
+                    x1={nodeX}
+                    y1={nodeY}
+                    x2={hubX}
+                    y2={gatewayY}
+                    stroke="currentColor"
+                    strokeWidth="0.25"
+                    strokeDasharray="0.8 0.6"
+                    opacity="0.65"
+                  />
+                </g>
+              );
+            })}
+          </svg>
+
+          <div
+            className="hub-spoke-visual__center gms-card absolute z-20 flex -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-full text-center"
+          >
+            <Image
+              src={ASSETS.brands.bweLogo}
+              alt=""
+              width={1799}
+              height={483}
+              aria-hidden
+              className="hub-spoke-visual__center-logo relative z-10 shrink-0 object-contain"
+            />
+            <p className="hub-spoke-visual__center-label relative z-10">{center}</p>
+          </div>
+
           {nodes.map((node, index) => {
-            const angle = ((360 / nodes.length) * index - 90) * (Math.PI / 180);
-            const nodeX = hubX + radiusX * Math.cos(angle);
-            const nodeY = hubY + radiusY * Math.sin(angle);
+            const { x: nodeX, y: nodeY } = getHubNodePosition(
+              index,
+              nodes.length,
+              hubX,
+              hubY,
+              32,
+              26,
+            );
+            const Icon = icons?.[index] ?? icons?.[icons.length - 1];
 
             return (
-              <g key={`${node}-line`}>
-                <line
-                  x1={hubX}
-                  y1={hubY}
-                  x2={nodeX}
-                  y2={nodeY}
-                  stroke="currentColor"
-                  strokeWidth="0.35"
-                  strokeDasharray="1.2 0.8"
-                />
-                <line
-                  x1={nodeX}
-                  y1={nodeY}
-                  x2={hubX}
-                  y2={gatewayY}
-                  stroke="currentColor"
-                  strokeWidth="0.25"
-                  strokeDasharray="0.8 0.6"
-                  opacity="0.65"
-                />
-              </g>
-            );
-          })}
-        </svg>
-
-        <div
-          className="deck-hub-spoke__center gms-card absolute z-20 flex -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center gap-1 rounded-full px-3 py-2 text-center shadow-[0_8px_24px_-8px_rgba(52,33,107,0.28)]"
-          style={{ left: `${hubX}%`, top: `${hubY}%`, width: "6.75rem", height: "6.75rem" }}
-        >
-          <Image
-            src={ASSETS.brands.bweLogo}
-            alt=""
-            width={1799}
-            height={483}
-            aria-hidden
-            className="relative z-10 h-4 w-auto max-w-[4.25rem] shrink-0 object-contain"
-          />
-          <p className="relative z-10 mt-3 text-[10px] font-bold leading-tight tracking-[0.06em] text-deck-accent uppercase">
-            {center}
-          </p>
-        </div>
-
-        {nodes.map((node, index) => {
-          const angle = ((360 / nodes.length) * index - 90) * (Math.PI / 180);
-          const nodeX = hubX + radiusX * Math.cos(angle);
-          const nodeY = hubY + radiusY * Math.sin(angle);
-          const Icon = icons?.[index] ?? icons?.[icons.length - 1];
-
-          return (
-            <div
-              key={node}
-              className="deck-hub-spoke__node absolute z-10 w-[11rem] -translate-x-1/2 -translate-y-1/2"
-              style={{ left: `${nodeX}%`, top: `${nodeY}%` }}
-            >
-              <div className="deck-flow-step-card gms-card rounded-2xl p-2.5">
-                <div className="deck-flow-step-card__row">
-                  <div className="deck-flow-step-card__number-col deck-flow-step-card__number-col--compact">
+              <div
+                key={node}
+                className="hub-spoke-visual__node absolute z-10 -translate-x-1/2 -translate-y-1/2"
+                style={{ left: `${nodeX}%`, top: `${nodeY}%` }}
+              >
+                <div className="hub-spoke-visual__card gms-card rounded-2xl">
+                  <div className="hub-spoke-visual__card-head">
                     <FlowStepTile compact>
-                      <span className="deck-flow-step-card__number deck-flow-step-card__number--compact tabular-nums">
+                      <span className="hub-spoke-visual__number deck-flow-step-card__number deck-flow-step-card__number--compact tabular-nums">
                         {String(index + 1).padStart(2, "0")}
                       </span>
                     </FlowStepTile>
-                  </div>
-                  <p className="deck-flow-step-card__title deck-flow-step-card__title--compact">
-                    {node}
-                  </p>
-                  {Icon && (
-                    <div className="deck-flow-step-card__icon-col deck-flow-step-card__icon-col--compact">
+                    {Icon && (
                       <FlowStepTile compact>{deckIcon(Icon, "sm")}</FlowStepTile>
-                    </div>
-                  )}
+                    )}
+                  </div>
+                  <p className="hub-spoke-visual__label">{node}</p>
                 </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
       </div>
 
-      <div className="deck-hub-spoke__gateway flex shrink-0 items-center justify-center gap-3 rounded-lg border border-[color:var(--gms-border)] bg-white px-4 py-3 shadow-[0_8px_24px_-12px_rgba(52,33,107,0.18)]">
+      <div className="hub-spoke-visual__gateway gms-card flex shrink-0 items-center justify-center gap-3 rounded-2xl">
         <Image
           src={ASSETS.brands.ibdFavicon}
           alt=""
           width={16}
           height={16}
           aria-hidden
-          className="h-4 w-4 shrink-0 object-contain"
+          className="h-5 w-5 shrink-0 object-contain"
         />
-        <p className="text-[13px] font-bold tracking-[0.08em] text-deck-accent uppercase">
-          {gateway}
-        </p>
+        <p className="hub-spoke-visual__gateway-label">{gateway}</p>
         <Image
           src={ASSETS.brands.motheoLogo}
           alt=""
           width={3770}
           height={3290}
           aria-hidden
-          className="h-3.5 w-auto shrink-0 object-contain"
+          className="h-4 w-auto shrink-0 object-contain"
         />
       </div>
     </div>
@@ -549,8 +759,15 @@ export function MotheoEngineStripVisual({
 }) {
   return (
     <div className="motheo-engine-strip flex h-full min-h-0 w-full items-stretch gap-1.5">
-      <div className="motheo-engine-strip__hub flex shrink-0 flex-col items-center justify-center gap-1 rounded-xl bg-deck-accent px-2 py-2 text-center">
-        <FlowStepTile compact>{deckIcon(Scale, "xs")}</FlowStepTile>
+      <div className="motheo-engine-strip__hub flex shrink-0 flex-col items-center justify-center gap-1 rounded-xl px-2 py-2 text-center">
+        <Image
+          src={ASSETS.brands.motheoLogo}
+          alt=""
+          width={3770}
+          height={3290}
+          aria-hidden
+          className="motheo-engine-strip__hub-logo h-8 w-auto shrink-0 object-contain"
+        />
         <span className="text-[13px] font-semibold leading-tight text-white">Motheo</span>
         <span className="text-[13px] font-semibold leading-tight text-white">Engine</span>
       </div>
@@ -558,12 +775,12 @@ export function MotheoEngineStripVisual({
         {nodes.map((node, index) => (
           <div
             key={node}
-            className="motheo-engine-strip__card gms-card flex min-h-0 min-w-0 items-center gap-1.5 rounded-xl px-2 py-1.5"
+            className="motheo-engine-strip__card gms-card flex min-h-0 min-w-0 items-center justify-center gap-1.5 rounded-xl px-2 py-1.5"
           >
             <FlowStepTile compact>
               {deckIcon(icons[index] ?? icons[icons.length - 1]!, "xs")}
             </FlowStepTile>
-            <span className="deck-type-body-compact min-w-0 flex-1 leading-tight">{node}</span>
+            <span className="deck-type-body-compact shrink-0 leading-tight text-center">{node}</span>
           </div>
         ))}
       </div>
@@ -741,7 +958,12 @@ export function SolutionOverviewVisual({
   return (
     <div className="solution-overview-visual flex h-full min-h-0 flex-1 flex-col gap-2">
       <div className="solution-overview-visual__flow min-h-0 flex-1 overflow-hidden">
-        <VerticalFlowDiagram items={flow} icons={SOLUTION_OVERVIEW_FLOW_ICONS} compact />
+        <VerticalFlowDiagram
+          items={flow}
+          icons={SOLUTION_OVERVIEW_FLOW_ICONS}
+          compact
+          centerContent
+        />
       </div>
       <div className="solution-overview-visual__side grid shrink-0 grid-cols-5 gap-1.5">
         {sideCards.map((card, index) => (
@@ -759,7 +981,7 @@ export function SolutionOverviewVisual({
                   )}
                 </FlowStepTile>
               </div>
-              <p className="deck-flow-step-card__title deck-flow-step-card__title--compact min-w-0 flex-1 text-[13px] leading-tight">
+              <p className="solution-overview-visual__side-label deck-flow-step-card__title deck-flow-step-card__title--compact min-w-0 flex-1">
                 {card}
               </p>
             </div>
@@ -785,6 +1007,7 @@ export function SapIntegrationVisual({
           items={flow}
           icons={SAP_INTEGRATION_FLOW_ICONS}
           compact
+          centerContent
         />
       </div>
       <div className="sap-integration-visual__side grid shrink-0 grid-cols-4 gap-2">
@@ -793,7 +1016,7 @@ export function SapIntegrationVisual({
             key={card}
             className="deck-flow-step-card gms-card flex h-full w-full flex-col justify-center rounded-2xl px-2.5 py-2"
           >
-            <div className="deck-flow-step-card__row gap-2">
+            <div className="deck-flow-step-card__row items-center gap-2">
               <div className="deck-flow-step-card__number-col deck-flow-step-card__number-col--compact">
                 <FlowStepTile compact>
                   {deckIcon(
@@ -803,7 +1026,7 @@ export function SapIntegrationVisual({
                   )}
                 </FlowStepTile>
               </div>
-              <p className="deck-flow-step-card__title deck-flow-step-card__title--compact min-w-0 flex-1">
+              <p className="sap-integration-visual__side-label deck-flow-step-card__title deck-flow-step-card__title--compact min-w-0 flex-1">
                 {card}
               </p>
             </div>
@@ -958,18 +1181,16 @@ function DashboardModuleCard({
   value?: string;
 }) {
   return (
-    <div className="dashboard-mockup-visual__cell gms-card flex min-h-0 min-w-0 items-center gap-1.5 rounded-xl px-2 py-1.5">
+    <div className="dashboard-mockup-visual__cell gms-card flex min-h-0 min-w-0 flex-col rounded-xl">
       {icon && (
-        <FlowStepTile compact>{deckIcon(icon, "xs")}</FlowStepTile>
+        <div className="dashboard-mockup-visual__cell-icon flex shrink-0 justify-center">
+          <FlowStepTile>{deckIcon(icon, "sm")}</FlowStepTile>
+        </div>
       )}
-      <div className="dashboard-mockup-visual__cell-body min-w-0 flex-1">
-        <span className="deck-type-body-compact block leading-tight">{title}</span>
-        {value && (
-          <span className="dashboard-mockup-visual__cell-metric block tabular-nums">
-            {value}
-          </span>
-        )}
-      </div>
+      <p className="dashboard-mockup-visual__cell-label min-h-0 flex-1">{title}</p>
+      {value && (
+        <span className="dashboard-mockup-visual__cell-metric tabular-nums">{value}</span>
+      )}
     </div>
   );
 }
@@ -980,7 +1201,7 @@ export function DashboardMockup({
   icons,
   variant = "modules",
 }: {
-  modules: readonly string[];
+  modules: readonly (string | { title: string })[];
   values?: readonly string[];
   icons?: readonly LucideIcon[];
   variant?: "modules" | "reports";
@@ -989,12 +1210,18 @@ export function DashboardMockup({
     icons ??
     (variant === "reports" ? AVAILABLE_REPORT_ICONS : DASHBOARD_MODULE_ICONS);
   const isReports = variant === "reports";
-  const hubIcon = isReports ? FileText : BarChart3;
 
   return (
     <div className="dashboard-mockup-visual flex h-full min-h-0 w-full items-stretch gap-1.5">
-      <div className="dashboard-mockup-visual__hub flex shrink-0 flex-col items-center justify-center gap-1 rounded-xl bg-deck-accent px-2 py-2 text-center">
-        <FlowStepTile compact>{deckIcon(hubIcon, "xs")}</FlowStepTile>
+      <div className="dashboard-mockup-visual__hub flex shrink-0 flex-col items-center justify-center gap-1 rounded-xl px-2 py-2 text-center">
+        <Image
+          src={ASSETS.brands.motheoLogo}
+          alt=""
+          width={3770}
+          height={3290}
+          aria-hidden
+          className="dashboard-mockup-visual__hub-logo h-8 w-auto shrink-0 object-contain"
+        />
         <span className="dashboard-mockup-visual__hub-label text-white">
           {isReports ? "Compliance" : "Operations"}
         </span>
@@ -1003,31 +1230,41 @@ export function DashboardMockup({
         </span>
       </div>
       <div
-        className={`dashboard-mockup-visual__grid grid min-h-0 min-w-0 flex-1 gap-1.5 ${
+        className={`dashboard-mockup-visual__grid grid min-h-0 min-w-0 flex-1 gap-2 ${
           modules.length > 4 ? "grid-cols-4 grid-rows-2" : "grid-cols-2 grid-rows-2"
         }`}
       >
-        {modules.map((mod, index) => (
-          <DashboardModuleCard
-            key={mod}
-            title={mod}
-            icon={resolvedIcons[index] ?? resolvedIcons[resolvedIcons.length - 1]}
-            value={values?.[index]}
-          />
-        ))}
+        {modules.map((mod, index) => {
+          const title = typeof mod === "string" ? mod : mod.title;
+
+          return (
+            <DashboardModuleCard
+              key={title}
+              title={title}
+              icon={resolvedIcons[index] ?? resolvedIcons[resolvedIcons.length - 1]}
+              value={values?.[index]}
+            />
+          );
+        })}
       </div>
     </div>
   );
 }
 
-export function TestingPyramidDiagram({ levels }: { levels: readonly string[] }) {
+export function TestingPyramidDiagram({
+  levels,
+}: {
+  levels: readonly ({ title: string; description?: string } | string)[];
+}) {
   return (
     <div className="testing-pyramid-visual flex h-full min-h-0 w-full flex-col">
       {levels.map((level, index) => {
+        const title = typeof level === "string" ? level : level.title;
+        const description = typeof level === "string" ? undefined : level.description;
         const pyramidWidth = 40 + (levels.length - index) * 14;
 
         return (
-          <Fragment key={level}>
+          <Fragment key={title}>
             <div
               className="testing-pyramid-visual__card gms-card flex min-h-0 flex-1 items-center rounded-2xl"
               style={{ width: `${pyramidWidth}%` }}
@@ -1038,9 +1275,12 @@ export function TestingPyramidDiagram({ levels }: { levels: readonly string[] })
                     {String(index + 1).padStart(2, "0")}
                   </span>
                 </FlowStepTile>
-                <p className="testing-pyramid-visual__label deck-type-card-title min-w-0 flex-1">
-                  {level}
-                </p>
+                <div className="testing-pyramid-visual__content min-w-0 flex-1">
+                  <p className="testing-pyramid-visual__label deck-type-card-title">{title}</p>
+                  {description && (
+                    <p className="testing-pyramid-visual__description">{description}</p>
+                  )}
+                </div>
                 <FlowStepTile compact>
                   {deckIcon(
                     TESTING_PYRAMID_ICONS[index] ??
@@ -1062,30 +1302,83 @@ export function TestingPyramidDiagram({ levels }: { levels: readonly string[] })
   );
 }
 
+const GANTT_TOTAL_WEEKS = 10;
+
+const GANTT_BAR_COLORS = [
+  "var(--gms-accent)",
+  "#5c3d9e",
+  "var(--ibd-green)",
+  "#7a5c14",
+  "#34216b",
+  "#4cbb17",
+  "#5c3d9e",
+  "var(--ibd-green)",
+  "var(--gms-accent)",
+] as const;
+
+function parseWeekRange(duration: string): { start: number; end: number } {
+  const match = duration.match(/Week\s*(\d+)(?:\s*[–-]\s*(\d+))?/i);
+  if (!match) {
+    return { start: 1, end: 1 };
+  }
+  const start = Number.parseInt(match[1]!, 10);
+  const end = match[2] ? Number.parseInt(match[2], 10) : start;
+  return { start, end };
+}
+
 export function GanttChart({ phases }: { phases: readonly (readonly [string, string])[] }) {
-  const colors = ["#34216b", "#5c3d9e", "#4cbb17", "#b8960c", "#d40511", "#34216b", "#5c3d9e", "#4cbb17", "#b8960c"];
   return (
-    <div className="flex h-full min-h-0 flex-1 flex-col justify-center gap-2">
-      {phases.map(([phase, duration], index) => (
-        <div key={phase} className="flex items-center gap-3">
-          <span className="w-44 shrink-0 text-[11px] font-medium text-[color:var(--gms-text)]">
-            {phase}
-          </span>
-          <div className="flex min-w-0 flex-1 items-center">
-            <div
-              className="h-6 rounded-md"
-              style={{
-                width: `${Math.max(18, 100 - index * 8)}%`,
-                backgroundColor: colors[index % colors.length],
-                opacity: 0.85,
-              }}
-            />
-            <span className="ml-2 shrink-0 text-[10px] font-semibold text-[color:var(--gms-text-muted)]">
-              {duration}
-            </span>
-          </div>
+    <div className="gantt-chart-visual flex h-full min-h-0 w-full flex-col">
+      <DeckVisualPanelLabel>10-Week Implementation Schedule</DeckVisualPanelLabel>
+      <div className="gantt-chart-visual__panel gms-card flex min-h-0 flex-1 flex-col overflow-hidden rounded-2xl">
+        <div className="gantt-chart-visual__header">
+          <div className="gantt-chart-visual__header-label">Phase</div>
+          {Array.from({ length: GANTT_TOTAL_WEEKS }, (_, index) => (
+            <div key={`week-${index + 1}`} className="gantt-chart-visual__week-header">
+              W{index + 1}
+            </div>
+          ))}
         </div>
-      ))}
+        <div className="gantt-chart-visual__rows min-h-0 flex-1">
+          {phases.map(([phase, duration], index) => {
+            const { start, end } = parseWeekRange(duration);
+            const span = end - start + 1;
+            const Icon = GANTT_PHASE_ICONS[index] ?? GANTT_PHASE_ICONS[GANTT_PHASE_ICONS.length - 1]!;
+
+            return (
+              <div key={phase} className="gantt-chart-visual__row">
+                <div className="gantt-chart-visual__label">
+                  <p className="gantt-chart-visual__phase-name">{phase}</p>
+                </div>
+                <div className="gantt-chart-visual__track">
+                  {Array.from({ length: GANTT_TOTAL_WEEKS }, (_, weekIndex) => (
+                    <div
+                      key={`${phase}-week-${weekIndex + 1}`}
+                      className="gantt-chart-visual__week-cell"
+                      aria-hidden
+                    />
+                  ))}
+                  <div
+                    className="gantt-chart-visual__bar"
+                    style={{
+                      gridColumn: `${start} / ${end + 1}`,
+                      backgroundColor: GANTT_BAR_COLORS[index % GANTT_BAR_COLORS.length],
+                    }}
+                    title={`${phase} — ${duration}`}
+                  >
+                    <span className="gantt-chart-visual__bar-icon">
+                      {deckIcon(Icon, "xs")}
+                    </span>
+                    {span > 1 && (
+                      <span className="gantt-chart-visual__duration">{duration}</span>
+                    )}
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
     </div>
   );
 }
@@ -1097,7 +1390,7 @@ function WorkstreamCard({
   icon,
 }: {
   title: string;
-  items: readonly string[];
+  items: readonly (string | { title: string })[];
   index: number;
   icon?: LucideIcon;
 }) {
@@ -1109,17 +1402,19 @@ function WorkstreamCard({
             {String(index + 1).padStart(2, "0")}
           </span>
         </FlowStepTile>
-        <p className="workstream-converge-visual__title deck-type-card-title min-w-0 flex-1">
+        <p className="workstream-converge-visual__title deck-type-card-title min-w-0">
           {title}
         </p>
         {icon && (
           <FlowStepTile compact>{deckIcon(icon, "sm")}</FlowStepTile>
         )}
       </div>
-      <ul className="workstream-converge-visual__items deck-type-body-compact">
-        {items.map((item) => (
-          <li key={item}>{item}</li>
-        ))}
+      <ul className="workstream-converge-visual__items">
+        {items.map((item) => {
+          const label = typeof item === "string" ? item : item.title;
+
+          return <li key={label}>{label}</li>;
+        })}
       </ul>
     </div>
   );
@@ -1129,7 +1424,10 @@ export function WorkstreamConverge({
   workstreams,
   target,
 }: {
-  workstreams: readonly { title: string; items: readonly string[] }[];
+  workstreams: readonly {
+    title: string;
+    items: readonly (string | { title: string })[];
+  }[];
   target: string;
 }) {
   return (
@@ -1163,23 +1461,25 @@ export function SupportLifecycleDiagram({ steps }: { steps: readonly string[] })
         <Fragment key={step}>
           <div className="support-lifecycle-visual__step flex min-h-0 min-w-0 flex-1">
             <div className="support-lifecycle-visual__card gms-card flex h-full w-full min-h-0 flex-col rounded-2xl">
-              <div className="support-lifecycle-visual__card-head flex items-center justify-between">
-                <FlowStepTile compact>
-                  <span className="support-lifecycle-visual__number tabular-nums">
+              <div className="support-lifecycle-visual__number-col flex shrink-0 justify-center">
+                <FlowStepTile>
+                  <span className="support-lifecycle-visual__number deck-flow-step-card__number deck-flow-step-card__number--compact tabular-nums">
                     {String(index + 1).padStart(2, "0")}
                   </span>
-                </FlowStepTile>
-                <FlowStepTile compact>
-                  {deckIcon(
-                    SUPPORT_LIFECYCLE_ICONS[index] ??
-                      SUPPORT_LIFECYCLE_ICONS[SUPPORT_LIFECYCLE_ICONS.length - 1]!,
-                    "sm",
-                  )}
                 </FlowStepTile>
               </div>
               <p className="support-lifecycle-visual__label deck-type-card-title min-h-0 flex-1">
                 {step}
               </p>
+              <div className="support-lifecycle-visual__icon-col flex shrink-0 justify-center">
+                <FlowStepTile>
+                  {deckIcon(
+                    SUPPORT_LIFECYCLE_ICONS[index] ??
+                      SUPPORT_LIFECYCLE_ICONS[SUPPORT_LIFECYCLE_ICONS.length - 1]!,
+                    "md",
+                  )}
+                </FlowStepTile>
+              </div>
             </div>
           </div>
           {index < steps.length - 1 && (
@@ -1204,9 +1504,122 @@ export function EscalationDiagram({ levels }: { levels: readonly string[] }) {
   );
 }
 
-export function RiskHeatMap() {
+const SLA_PRIORITY_ACCENTS = [
+  "var(--ibd-red)",
+  "#e65100",
+  "#f9a825",
+  "var(--gms-accent)",
+] as const;
+
+function SlaPriorityCard({
+  priority,
+  description,
+  response,
+  resolution,
+  index,
+  icon,
+}: {
+  priority: string;
+  description: string;
+  response: string;
+  resolution: string;
+  index: number;
+  icon: LucideIcon;
+}) {
+  return (
+    <div className="sla-priority-visual__card gms-card flex min-h-0 min-w-0 flex-1 flex-col rounded-2xl">
+      <div
+        className="sla-priority-visual__accent shrink-0"
+        style={{ backgroundColor: SLA_PRIORITY_ACCENTS[index] ?? SLA_PRIORITY_ACCENTS[SLA_PRIORITY_ACCENTS.length - 1] }}
+        aria-hidden
+      />
+      <div className="sla-priority-visual__number-col flex shrink-0 justify-center">
+        <FlowStepTile>
+          <span className="sla-priority-visual__number deck-flow-step-card__number deck-flow-step-card__number--compact tabular-nums">
+            {String(index + 1).padStart(2, "0")}
+          </span>
+        </FlowStepTile>
+      </div>
+      <p className="sla-priority-visual__priority deck-type-card-title">{priority}</p>
+      <p className="sla-priority-visual__description deck-type-inline-feature">{description}</p>
+      <div className="sla-priority-visual__metrics min-h-0 flex-1">
+        <p className="sla-priority-visual__metric deck-type-inline-feature">
+          <span className="font-semibold">Response</span>
+          <span className="text-[color:var(--gms-text-muted)]"> · {response}</span>
+        </p>
+        <p className="sla-priority-visual__metric deck-type-inline-feature">
+          <span className="font-semibold">Resolution</span>
+          <span className="text-[color:var(--gms-text-muted)]"> · {resolution}</span>
+        </p>
+      </div>
+      <div className="sla-priority-visual__icon-col flex shrink-0 justify-center">
+        <FlowStepTile>
+          {deckIcon(icon, "md")}
+        </FlowStepTile>
+      </div>
+    </div>
+  );
+}
+
+export function SlaPriorityVisual({
+  levels = serviceLevels,
+}: {
+  levels?: readonly (readonly [string, string, string, string])[];
+}) {
+  return (
+    <div className="sla-priority-visual flex min-h-0 w-full shrink-0 flex-col">
+      <DeckVisualPanelLabel>SLA Priority Matrix</DeckVisualPanelLabel>
+      <div className="sla-priority-visual__strip flex min-h-0 flex-1 items-stretch">
+        {levels.map(([priority, description, response, resolution], index) => (
+          <Fragment key={priority}>
+            <SlaPriorityCard
+              priority={priority}
+              description={description}
+              response={response}
+              resolution={resolution}
+              index={index}
+              icon={
+                SLA_PRIORITY_ICONS[index] ??
+                SLA_PRIORITY_ICONS[SLA_PRIORITY_ICONS.length - 1]!
+              }
+            />
+            {index < levels.length - 1 && (
+              <div className="sla-priority-visual__arrow flex shrink-0 items-center">
+                <FlowArrow horizontal />
+              </div>
+            )}
+          </Fragment>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+export function SlaEscalationVisual() {
+  return (
+    <div className="sla-escalation-visual flex h-full min-h-0 w-full flex-col gap-3 overflow-hidden">
+      <SlaPriorityVisual />
+      <div className="sla-escalation-visual__path flex min-h-0 flex-1 flex-col overflow-hidden">
+        <DeckVisualPanelLabel>Escalation Model</DeckVisualPanelLabel>
+        <div className="sla-escalation-visual__escalation min-h-0 flex-1">
+          <EscalationDiagram levels={escalationLevels} />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export function RiskHeatMap({
+  assessments,
+}: {
+  assessments: readonly {
+    category: string;
+    risk: string;
+    severity: "low" | "medium" | "high" | "critical";
+  }[];
+}) {
   const levels = ["Low", "Medium", "High", "Critical"] as const;
-  const categories = ["Technical", "Data", "Regulatory", "Adoption", "Schedule"] as const;
+  const severityIndex = { low: 0, medium: 1, high: 2, critical: 3 } as const;
   const severityColors = [
     "var(--risk-heatmap-low)",
     "var(--risk-heatmap-medium)",
@@ -1225,19 +1638,47 @@ export function RiskHeatMap() {
               {level}
             </div>
           ))}
-          {categories.map((category) => (
-            <Fragment key={category}>
-              <div className="risk-heatmap-visual__category">{category}</div>
-              {levels.map((_, col) => (
-                <div
-                  key={`${category}-${col}`}
-                  className="risk-heatmap-visual__cell"
-                  style={{ backgroundColor: severityColors[col] }}
-                  aria-hidden
-                />
-              ))}
-            </Fragment>
-          ))}
+          {assessments.map((assessment) => {
+            const activeCol = severityIndex[assessment.severity];
+
+            return (
+              <Fragment key={assessment.category}>
+                <div className="risk-heatmap-visual__category">{assessment.category}</div>
+                {levels.map((level, col) => {
+                  const isAssessed = col === activeCol;
+
+                  return (
+                    <div
+                      key={`${assessment.category}-${level}`}
+                      className={`risk-heatmap-visual__cell${
+                        isAssessed
+                          ? " risk-heatmap-visual__cell--assessed"
+                          : " risk-heatmap-visual__cell--empty"
+                      }`}
+                      style={
+                        isAssessed
+                          ? { backgroundColor: severityColors[col] }
+                          : undefined
+                      }
+                      title={isAssessed ? `${assessment.risk} — ${level}` : undefined}
+                      aria-label={
+                        isAssessed
+                          ? `${assessment.category}: ${assessment.risk}, ${level} severity`
+                          : undefined
+                      }
+                      aria-hidden={!isAssessed}
+                    >
+                      {isAssessed && (
+                        <p className="risk-heatmap-visual__cell-label">
+                          {assessment.risk}
+                        </p>
+                      )}
+                    </div>
+                  );
+                })}
+              </Fragment>
+            );
+          })}
         </div>
       </div>
     </div>
@@ -1261,13 +1702,19 @@ export function RiskTreatmentDiagram({ steps }: { steps: readonly string[] }) {
 }
 
 export function RiskManagementVisual({
+  assessments,
   treatmentSteps,
 }: {
+  assessments: readonly {
+    category: string;
+    risk: string;
+    severity: "low" | "medium" | "high" | "critical";
+  }[];
   treatmentSteps: readonly string[];
 }) {
   return (
     <div className="risk-management-visual grid h-full min-h-0 w-full flex-1 grid-cols-2 gap-3">
-      <RiskHeatMap />
+      <RiskHeatMap assessments={assessments} />
       <RiskTreatmentDiagram steps={treatmentSteps} />
     </div>
   );
@@ -1290,14 +1737,14 @@ export function ComplianceMatrix({
             </FlowStepTile>
             <p className="compliance-matrix-visual__requirement">{requirement}</p>
             <span className="compliance-matrix-visual__status">
-              {deckIcon(CheckCircle2, "xs")}
+              {deckIcon(CheckCircle2, "sm")}
               {response}
             </span>
             <FlowStepTile compact>
               {deckIcon(
                 SUPPLIER_RESPONSE_ICONS[index] ??
                   SUPPLIER_RESPONSE_ICONS[SUPPLIER_RESPONSE_ICONS.length - 1]!,
-                "sm",
+                "md",
               )}
             </FlowStepTile>
           </div>
@@ -1336,34 +1783,13 @@ export function InvoiceQrMockup({ callouts }: { callouts: readonly string[] }) {
       <div className="invoice-qr-visual__payload flex min-h-0 min-w-0 flex-1 flex-col gap-1.5">
         <DeckVisualPanelLabel>QR Payload</DeckVisualPanelLabel>
         <div className="invoice-qr-visual__flow min-h-0 flex-1">
-          <VerticalFlowDiagram items={callouts} icons={QR_CALLOUT_ICONS} compact />
+          <VerticalFlowDiagram
+            items={callouts}
+            icons={QR_CALLOUT_ICONS}
+            compact
+            centerContent
+          />
         </div>
-      </div>
-    </div>
-  );
-}
-
-export function ExecutiveSummaryVisual() {
-  return (
-    <div className="deck-executive-summary-visual flex h-full min-h-0 flex-1 flex-col gap-2">
-      <DeckVisualPanelLabel>Current State</DeckVisualPanelLabel>
-      <div className="flex min-h-0 flex-1 flex-col">
-        <VerticalFlowDiagram
-          items={["SAP ERP", "CRM", "Manual Compliance"]}
-          icons={EXECUTIVE_SUMMARY_CURRENT_ICONS}
-        />
-      </div>
-      <FlowArrow />
-      <DeckVisualPanelLabel>Infinity Compliance Gateway</DeckVisualPanelLabel>
-      <div className="flex min-h-0 flex-1 flex-col">
-        <VerticalFlowDiagram
-          items={[
-            "Motheo Compliance Engine",
-            "Revenue Services Lesotho",
-            "Future Enterprise Compliance",
-          ]}
-          icons={EXECUTIVE_SUMMARY_FUTURE_ICONS}
-        />
       </div>
     </div>
   );
@@ -1376,23 +1802,25 @@ export function LearningJourneyDiagram({ steps }: { steps: readonly string[] }) 
         <Fragment key={step}>
           <div className="learning-journey-visual__step flex min-h-0 min-w-0 flex-1">
             <div className="learning-journey-visual__card gms-card flex h-full w-full min-h-0 flex-col rounded-2xl">
-              <div className="learning-journey-visual__card-head flex items-center justify-between">
-                <FlowStepTile compact>
-                  <span className="learning-journey-visual__number tabular-nums">
+              <div className="learning-journey-visual__number-col flex shrink-0 justify-center">
+                <FlowStepTile>
+                  <span className="learning-journey-visual__number deck-flow-step-card__number deck-flow-step-card__number--compact tabular-nums">
                     {String(index + 1).padStart(2, "0")}
                   </span>
-                </FlowStepTile>
-                <FlowStepTile compact>
-                  {deckIcon(
-                    LEARNING_JOURNEY_ICONS[index] ??
-                      LEARNING_JOURNEY_ICONS[LEARNING_JOURNEY_ICONS.length - 1]!,
-                    "sm",
-                  )}
                 </FlowStepTile>
               </div>
               <p className="learning-journey-visual__label deck-type-card-title min-h-0 flex-1">
                 {step}
               </p>
+              <div className="learning-journey-visual__icon-col flex shrink-0 justify-center">
+                <FlowStepTile>
+                  {deckIcon(
+                    LEARNING_JOURNEY_ICONS[index] ??
+                      LEARNING_JOURNEY_ICONS[LEARNING_JOURNEY_ICONS.length - 1]!,
+                    "md",
+                  )}
+                </FlowStepTile>
+              </div>
             </div>
           </div>
           {index < steps.length - 1 && (
@@ -1402,6 +1830,50 @@ export function LearningJourneyDiagram({ steps }: { steps: readonly string[] }) 
           )}
         </Fragment>
       ))}
+    </div>
+  );
+}
+
+export { ExecutiveSummaryVisual } from "@/components/deck/visuals/ExecutiveSummaryVisual";
+
+export function WhyInfinityValueVisual({
+  items,
+  icons,
+}: {
+  items: readonly { title: string; description: string }[];
+  icons?: readonly LucideIcon[];
+}) {
+  return (
+    <div className="why-infinity-value-visual flex h-full min-h-0 w-full flex-col gap-2.5 overflow-hidden">
+      <DeckVisualPanelLabel className="why-infinity-value-visual__label">Why Infinity (IBD)</DeckVisualPanelLabel>
+      <div className="governance-framework-visual__list flex min-h-0 flex-1 flex-col gap-2">
+        {items.map((item, index) => (
+          <div
+            key={item.title}
+            className="governance-framework-visual__card gms-card flex min-h-0 flex-1 flex-col rounded-2xl"
+          >
+            <div className="governance-framework-visual__card-head flex items-center">
+              <FlowStepTile>
+                <span className="governance-framework-visual__number deck-flow-step-card__number deck-flow-step-card__number--compact tabular-nums">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+              </FlowStepTile>
+              <p className="governance-framework-visual__title deck-type-card-title min-w-0 flex-1">
+                {item.title}
+              </p>
+              <FlowStepTile>
+                {deckIcon(
+                  icons?.[index] ?? icons?.[icons.length - 1] ?? BadgeCheck,
+                  "sm",
+                )}
+              </FlowStepTile>
+            </div>
+            <p className="governance-framework-visual__description deck-type-card-body">
+              {item.description}
+            </p>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

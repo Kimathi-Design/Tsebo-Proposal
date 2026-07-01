@@ -182,7 +182,7 @@ export function renderProposalSlide(index: number) {
               <DeckBody key={paragraph}>{paragraph}</DeckBody>
             ))}
             <p className="deck-type-body text-deck-accent">The implementation includes:</p>
-            <DeckBulletList compact columns={2} items={[...gatewayIncludes]} />
+            <DeckBulletList compact items={[...gatewayIncludes]} />
             {executiveLetter.paragraphs.slice(5).map((paragraph) => (
               <DeckBody key={paragraph}>{paragraph}</DeckBody>
             ))}

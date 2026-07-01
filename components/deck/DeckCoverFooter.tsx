@@ -5,7 +5,7 @@ import { coverMeta } from "@/lib/deck-content";
 const PREPARED_BY_LINES = [
   {
     icon: "📍",
-    lines: [coverMeta.preparedByDisplay, coverMeta.tagline, coverMeta.location],
+    lines: [coverMeta.preparedByDisplay, coverMeta.tagline, coverMeta.address],
   },
   {
     icon: "🌐",

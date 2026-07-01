@@ -5,7 +5,7 @@ import { Children, Fragment, isValidElement, useEffect, useRef, useState, type R
 import { animate, useReducedMotion } from "framer-motion";
 import { GlowOrbs } from "@/components/effects/GlowOrbs";
 import { Particles } from "@/components/effects/Particles";
-import { deckIcon } from "@/components/deck/deck-icons";
+import { DeckIconTile as DeckLucideIconTile, deckIcon } from "@/components/deck/deck-icons";
 import type { LucideIcon } from "lucide-react";
 import { slideTitles } from "@/lib/deck-content";
 import { DeckNumberingProvider, useDeckNumbering } from "@/components/deck/DeckNumbering";
@@ -81,11 +81,15 @@ export function DeckSlideBodySplit({
   children,
   visual,
   className = "",
+  proseClassName = "",
+  visualClassName = "",
   layout = "vertical",
 }: {
   children: ReactNode;
   visual: ReactNode;
   className?: string;
+  proseClassName?: string;
+  visualClassName?: string;
   layout?: "vertical" | "horizontal" | "visual-top" | "visual-bottom";
 }) {
   if (layout === "horizontal") {
@@ -117,12 +121,16 @@ export function DeckSlideBodySplit({
   if (layout === "visual-bottom") {
     return (
       <div
-        className={`deck-slide-body-split deck-slide-body-split--visual-bottom flex h-full min-h-0 flex-1 flex-col gap-4 ${className}`.trim()}
+        className={`deck-slide-body-split deck-slide-body-split--visual-bottom flex h-full min-h-0 flex-1 flex-col gap-7 ${className}`.trim()}
       >
-        <div className="deck-slide-body-split__prose min-h-0 flex-1 overflow-y-auto overscroll-contain space-y-3">
+        <div
+          className={`deck-slide-body-split__prose min-h-0 min-w-0 flex-1 shrink overflow-x-hidden overflow-y-auto overscroll-contain space-y-3 ${proseClassName}`.trim()}
+        >
           {children}
         </div>
-        <DeckVisualPanel className="min-h-0 flex-[2]">{visual}</DeckVisualPanel>
+        <DeckVisualPanel className={`min-h-0 shrink-0 flex-[2] ${visualClassName}`.trim()}>
+          {visual}
+        </DeckVisualPanel>
       </div>
     );
   }
@@ -588,6 +596,8 @@ export function DeckTable({
   featured = false,
   emphasizeLastRow = false,
   emphasizeRowIndex,
+  numbered = false,
+  rowIcons,
 }: {
   headers: string[];
   rows: string[][];
@@ -595,7 +605,10 @@ export function DeckTable({
   featured?: boolean;
   emphasizeLastRow?: boolean;
   emphasizeRowIndex?: number;
+  numbered?: boolean;
+  rowIcons?: readonly LucideIcon[];
 }) {
+  const hasRoleMeta = numbered || Boolean(rowIcons);
   const headerClass = compact
     ? "px-4 py-3 text-[16px] font-semibold"
     : "px-5 py-3.5 text-[18px] font-semibold";
@@ -607,8 +620,12 @@ export function DeckTable({
     <div
       className={
         featured
-          ? "gms-card deck-table--featured overflow-hidden rounded-2xl"
-          : "overflow-hidden rounded-2xl border border-[color:var(--gms-border)]"
+          ? `gms-card deck-table--featured overflow-hidden rounded-2xl${
+              hasRoleMeta ? " deck-table--with-role-meta" : ""
+            }`
+          : `overflow-hidden rounded-2xl border border-[color:var(--gms-border)]${
+              hasRoleMeta ? " deck-table--with-role-meta" : ""
+            }`
       }
     >
       <table className="w-full border-collapse text-left">
@@ -653,6 +670,8 @@ export function DeckTable({
               >
                 {row.map((cell, cellIndex) => {
                   const isAmountColumn = cellIndex === row.length - 1;
+                  const isRoleColumn = cellIndex === 0 && hasRoleMeta;
+                  const rowIcon = rowIcons?.[rowIndex] ?? rowIcons?.[rowIcons.length - 1];
 
                   return (
                     <td
@@ -667,7 +686,23 @@ export function DeckTable({
                           : ""
                       }`}
                     >
-                      {cell}
+                      {isRoleColumn ? (
+                        <div className="deck-table__role-cell">
+                          {numbered && (
+                            <div className="deck-flow-step-card__tile deck-flow-step-card__tile--compact deck-table__number-tile">
+                              <span className="deck-table__number tabular-nums">
+                                {String(rowIndex + 1).padStart(2, "0")}
+                              </span>
+                            </div>
+                          )}
+                          {rowIcon && (
+                            <DeckLucideIconTile icon={rowIcon} size="compact" />
+                          )}
+                          <span className="deck-table__role-label min-w-0">{cell}</span>
+                        </div>
+                      ) : (
+                        cell
+                      )}
                     </td>
                   );
                 })}

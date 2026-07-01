@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "generate-pdf": "npm run build && node scripts/generate-proposal-pdf.mjs"
+    "generate-pdf": "npm run build && node scripts/build-submission-pack.mjs && node scripts/generate-proposal-pdf.mjs",
+    "build-submission-pack": "node scripts/build-submission-pack.mjs"
   },
   "dependencies": {
     "clsx": "^2.1.1",

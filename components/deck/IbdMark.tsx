@@ -56,9 +56,9 @@ export function IbdMark({ size = "sm", className = "" }: IbdMarkProps) {
 /** Motheo mark — public/motheo-logo.png */
 export function MotheoMark({ size = "sm", className = "" }: IbdMarkProps) {
   const heights = {
-    sm: "h-3.5",
-    md: "h-4",
-    lg: "h-5",
+    sm: "h-5",
+    md: "h-6",
+    lg: "h-7",
   } as const;
 
   return (
@@ -99,8 +99,8 @@ export function IbdFooterLogo({ className = "" }: { className?: string }) {
   );
 }
 
-function usesFooterFavicon(index: number, slideCount: number) {
-  return index === 0 || index === slideCount - 1;
+function usesFooterFavicon(index: number) {
+  return index === 0;
 }
 
 function showFooterBrand(index: number) {
@@ -115,7 +115,7 @@ export function DeckFooterBrand({
   slideCount: number;
 }) {
   if (!showFooterBrand(index)) return null;
-  if (usesFooterFavicon(index, slideCount)) {
+  if (usesFooterFavicon(index)) {
     return <IbdMark size="lg" />;
   }
   return <IbdFooterLogo />;

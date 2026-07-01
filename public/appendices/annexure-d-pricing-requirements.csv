@@ -1,0 +1,11 @@
+Line Item,Description,Amount (ZAR),Basis / Notes
+Implementation Services,One-time project delivery — design SAP/CRM integration security testing training and go-live,(Insert Commercial Amount),Fixed project fee
+Annual Managed Services,Annual subscription / licence — application support compliance monitoring and preventative maintenance,(Insert Annual Subscription),Per annum
+Transaction-Based Pricing,Per-invoice / volume-based fees if applicable,(Insert per transaction rate),Baseline ~400 invoices/month — volume tiers subject to confirmation with BWE
+Optional Professional Services,Ad-hoc enhancements and advisory,(Insert if applicable),Time and materials / quoted per request
+
+Assumptions,,
+Currency,All amounts in ZAR unless otherwise stated,
+Volume baseline,~400 invoices per month (subject to confirmation with BWE),
+Validity,190 business days from RFQ submission date,
+Exclusions,Optional third-party licensing unless specifically stated,

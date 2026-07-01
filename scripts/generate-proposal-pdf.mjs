@@ -1,20 +1,26 @@
-import { chromium } from "playwright";
-import { PDFDocument } from "pdf-lib";
 import { readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
-import { tmpdir } from "node:os";
 import { spawn } from "node:child_process";
+import { tmpdir } from "node:os";
+import { chromium } from "playwright";
+import { PDFDocument } from "pdf-lib";
 
-const APPENDIX_FILES = [
-  "appendix-a-rsl-accreditation-letter.pdf",
-  "appendix-b-motheo-integrator-guide.pdf",
-  "appendix-c-tax-clearance-certificate.pdf",
-  "appendix-d-business-registration-certificate.pdf",
-  "appendix-e-banking-confirmation-letter.pdf",
-  "appendix-f-bwe-rfq-smart-invoicing.pdf",
-  "appendix-g-bwe-e-invoicing-gateway-api-spec.pdf",
-  "appendix-h-bw-group-supplier-code-of-conduct.pdf",
-  "appendix-i-bwe-supplier-self-assessment.pdf",
+const submissionPdfMergeOrder = [
+  "annexure-c-intent-to-respond-signed.pdf",
+  "annexure-d-pricing-requirements.pdf",
+  "annexure-b-e-invoicing-gateway-api-spec.pdf",
+  "annexure-e-framework-agreement-deviations.pdf",
+  "annexure-f-nda-confidentiality-agreement-signed.pdf",
+  "mandatory-company-registration.pdf",
+  "mandatory-shareholder-identification.pdf",
+  "mandatory-good-standing-letter.pdf",
+  "mandatory-tax-clearance-certificate.pdf",
+  "mandatory-bbbee-gap-statement.pdf",
+  "support-a-rsl-accreditation-letter.pdf",
+  "support-b-motheo-integrator-guide.pdf",
+  "support-c-banking-confirmation-letter.pdf",
+  "support-f-supplier-self-assessment-signed.pdf",
+  "support-g-supplier-code-of-conduct-signed.pdf",
 ];
 
 const outputPath = join(process.cwd(), "public/BW-Group-Motheo-Proposal.pdf");
@@ -64,13 +70,21 @@ try {
     margin: { top: 0, right: 0, bottom: 0, left: 0 },
   });
 
-  console.log("Merging appendices...");
+  console.log("Merging submission pack PDFs...");
   const pdfDoc = await PDFDocument.load(readFileSync(slidesPath));
-  for (const file of APPENDIX_FILES) {
-    const appendixBytes = readFileSync(join(process.cwd(), "public/appendices", file));
-    const appendixPdf = await PDFDocument.load(appendixBytes);
-    const pages = await pdfDoc.copyPages(appendixPdf, appendixPdf.getPageIndices());
-    pages.forEach((p) => pdfDoc.addPage(p));
+  const appendicesDir = join(process.cwd(), "public/appendices");
+
+  for (const file of submissionPdfMergeOrder) {
+    const filePath = join(appendicesDir, file);
+    try {
+      const appendixBytes = readFileSync(filePath);
+      const appendixPdf = await PDFDocument.load(appendixBytes);
+      const pages = await pdfDoc.copyPages(appendixPdf, appendixPdf.getPageIndices());
+      pages.forEach((p) => pdfDoc.addPage(p));
+      console.log(`  + ${file}`);
+    } catch (error) {
+      console.warn(`  SKIP ${file}: ${error.message}`);
+    }
   }
 
   writeFileSync(outputPath, await pdfDoc.save());

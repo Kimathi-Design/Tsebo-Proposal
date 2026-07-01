@@ -1,23 +1,43 @@
 "use client";
 
-import { executiveSummaryFlow } from "@/lib/deck-content";
+import { ArrowRight } from "lucide-react";
 import { DeckVisualPanelLabel } from "@/components/deck/DeckSlideFrame";
-import { ArchitectureStackVisual } from "@/components/deck/visuals/FlowStepsVisual";
+import {
+  EXECUTIVE_SUMMARY_CURRENT_ICONS,
+  EXECUTIVE_SUMMARY_FUTURE_ICONS,
+} from "@/components/deck/deck-icons";
+import { executiveSummaryFlow } from "@/lib/deck-content";
+import { VerticalFlowDiagram } from "@/components/deck/visuals/ProposalDiagrams";
 
 export function ExecutiveSummaryVisual() {
   return (
-    <div className="grid h-full min-h-0 flex-1 grid-cols-2 gap-4">
-      <div className="flex min-h-0 flex-1 flex-col gap-2">
-        <DeckVisualPanelLabel>Current State</DeckVisualPanelLabel>
-        <div className="flex min-h-0 flex-1 flex-col">
-          <ArchitectureStackVisual items={executiveSummaryFlow.current} fill />
-        </div>
+    <div className="executive-summary-visual">
+      <DeckVisualPanelLabel className="executive-summary-visual__heading executive-summary-visual__heading--current">
+        Current State
+      </DeckVisualPanelLabel>
+      <DeckVisualPanelLabel className="executive-summary-visual__heading executive-summary-visual__heading--future">
+        Future State
+      </DeckVisualPanelLabel>
+      <div className="executive-summary-visual__flow executive-summary-visual__flow--current">
+        <VerticalFlowDiagram
+          items={executiveSummaryFlow.current}
+          icons={EXECUTIVE_SUMMARY_CURRENT_ICONS}
+          compact
+          className="escalation-visual executive-summary-visual__steps"
+        />
       </div>
-      <div className="flex min-h-0 flex-1 flex-col gap-2">
-        <DeckVisualPanelLabel>Future State</DeckVisualPanelLabel>
-        <div className="flex min-h-0 flex-1 flex-col">
-          <ArchitectureStackVisual items={executiveSummaryFlow.future} fill />
-        </div>
+      <div className="executive-summary-visual__bridge" aria-hidden>
+        <span className="deck-flow-connector">
+          <ArrowRight strokeWidth={3} />
+        </span>
+      </div>
+      <div className="executive-summary-visual__flow executive-summary-visual__flow--future">
+        <VerticalFlowDiagram
+          items={executiveSummaryFlow.future}
+          icons={EXECUTIVE_SUMMARY_FUTURE_ICONS}
+          compact
+          className="escalation-visual executive-summary-visual__steps"
+        />
       </div>
     </div>
   );

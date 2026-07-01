@@ -1,12 +1,15 @@
 "use client";
 
 import type { ReactElement } from "react";
+import type { SubmissionSection } from "@/lib/submission-pack";
 import { ClosingBackdrop } from "@/components/deck/visuals/ClosingBackdrop";
+import { IbdContactCard } from "@/components/deck/IbdContactCard";
 import {
   CertificateCycleDiagram,
   ComplianceMatrix,
   DashboardMockup,
-  EscalationDiagram,
+  GovernanceFrameworkVisual,
+  SlaEscalationVisual,
   SapIntegrationVisual,
   SolutionOverviewVisual,
   GanttChart,
@@ -19,16 +22,15 @@ import {
   OnlineOfflineCompare,
   MotheoEngineStripVisual,
   RiskManagementVisual,
+  SecurityArchitectureVisual,
   SplitCompareDiagram,
   SupportLifecycleDiagram,
   TestingPyramidDiagram,
   ValueCardsVisual,
   VerticalFlowDiagram,
+  WhyInfinityValueVisual,
   WorkstreamConverge,
 } from "@/components/deck/visuals/ProposalDiagrams";
-import {
-  DeckClosingQuote,
-} from "@/components/deck/DeckSectionedToc";
 import {
   DeckBody,
   DeckBulletList,
@@ -44,15 +46,17 @@ import { CRM_FLOW_ICONS } from "@/components/deck/deck-icons";
 import { SlideEyebrow } from "@/components/deck/SlideEyebrow";
 import {
   aboutInfinityIntro,
-  appendices,
+  submissionSections,
   architectureLayers,
   architecturePrinciples,
   availableReports,
+  reportingBusinessBenefits,
   barloworldBusinessAreas,
   barloworldHubUnits,
   businessChallenges,
   certificateLifecycle,
   certificateServices,
+  closingStatement,
   closingQuote,
   conclusionBenefits,
   coreCapabilities,
@@ -60,7 +64,6 @@ import {
   crmFlowSteps,
   crmIntegrationServices,
   enterprisePrinciples,
-  escalationLevels,
   gatewayCapabilities,
   gatewayIncludes,
   implementationLifecycle,
@@ -83,8 +86,11 @@ import {
   qrCallouts,
   qrFeatures,
   recoveryWorkflow,
+  recoveryObjectives,
   resilienceFeatures,
+  resilienceBusinessBenefits,
   riskPrinciples,
+  assessedRiskMatrix,
   riskTreatment,
   rslAccreditationFlowSteps,
   rslAccreditationIntro,
@@ -92,8 +98,8 @@ import {
   sapIntegrationScope,
   sapIntegrationServices,
   sapSideCards,
-  serviceLevels,
   servicePrinciples,
+  supportChannels,
   solutionComponents,
   solutionFloatingCards,
   solutionOverviewFlow,
@@ -114,11 +120,11 @@ import {
   apiGatewayFlow,
   apiServices,
   dashboardModules,
+  dashboardBenefits,
   dashboardSampleMetrics,
   governanceObjectives,
-  governanceStructure,
-  securityControls,
   securityPrinciples,
+  securityBusinessBenefits,
   keyMilestones,
 } from "@/lib/deck-proposal-content";
 import {
@@ -132,6 +138,8 @@ import {
   GOVERNANCE_OBJECTIVE_ICONS,
   MOTHEO_COMPONENT_ICONS,
   RSL_ACCREDITATION_FLOW_ICONS,
+  GANTT_PHASE_ICONS,
+  PROJECT_TEAM_ICONS,
   RECOVERY_WORKFLOW_ICONS,
   SUPPORT_SERVICE_ICONS,
   TESTING_ACTIVITY_ICONS,
@@ -142,6 +150,58 @@ import {
   deckIcon,
   mapDeckIcons,
 } from "@/components/deck/deck-icons";
+
+function SubmissionAppendixList({
+  section,
+  iconOffset,
+}: {
+  section: SubmissionSection;
+  iconOffset: number;
+}) {
+  return (
+    <div className="deck-submission-sections mt-4 flex min-h-0 flex-1 flex-col">
+      <div className="deck-appendix-list">
+        {section.items.map((app, itemIndex) => (
+          <div key={app.id} className="deck-appendix-list__item gms-card rounded-2xl">
+            <div className="deck-appendix-list__row">
+              <div className="deck-appendix-list__content min-w-0 flex-1">
+                <p className="deck-type-premium-label">{app.id}</p>
+                <p className="deck-type-card-title mt-1">{app.title}</p>
+                {app.purpose && (
+                  <p className="deck-type-card-body mt-1.5 text-[color:var(--gms-text-muted)]">
+                    {app.purpose}
+                  </p>
+                )}
+                {app.file ? (
+                  <a
+                    href={`/appendices/${app.file}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="deck-appendix-list__link mt-2 inline-flex items-center rounded-full border border-[color:var(--gms-border)] bg-white px-3 py-1 text-[11px] font-medium tracking-[0.12em] text-deck-accent uppercase"
+                  >
+                    View attached PDF
+                  </a>
+                ) : (
+                  <p className="deck-appendix-list__included mt-2 text-[12px] font-medium text-[color:var(--gms-text-muted)]">
+                    Included in main proposal
+                  </p>
+                )}
+              </div>
+              <div className="deck-appendix-list__icon-col">
+                <DeckIconTile
+                  icon={
+                    APPENDIX_ICONS[(iconOffset + itemIndex) % APPENDIX_ICONS.length] ??
+                    APPENDIX_ICONS[0]!
+                  }
+                />
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
 
 export function renderProposalSlidesExtended(index: number): ReactElement {
   switch (index) {
@@ -286,6 +346,7 @@ export function renderProposalSlidesExtended(index: number): ReactElement {
                 items={rslAccreditationFlowSteps}
                 icons={RSL_ACCREDITATION_FLOW_ICONS}
                 compact
+                centerContent
               />
             }
           >
@@ -296,7 +357,7 @@ export function renderProposalSlidesExtended(index: number): ReactElement {
               <DeckBody key={paragraph.slice(0, 48)}>{paragraph}</DeckBody>
             ))}
             <DeckSectionLabel>Enterprise Compliance Gateway Includes</DeckSectionLabel>
-            <DeckBulletList compact columns={2} items={[...gatewayIncludes]} />
+            <DeckBulletList compact items={[...gatewayIncludes]} />
           </DeckSlideBodySplit>
         </DeckSlideFrame>
       );
@@ -425,7 +486,14 @@ export function renderProposalSlidesExtended(index: number): ReactElement {
           <DeckSlideBodySplit
             layout="visual-bottom"
             visual={
-              <VerticalFlowDiagram items={crmFlowSteps} icons={CRM_FLOW_ICONS} compact />
+              <div className="crm-integration-visual flex h-full min-h-0 flex-1 flex-col">
+                <VerticalFlowDiagram
+                  items={crmFlowSteps}
+                  icons={CRM_FLOW_ICONS}
+                  compact
+                  centerContent
+                />
+              </div>
             }
           >
             <DeckTitle highlight="Compliance Beyond ERP">Extending</DeckTitle>
@@ -455,11 +523,14 @@ export function renderProposalSlidesExtended(index: number): ReactElement {
           <SlideEyebrow index={14} />
           <DeckSlideBodySplit
             visual={
-              <VerticalFlowDiagram
-                items={apiGatewayFlow}
-                icons={API_GATEWAY_FLOW_ICONS}
-                compact
-              />
+              <div className="api-gateway-visual flex h-full min-h-0 flex-1 flex-col">
+                <VerticalFlowDiagram
+                  items={apiGatewayFlow}
+                  icons={API_GATEWAY_FLOW_ICONS}
+                  compact
+                  centerContent
+                />
+              </div>
             }
           >
             <DeckTitle highlight="API Architecture">Enterprise</DeckTitle>
@@ -477,9 +548,9 @@ export function renderProposalSlidesExtended(index: number): ReactElement {
               The solution supports secure integration with the Revenue Services Lesotho
               platform, including services for:
             </DeckBody>
-            <DeckBulletList items={[...apiServices]} />
+            <DeckBulletList compact items={[...apiServices]} />
             <DeckSectionLabel>API Features</DeckSectionLabel>
-            <DeckBulletList items={[...apiFeatures]} />
+            <DeckBulletList compact items={[...apiFeatures]} />
             <DeckSectionLabel>Business Benefits</DeckSectionLabel>
             <DeckBulletList items={[...apiBusinessBenefits]} />
           </DeckSlideBodySplit>
@@ -518,35 +589,27 @@ export function renderProposalSlidesExtended(index: number): ReactElement {
       return (
         <DeckSlideFrame index={16}>
           <SlideEyebrow index={16} />
-          <DeckTitle highlight="Security by Design">Enterprise</DeckTitle>
-          <DeckBody>
-            Security is fundamental to the design of the Infinity Compliance Gateway. The
-            solution has been architected using industry best practices to protect
-            business-critical information while ensuring secure communication between
-            Barloworld Equipment, the Compliance Gateway and Revenue Services Lesotho.
-          </DeckBody>
-          <DeckBody>
-            The platform adopts a defence-in-depth approach, ensuring that every layer of the
-            solution incorporates appropriate security controls to protect confidentiality,
-            integrity and availability.
-          </DeckBody>
-          <DeckSectionLabel>Security Principles</DeckSectionLabel>
-          <DeckFeatureGrid
-            uniform
-            items={mapDeckIcons([...securityPrinciples], GOVERNANCE_OBJECTIVE_ICONS)}
-          />
-          <DeckSectionLabel>Security Controls</DeckSectionLabel>
-          <DeckBulletList items={[...securityControls]} />
-          <DeckSectionLabel>Business Benefits</DeckSectionLabel>
-          <DeckBulletList
-            items={[
-              "Secure enterprise communications",
-              "Reduced cyber risk",
-              "Compliance with regulatory security requirements",
-              "Improved governance",
-              "Stronger audit evidence",
-            ]}
-          />
+          <DeckSlideBodySplit visual={<SecurityArchitectureVisual />}>
+            <DeckTitle highlight="Security by Design">Enterprise</DeckTitle>
+            <DeckBody>
+              Security is fundamental to the design of the Infinity Compliance Gateway. The
+              solution has been architected using industry best practices to protect
+              business-critical information while ensuring secure communication between
+              Barloworld Equipment, the Compliance Gateway and Revenue Services Lesotho.
+            </DeckBody>
+            <DeckBody>
+              The platform adopts a defence-in-depth approach, ensuring that every layer of the
+              solution incorporates appropriate security controls to protect confidentiality,
+              integrity and availability.
+            </DeckBody>
+            <DeckSectionLabel>Security Principles</DeckSectionLabel>
+            <DeckFeatureGrid
+              uniform
+              items={mapDeckIcons([...securityPrinciples], GOVERNANCE_OBJECTIVE_ICONS)}
+            />
+            <DeckSectionLabel>Business Benefits</DeckSectionLabel>
+            <DeckBulletList items={[...securityBusinessBenefits]} />
+          </DeckSlideBodySplit>
         </DeckSlideFrame>
       );
 
@@ -594,8 +657,8 @@ export function renderProposalSlidesExtended(index: number): ReactElement {
           <DeckSlideBodySplit
             visual={
               <OnlineOfflineCompare
-                onlineItems={onlineProcessing}
-                offlineItems={offlineProcessing}
+                onlineItems={onlineProcessing.map((item) => item.title)}
+                offlineItems={offlineProcessing.map((item) => item.title)}
               />
             }
           >
@@ -617,9 +680,9 @@ export function renderProposalSlidesExtended(index: number): ReactElement {
               automatically resubmitted once connectivity is restored.
             </DeckBody>
             <DeckSectionLabel>Online Processing</DeckSectionLabel>
-            <DeckBulletList items={[...onlineProcessing]} />
+            <DeckBulletList compact items={[...onlineProcessing]} />
             <DeckSectionLabel>Offline Processing</DeckSectionLabel>
-            <DeckBulletList items={[...offlineProcessing]} />
+            <DeckBulletList compact items={[...offlineProcessing]} />
             <DeckSectionLabel>Business Benefits</DeckSectionLabel>
             <DeckBulletList
               items={[
@@ -718,16 +781,9 @@ export function renderProposalSlidesExtended(index: number): ReactElement {
               operational health.
             </DeckBody>
             <DeckSectionLabel>Dashboard Modules</DeckSectionLabel>
-            <DeckBulletList items={[...dashboardModules]} />
+            <DeckBulletList compact items={[...dashboardModules]} />
             <DeckSectionLabel>Benefits</DeckSectionLabel>
-            <DeckBulletList
-              items={[
-                "Proactive monitoring",
-                "Faster issue resolution",
-                "Improved governance",
-                "Better operational insights",
-              ]}
-            />
+            <DeckBulletList compact items={[...dashboardBenefits]} />
           </DeckSlideBodySplit>
         </DeckSlideFrame>
       );
@@ -738,11 +794,14 @@ export function renderProposalSlidesExtended(index: number): ReactElement {
           <SlideEyebrow index={22} />
           <DeckSlideBodySplit
             visual={
-              <VerticalFlowDiagram
-                items={recoveryWorkflow}
-                icons={RECOVERY_WORKFLOW_ICONS}
-                compact
-              />
+              <div className="recovery-workflow-visual flex h-full min-h-0 flex-1 flex-col">
+                <VerticalFlowDiagram
+                  items={recoveryWorkflow}
+                  icons={RECOVERY_WORKFLOW_ICONS}
+                  compact
+                  centerContent
+                />
+              </div>
             }
           >
             <DeckTitle highlight="Operational Resilience">Building</DeckTitle>
@@ -755,25 +814,11 @@ export function renderProposalSlidesExtended(index: number): ReactElement {
               compliance obligations continue to be met.
             </DeckBody>
             <DeckSectionLabel>Resilience Features</DeckSectionLabel>
-            <DeckBulletList items={[...resilienceFeatures]} />
+            <DeckBulletList compact items={[...resilienceFeatures]} />
             <DeckSectionLabel>Recovery Objectives</DeckSectionLabel>
-            <DeckBulletList
-              items={[
-                "Minimise downtime",
-                "Prevent transaction loss",
-                "Restore processing quickly",
-                "Maintain compliance",
-              ]}
-            />
+            <DeckBulletList compact items={[...recoveryObjectives]} />
             <DeckSectionLabel>Business Benefits</DeckSectionLabel>
-            <DeckBulletList
-              items={[
-                "Increased reliability",
-                "Reduced operational risk",
-                "Continuous compliance",
-                "Business continuity",
-              ]}
-            />
+            <DeckBulletList compact items={[...resilienceBusinessBenefits]} />
           </DeckSlideBodySplit>
         </DeckSlideFrame>
       );
@@ -799,7 +844,7 @@ export function renderProposalSlidesExtended(index: number): ReactElement {
               performance, exception trends and system health.
             </DeckBody>
             <DeckSectionLabel>Available Reports</DeckSectionLabel>
-            <DeckBulletList items={[...availableReports]} />
+            <DeckBulletList compact items={[...availableReports]} />
             <DeckSectionLabel>Executive Insights</DeckSectionLabel>
             <DeckBody>
               Management gains visibility into compliance performance through interactive
@@ -810,14 +855,7 @@ export function renderProposalSlidesExtended(index: number): ReactElement {
               initiatives.
             </DeckBody>
             <DeckSectionLabel>Business Benefits</DeckSectionLabel>
-            <DeckBulletList
-              items={[
-                "Better decision-making",
-                "Improved governance",
-                "Enhanced visibility",
-                "Performance optimisation",
-              ]}
-            />
+            <DeckBulletList compact items={[...reportingBusinessBenefits]} />
           </DeckSlideBodySplit>
         </DeckSlideFrame>
       );
@@ -851,32 +889,27 @@ export function renderProposalSlidesExtended(index: number): ReactElement {
         <DeckSlideFrame index={25}>
           <SlideEyebrow index={25} />
           <DeckTitle highlight="Governance for Successful Delivery">Structured</DeckTitle>
-          <DeckBody>
-            Effective governance is essential to the successful delivery of enterprise
-            technology projects.
-          </DeckBody>
-          <DeckBody>
-            Infinity Business Dynamics will establish a structured governance framework that
-            provides executive oversight, project control and clear accountability throughout
-            the implementation lifecycle.
-          </DeckBody>
-          <DeckBody>
-            This framework ensures that decisions are made efficiently, risks are actively
-            managed and stakeholders remain informed at every stage of the project.
-          </DeckBody>
-          <DeckSectionLabel>Governance Objectives</DeckSectionLabel>
-          <DeckFeatureGrid
-            uniform
-            items={mapDeckIcons([...governanceObjectives], GOVERNANCE_OBJECTIVE_ICONS)}
-          />
-          <DeckSectionLabel>Governance Structure</DeckSectionLabel>
-          {governanceStructure.map((item) => (
-            <DeckBody key={item.title}>
-              <span className="font-semibold">{item.title}</span>
-              <br />
-              {item.description}
+          <DeckSlideBodySplit
+            layout="horizontal"
+            className="deck-slide-body-split--governance"
+            visual={<GovernanceFrameworkVisual />}
+          >
+            <DeckBody>
+              Effective governance is essential to the successful delivery of enterprise
+              technology projects.
             </DeckBody>
-          ))}
+            <DeckBody>
+              Infinity Business Dynamics will establish a structured governance framework that
+              provides executive oversight, project control and clear accountability throughout
+              the implementation lifecycle.
+            </DeckBody>
+            <DeckSectionLabel>Governance Objectives</DeckSectionLabel>
+            <DeckFeatureGrid
+              uniform
+              columns={1}
+              items={mapDeckIcons([...governanceObjectives], GOVERNANCE_OBJECTIVE_ICONS)}
+            />
+          </DeckSlideBodySplit>
         </DeckSlideFrame>
       );
 
@@ -901,6 +934,8 @@ export function renderProposalSlidesExtended(index: number): ReactElement {
             headers={["Role", "Responsibility"]}
             rows={projectTeam.map((row) => [row[0], row[1]])}
             compact
+            numbered
+            rowIcons={PROJECT_TEAM_ICONS}
           />
           <DeckSectionLabel>Project Principles</DeckSectionLabel>
           <DeckBulletList compact items={[...projectPrinciples]} />
@@ -913,6 +948,9 @@ export function renderProposalSlidesExtended(index: number): ReactElement {
           <SlideEyebrow index={27} />
           <DeckSlideBodySplit
             layout="visual-bottom"
+            className="deck-slide-body-split--workstreams"
+            proseClassName="flex-none shrink-0"
+            visualClassName="min-h-0 flex-1 shrink"
             visual={
               <WorkstreamConverge
                 workstreams={workstreams}
@@ -940,7 +978,7 @@ export function renderProposalSlidesExtended(index: number): ReactElement {
               </div>
             ))}
             <DeckSectionLabel>Success Factors</DeckSectionLabel>
-            <DeckBulletList items={[...successFactors]} />
+            <DeckBulletList compact items={[...successFactors]} />
           </DeckSlideBodySplit>
         </DeckSlideFrame>
       );
@@ -959,9 +997,11 @@ export function renderProposalSlidesExtended(index: number): ReactElement {
               headers={["Phase", "Duration"]}
               rows={projectTimeline.map((row) => [row[0], row[1]])}
               compact
+              numbered
+              rowIcons={GANTT_PHASE_ICONS}
             />
             <DeckSectionLabel>Key Milestones</DeckSectionLabel>
-            <DeckBulletList items={[...keyMilestones]} />
+            <DeckBulletList compact items={[...keyMilestones]} />
           </DeckSlideBodySplit>
         </DeckSlideFrame>
       );
@@ -1073,30 +1113,25 @@ export function renderProposalSlidesExtended(index: number): ReactElement {
       return (
         <DeckSlideFrame index={32}>
           <SlideEyebrow index={32} />
-          <DeckSlideBodySplit visual={<EscalationDiagram levels={escalationLevels} />}>
-            <DeckTitle highlight="Responsive Enterprise Support">Delivering</DeckTitle>
+          <DeckTitle highlight="Responsive Enterprise Support">Delivering</DeckTitle>
+          <DeckSlideBodySplit
+            layout="horizontal"
+            className="deck-slide-body-split--sla-escalation"
+            visual={<SlaEscalationVisual />}
+          >
             <DeckBody>
               Infinity Business Dynamics provides structured Service Level Agreements designed to
               minimise operational disruption and ensure rapid response to incidents.
             </DeckBody>
             <DeckBody>
               Support requests are prioritised according to business impact, ensuring that
-              critical services receive immediate attention.
+              critical services receive immediate attention while escalation paths keep
+              stakeholders informed at every level.
             </DeckBody>
-            <DeckSectionLabel>Service Levels</DeckSectionLabel>
-            <DeckTable
-              headers={["Priority", "Description", "Response", "Target Resolution"]}
-              rows={serviceLevels.map((row) => [...row])}
-              compact
-            />
-            <DeckSectionLabel>Escalation Model</DeckSectionLabel>
-            <DeckBody>Level 1 — Service Desk</DeckBody>
-            <DeckBody>Level 2 — Technical Support</DeckBody>
-            <DeckBody>Level 3 — Compliance Specialists</DeckBody>
-            <DeckBody>Level 4 — Engineering Team</DeckBody>
-            <DeckBody>Executive Oversight</DeckBody>
+            <DeckSectionLabel>Support Channels</DeckSectionLabel>
+            <DeckBulletList compact items={[...supportChannels]} />
             <DeckSectionLabel>Service Principles</DeckSectionLabel>
-            <DeckBulletList items={[...servicePrinciples]} />
+            <DeckBulletList compact items={[...servicePrinciples]} />
           </DeckSlideBodySplit>
         </DeckSlideFrame>
       );
@@ -1106,7 +1141,12 @@ export function renderProposalSlidesExtended(index: number): ReactElement {
         <DeckSlideFrame index={33}>
           <SlideEyebrow index={33} />
           <DeckSlideBodySplit
-            visual={<RiskManagementVisual treatmentSteps={riskTreatment} />}
+            visual={
+              <RiskManagementVisual
+                assessments={assessedRiskMatrix}
+                treatmentSteps={riskTreatment}
+              />
+            }
           >
             <DeckTitle highlight="with Confidence">Delivering</DeckTitle>
             <DeckBody>
@@ -1183,9 +1223,9 @@ export function renderProposalSlidesExtended(index: number): ReactElement {
           <SlideEyebrow index={36} />
           <DeckSlideBodySplit
             visual={
-              <DeckFeatureGrid
-                variant="premium"
-                items={mapDeckIcons([...whyInfinityClosing], WHY_INFINITY_VALUE_ICONS)}
+              <WhyInfinityValueVisual
+                items={[...whyInfinityClosing]}
+                icons={WHY_INFINITY_VALUE_ICONS}
               />
             }
           >
@@ -1202,14 +1242,6 @@ export function renderProposalSlidesExtended(index: number): ReactElement {
               Infinity Business Dynamics combines these capabilities into a single, integrated
               service offering.
             </DeckBody>
-            <DeckSectionLabel>Why Infinity</DeckSectionLabel>
-            {whyInfinityClosing.map((item) => (
-              <DeckBody key={item.title}>
-                <span className="font-semibold">{item.title}</span>
-                <br />
-                {item.description}
-              </DeckBody>
-            ))}
             <DeckSectionLabel>Our Commitment</DeckSectionLabel>
             <DeckBody>
               Infinity Business Dynamics is committed to delivering a solution that enables
@@ -1242,15 +1274,17 @@ export function renderProposalSlidesExtended(index: number): ReactElement {
               solution that integrates seamlessly with SAP ERP, CRM and the Revenue Services
               Lesotho Electronic Billing System.
             </DeckBody>
-            <DeckBody>The proposed architecture provides Barloworld Equipment with:</DeckBody>
-            <DeckBulletList items={[...conclusionBenefits]} />
             <DeckBody>
-              We appreciate the opportunity to participate in this procurement process and look
-              forward to partnering with Barloworld Equipment to deliver a successful
-              implementation.
+              The proposed architecture provides Barloworld Equipment with a secure, accredited
+              compliance platform delivering the following enterprise capabilities:
             </DeckBody>
+            <DeckBulletList compact items={[...conclusionBenefits]} />
             <DeckSectionLabel>Closing Statement</DeckSectionLabel>
-            <DeckClosingQuote>{closingQuote}</DeckClosingQuote>
+            <DeckBody>{closingStatement}</DeckBody>
+            <p className="closing-backdrop__quote">{closingQuote}</p>
+            <div className="pt-6">
+              <IbdContactCard />
+            </div>
           </ClosingBackdrop>
         </DeckSlideFrame>
       );
@@ -1302,38 +1336,29 @@ export function renderProposalSlidesExtended(index: number): ReactElement {
     case 39:
       return (
         <DeckSlideFrame index={39}>
-          <SlideEyebrow index={39} />
+          <SlideEyebrow index={39} sectionNumber="32.5" />
           <DeckTitle highlight="Documentation">Supporting</DeckTitle>
           <DeckBody>
-            The following supporting documentation accompanies this proposal and provides
-            evidence of Infinity Business Dynamics&apos; capability, accreditation and compliance
-            readiness.
+            RFQ annexures A–F accompany this proposal. Attached PDFs are included in the
+            downloadable submission pack — no separate IBD appendix volume is required.
           </DeckBody>
-          <div className="deck-appendix-list mt-6">
-            {appendices.map((app, appendixIndex) => (
-              <div key={app.id} className="deck-appendix-list__item gms-card rounded-2xl">
-                <div className="deck-appendix-list__row">
-                  <div className="deck-appendix-list__content min-w-0 flex-1">
-                    <p className="deck-type-premium-label">{app.id}</p>
-                    <p className="deck-type-card-title mt-1">{app.title}</p>
-                    {app.purpose && (
-                      <p className="deck-type-card-body mt-2 text-[color:var(--gms-text-muted)]">
-                        <span className="font-medium text-[color:var(--gms-text-muted)]">
-                          Purpose:{" "}
-                        </span>
-                        {app.purpose}
-                      </p>
-                    )}
-                  </div>
-                  <div className="deck-appendix-list__icon-col">
-                    <DeckIconTile
-                      icon={APPENDIX_ICONS[appendixIndex] ?? APPENDIX_ICONS[0]!}
-                    />
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
+          <SubmissionAppendixList section={submissionSections[0]!} iconOffset={0} />
+        </DeckSlideFrame>
+      );
+
+    case 40:
+      return (
+        <DeckSlideFrame index={40}>
+          <SlideEyebrow index={40} sectionNumber="32.6" />
+          <DeckTitle highlight="Documentation">Supporting</DeckTitle>
+          <DeckBody>
+            Mandatory supporting documents per RFQ §2. All attached PDFs are merged into the
+            downloadable proposal pack.
+          </DeckBody>
+          <SubmissionAppendixList
+            section={submissionSections[1]!}
+            iconOffset={submissionSections[0]!.items.length}
+          />
         </DeckSlideFrame>
       );
 

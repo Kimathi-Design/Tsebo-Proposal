@@ -3,8 +3,8 @@ export * from "@/lib/deck-proposal-content";
 import { appendices } from "@/lib/deck-proposal-content";
 
 export const APPENDIX_COUNT = 0;
-export const APPENDIX_START_SLIDE = 40;
-export const SLIDE_COUNT = 40;
+export const APPENDIX_START_SLIDE = 41;
+export const SLIDE_COUNT = 41;
 
 /** A4 portrait at ~150 DPI (210mm × 297mm) */
 export const SLIDE_WIDTH = 1240;
@@ -57,7 +57,8 @@ export const slideTitles = [
   "Why Infinity Business Dynamics",
   "Conclusion",
   "Proposal Acceptance",
-  "Appendices",
+  "Barloworld RFQ Annexures",
+  "Mandatory Supporting Documents (RFQ §2)",
 ] as const;
 
 export const coverMeta = {
@@ -73,18 +74,22 @@ export const coverMeta = {
   preparedBy: "INFINITY BUSINESS DYNAMICS (PTY) LTD",
   preparedByDisplay: "Infinity Business Dynamics (Pty) Ltd",
   tagline: "Harnessing the Power of Technology",
-  address: "Maseru, Lesotho",
+  address: "P.O. Box 13145, Maseru 100, Lesotho",
   email: "services@ibd.co.ls",
   phone1: "+266 62554433",
-  phone2: "",
+  phone2: "+266 62553300",
   website: "www.ibd.co.ls",
   location: "Maseru, Lesotho",
-  tin: "",
+  tin: "200116903-2",
   date: "29th of June 2026",
   reference: "IBD-BWE-EBS-2026-001",
   accreditation: "Revenue Services Lesotho Accredited Solution Provider",
-  rfqContact: "Procurement Committee",
-  rfqContactEmail: "",
+  primaryContactName: "Fusi Monyolo",
+  primaryContactRole: "Primary Proposal Contact",
+  primaryContactEmail: "services@ibd.co.ls",
+  primaryContactPhone: "+266 62554433",
+  rfqContact: "Fusi Monyolo",
+  rfqContactEmail: "services@ibd.co.ls",
   keyDates: [] as const,
 };
 
@@ -135,7 +140,8 @@ const TOC_ENTRIES = [
   "Annual Managed Services",
   "Supplier Responses",
   "Terms & Conditions Acceptance",
-  "Appendices",
+  "Barloworld RFQ Annexures",
+  "Mandatory Supporting Documents (RFQ §2)",
 ] as const;
 
 export const tableOfContents = TOC_ENTRIES.map((title) => {

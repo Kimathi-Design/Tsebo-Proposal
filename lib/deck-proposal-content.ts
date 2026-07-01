@@ -1,4 +1,4 @@
-/** Verbatim proposal copy — pages 1–40 */
+/** Verbatim proposal copy — pages 1–41 */
 
 export const proposalCover = {
   title: "ENTERPRISE COMPLIANCE GATEWAY",
@@ -8,6 +8,7 @@ export const proposalCover = {
   preparedBy: "INFINITY BUSINESS DYNAMICS (PTY) LTD",
   preparedByTagline: "Harnessing the Power of Technology",
   location: "Maseru, Lesotho",
+  address: "P.O. Box 13145, Maseru 100, Lesotho",
   website: "www.ibd.co.ls",
   email: "services@ibd.co.ls",
   phone: "+266 62554433",
@@ -90,7 +91,8 @@ export const tableOfContentsSections = [
       { title: "Annual Managed Services", page: 35 },
       { title: "Supplier Responses", page: 36 },
       { title: "Terms & Conditions Acceptance", page: 39 },
-      { title: "Appendices", page: 40 },
+      { title: "Barloworld RFQ Annexures", page: 40 },
+      { title: "Mandatory Supporting Documents (RFQ §2)", page: 41 },
     ],
   },
 ] as const;
@@ -260,46 +262,14 @@ export const rslAccreditationIntro = [
 ] as const;
 
 export const gatewayIncludes = [
-  {
-    title: "Certified Motheo Compliance Engine",
-    description: "RSL-certified engine for fiscal validation and regulatory submission.",
-    inline: true,
-  },
-  {
-    title: "Enterprise Integration Layer",
-    description: "Middleware connecting ERP, CRM and compliance services.",
-    inline: true,
-  },
-  {
-    title: "SAP ERP Connectivity",
-    description: "Native integration with Barloworld SAP financial and billing processes.",
-    inline: true,
-  },
-  {
-    title: "CRM Integration",
-    description: "Extends compliance to CRM billing and customer events.",
-    inline: true,
-  },
-  {
-    title: "Secure API Gateway",
-    description: "Encrypted, authenticated access to Revenue Services Lesotho.",
-    inline: true,
-  },
-  {
-    title: "Monitoring & Analytics",
-    description: "Real-time visibility into transaction and submission health.",
-    inline: true,
-  },
-  {
-    title: "Audit Logging",
-    description: "Complete traceability of compliance activity for governance.",
-    inline: true,
-  },
-  {
-    title: "Managed Support Services",
-    description: "Ongoing operational support and regulatory update coverage.",
-    inline: true,
-  },
+  "Certified Motheo Compliance Engine",
+  "Enterprise Integration Layer",
+  "SAP ERP Connectivity",
+  "CRM Integration",
+  "Secure API Gateway",
+  "Monitoring & Analytics",
+  "Audit Logging",
+  "Managed Support Services",
 ] as const;
 
 export const rslAccreditationFlowSteps = [
@@ -492,26 +462,94 @@ export const crmFlowSteps = [
 export const crmFlow = crmFlowSteps.map((step) => step.title);
 
 export const apiServices = [
-  "Taxpayer verification",
-  "Device registration",
-  "Digital certificate management",
-  "Invoice submission",
-  "Credit note submission",
-  "Debit note submission",
-  "Receipt status enquiries",
-  "QR code validation",
-  "Batch file submission",
-  "Daily transaction reconciliation",
+  {
+    title: "Taxpayer verification",
+    description: "Confirms taxpayer registration and eligibility with RSL before processing.",
+    inline: true,
+  },
+  {
+    title: "Device registration",
+    description: "Registers fiscal devices and endpoints authorised to submit to Lekuka.",
+    inline: true,
+  },
+  {
+    title: "Digital certificate management",
+    description: "Provisions, renews and applies signing certificates for compliant submission.",
+    inline: true,
+  },
+  {
+    title: "Invoice submission",
+    description: "Submits sales invoices to RSL in the required fiscal format.",
+    inline: true,
+  },
+  {
+    title: "Credit note submission",
+    description: "Reports credit adjustments against previously issued invoices.",
+    inline: true,
+  },
+  {
+    title: "Debit note submission",
+    description: "Reports debit adjustments to correct or amend fiscal records.",
+    inline: true,
+  },
+  {
+    title: "Receipt status enquiries",
+    description: "Queries acceptance, rejection or pending status of submitted documents.",
+    inline: true,
+  },
+  {
+    title: "QR code validation",
+    description: "Verifies invoice QR codes against RSL fiscal data for authenticity.",
+    inline: true,
+  },
+  {
+    title: "Batch file submission",
+    description: "Processes high-volume transaction files in a single controlled upload.",
+    inline: true,
+  },
+  {
+    title: "Daily transaction reconciliation",
+    description: "Matches submitted transactions against RSL records for day-end compliance.",
+    inline: true,
+  },
 ] as const;
 
 export const apiFeatures = [
-  "REST APIs",
-  "JSON payloads",
-  "Secure authentication",
-  "Certificate management",
-  "Error handling",
-  "Automatic retries",
-  "Monitoring",
+  {
+    title: "REST APIs",
+    description: "Standard HTTP endpoints compatible with modern enterprise integration.",
+    inline: true,
+  },
+  {
+    title: "JSON payloads",
+    description: "Structured message format for straightforward parsing and transformation.",
+    inline: true,
+  },
+  {
+    title: "Secure authentication",
+    description: "Token and certificate-based controls protect all API traffic.",
+    inline: true,
+  },
+  {
+    title: "Certificate management",
+    description: "Automated lifecycle handling for device and signing certificates.",
+    inline: true,
+  },
+  {
+    title: "Error handling",
+    description: "Structured error responses enable rapid diagnosis and correction.",
+    inline: true,
+  },
+  {
+    title: "Automatic retries",
+    description: "Transient failures are retried with backoff to improve success rates.",
+    inline: true,
+  },
+  {
+    title: "Monitoring",
+    description: "Real-time visibility into API health, throughput and exception rates.",
+    inline: true,
+  },
 ] as const;
 
 export const apiBusinessBenefits = [
@@ -587,6 +625,34 @@ export const securityFlow = [
 
 export const securityBadges = ["TLS", "Certificates", "RBAC", "Encryption", "Audit Logs", "Monitoring"] as const;
 
+export const securityBusinessBenefits = [
+  {
+    title: "Secure enterprise communications",
+    description: "Encrypted, authenticated channels between SAP, CRM, gateway and RSL.",
+    inline: true,
+  },
+  {
+    title: "Reduced cyber risk",
+    description: "Defence-in-depth controls limit exposure across the platform.",
+    inline: true,
+  },
+  {
+    title: "Compliance with regulatory security requirements",
+    description: "Meets RSL obligations and Barloworld enterprise security standards.",
+    inline: true,
+  },
+  {
+    title: "Improved governance",
+    description: "RBAC and monitoring enforce accountability across users and systems.",
+    inline: true,
+  },
+  {
+    title: "Stronger audit evidence",
+    description: "Complete activity logs support compliance reviews and investigations.",
+    inline: true,
+  },
+] as const;
+
 export const transactionLifecycleSteps = [
   { step: "01", title: "Transaction Created", description: "Invoice, Credit Note or Debit Note generated within SAP or CRM." },
   { step: "02", title: "Validation", description: "Business rules and mandatory fields are validated." },
@@ -610,17 +676,49 @@ export const transactionWorkflow = [
 ] as const;
 
 export const onlineProcessing = [
-  "Real-time validation",
-  "Immediate submission",
-  "Instant acknowledgement",
-  "Live monitoring",
+  {
+    title: "Real-time validation",
+    description: "Checks transaction data against RSL rules before submission.",
+    inline: true,
+  },
+  {
+    title: "Immediate submission",
+    description: "Sends compliant invoices to Lekuka as soon as they are generated.",
+    inline: true,
+  },
+  {
+    title: "Instant acknowledgement",
+    description: "Records RSL acceptance or rejection without processing delay.",
+    inline: true,
+  },
+  {
+    title: "Live monitoring",
+    description: "Tracks submission status and errors in real time during operations.",
+    inline: true,
+  },
 ] as const;
 
 export const offlineProcessing = [
-  "Secure local queue",
-  "Automatic retry",
-  "Status monitoring",
-  "Automatic reconciliation",
+  {
+    title: "Secure local queue",
+    description: "Stores pending transactions locally until connectivity is restored.",
+    inline: true,
+  },
+  {
+    title: "Automatic retry",
+    description: "Resubmits queued items when the RSL link becomes available again.",
+    inline: true,
+  },
+  {
+    title: "Status monitoring",
+    description: "Tracks queue depth and retry outcomes until each item clears.",
+    inline: true,
+  },
+  {
+    title: "Automatic reconciliation",
+    description: "Aligns queued submissions with RSL records once back online.",
+    inline: true,
+  },
 ] as const;
 
 export const certificateLifecycle = [
@@ -659,14 +757,84 @@ export const qrCallouts = [
 ] as const;
 
 export const dashboardModules = [
-  "Transaction Volume",
-  "Accepted Transactions",
-  "Pending Transactions",
-  "Rejected Transactions",
-  "Average Processing Time",
-  "API Health",
-  "Certificate Status",
-  "Compliance Score",
+  {
+    title: "Transaction Volume",
+    description: "Total fiscal transactions processed in the period.",
+    inline: true,
+  },
+  {
+    title: "Accepted Transactions",
+    description: "Invoices accepted by Revenue Services Lesotho.",
+    inline: true,
+  },
+  {
+    title: "Pending Transactions",
+    description: "Submissions awaiting confirmation or in queue.",
+    inline: true,
+  },
+  {
+    title: "Rejected Transactions",
+    description: "Failed submissions requiring review.",
+    inline: true,
+  },
+  {
+    title: "Average Processing Time",
+    description: "Gateway receipt to RSL acknowledgement latency.",
+    inline: true,
+  },
+  {
+    title: "API Health",
+    description: "Endpoint availability and response performance.",
+    inline: true,
+  },
+  {
+    title: "Certificate Status",
+    description: "Digital signing certificate validity and expiry.",
+    inline: true,
+  },
+  {
+    title: "Compliance Score",
+    description: "Overall regulatory submission success rate.",
+    inline: true,
+  },
+] as const;
+
+export const dashboardBenefits = [
+  {
+    title: "Proactive monitoring",
+    description: "Detect issues before they impact compliance or operations.",
+    inline: true,
+  },
+  {
+    title: "Faster issue resolution",
+    description: "Real-time alerts shorten time to diagnose and fix failures.",
+    inline: true,
+  },
+  {
+    title: "Improved governance",
+    description: "Audit-ready visibility for finance and compliance teams.",
+    inline: true,
+  },
+  {
+    title: "Better operational insights",
+    description: "Trend data supports capacity planning and performance tuning.",
+    inline: true,
+  },
+  {
+    title: "Regulatory confidence",
+    description: "Live compliance metrics confirm ongoing RSL adherence.",
+    inline: true,
+  },
+  {
+    title: "Reduced manual reporting",
+    description: "Automated dashboards replace spreadsheet-based status tracking.",
+    inline: true,
+  },
+  {
+    title: "Stakeholder transparency",
+    description: "Shared visibility for finance, IT and executive oversight.",
+    inline: true,
+  },
 ] as const;
 
 export const dashboardSampleMetrics = [
@@ -681,24 +849,145 @@ export const dashboardSampleMetrics = [
 ] as const;
 
 export const resilienceFeatures = [
-  "Retry Processing",
-  "Queue Management",
-  "Error Recovery",
-  "Failover Support",
-  "Monitoring & Alerts",
-  "Audit Preservation",
+  {
+    title: "Retry Processing",
+    description: "Automatically resubmits failed transactions without manual intervention.",
+    inline: true,
+  },
+  {
+    title: "Queue Management",
+    description: "Buffers submissions during outages until connectivity is restored.",
+    inline: true,
+  },
+  {
+    title: "Error Recovery",
+    description: "Isolates and resolves transient failures without data loss.",
+    inline: true,
+  },
+  {
+    title: "Failover Support",
+    description: "Switches to alternate paths when primary services are unavailable.",
+    inline: true,
+  },
+  {
+    title: "Monitoring & Alerts",
+    description: "Proactive notification when submission or infrastructure issues arise.",
+    inline: true,
+  },
+  {
+    title: "Audit Preservation",
+    description: "Protects transaction records throughout recovery for compliance traceability.",
+    inline: true,
+  },
+] as const;
+
+export const recoveryObjectives = [
+  {
+    title: "Minimise downtime",
+    description: "Limit interruption to fiscal processing and day-to-day operations.",
+    inline: true,
+  },
+  {
+    title: "Prevent transaction loss",
+    description: "No invoice data is discarded during failure or recovery events.",
+    inline: true,
+  },
+  {
+    title: "Restore processing quickly",
+    description: "Automated recovery returns normal submission flow within defined targets.",
+    inline: true,
+  },
+  {
+    title: "Maintain compliance",
+    description: "Regulatory obligations continue to be met throughout recovery.",
+    inline: true,
+  },
+] as const;
+
+export const resilienceBusinessBenefits = [
+  {
+    title: "Increased reliability",
+    description: "Consistent submission performance across normal and degraded conditions.",
+    inline: true,
+  },
+  {
+    title: "Reduced operational risk",
+    description: "Less manual recovery work and fewer compliance gaps from outages.",
+    inline: true,
+  },
+  {
+    title: "Continuous compliance",
+    description: "Fiscal reporting obligations remain satisfied during disruptions.",
+    inline: true,
+  },
+  {
+    title: "Business continuity",
+    description: "Core finance operations continue with minimal impact on Barloworld users.",
+    inline: true,
+  },
 ] as const;
 
 export const recoveryWorkflow = ["Failure", "Detection", "Retry", "Recovery", "Submission", "Audit"] as const;
 
 export const availableReports = [
-  "Daily Transaction Summary",
-  "Compliance Status Report",
-  "Submission Success Rate",
-  "Exception Report",
-  "Audit Trail Report",
-  "Certificate Health Report",
-  "API Performance Report",
+  {
+    title: "Daily Transaction Summary",
+    description: "Volume and status of fiscal transactions processed each day.",
+    inline: true,
+  },
+  {
+    title: "Compliance Status Report",
+    description: "Current RSL submission compliance across all business units.",
+    inline: true,
+  },
+  {
+    title: "Submission Success Rate",
+    description: "Share of invoices accepted versus rejected or pending.",
+    inline: true,
+  },
+  {
+    title: "Exception Report",
+    description: "Failed or anomalous transactions requiring review and action.",
+    inline: true,
+  },
+  {
+    title: "Audit Trail Report",
+    description: "Complete event history for governance and investigations.",
+    inline: true,
+  },
+  {
+    title: "Certificate Health Report",
+    description: "Digital signing certificate validity, expiry and renewal status.",
+    inline: true,
+  },
+  {
+    title: "API Performance Report",
+    description: "Gateway endpoint availability, latency and error rates.",
+    inline: true,
+  },
+] as const;
+
+export const reportingBusinessBenefits = [
+  {
+    title: "Better decision-making",
+    description: "Timely compliance data supports informed operational and financial choices.",
+    inline: true,
+  },
+  {
+    title: "Improved governance",
+    description: "Scheduled reports strengthen oversight and audit readiness.",
+    inline: true,
+  },
+  {
+    title: "Enhanced visibility",
+    description: "Finance and IT teams share a single view of reporting performance.",
+    inline: true,
+  },
+  {
+    title: "Performance optimisation",
+    description: "Trend analysis identifies bottlenecks and improvement opportunities.",
+    inline: true,
+  },
 ] as const;
 
 export const implementationPhases = [
@@ -745,12 +1034,36 @@ export const governanceObjectives = [
 ] as const;
 
 export const governanceStructure = [
-  { title: "Executive Steering Committee", description: "Provides strategic direction and executive oversight." },
-  { title: "Project Sponsor", description: "Responsible for business ownership and executive support." },
-  { title: "Project Manager", description: "Responsible for planning, coordination and project delivery." },
-  { title: "Technical Workstream", description: "SAP Integration, Infrastructure, API Development" },
-  { title: "Compliance Workstream", description: "Regulatory Requirements, Fiscal Validation, Testing" },
-  { title: "Business Workstream", description: "Finance, Operations, Training, Change Management" },
+  {
+    title: "Executive Steering Committee",
+    description:
+      "Senior Barloworld leadership sets strategic direction, approves major decisions and confirms alignment with enterprise priorities. Convenes at stage gates to review progress, risks, budget and readiness for production.",
+  },
+  {
+    title: "Project Sponsor",
+    description:
+      "Owns business outcomes and champions the initiative across finance, operations and IT. Secures resources, escalates blockers and provides executive sign-off on deliverables, scope changes and go-live approval.",
+  },
+  {
+    title: "Project Manager",
+    description:
+      "Plans and coordinates delivery across all workstreams, maintaining schedules, RAID logs and stakeholder communication. Reports status to the sponsor and steering committee and drives issue resolution through to closure.",
+  },
+  {
+    title: "Technical Workstream",
+    description:
+      "Delivers SAP integration, API orchestration, infrastructure provisioning and security configuration for the Compliance Gateway. Ensures technical readiness, integration testing and performance validation before deployment.",
+  },
+  {
+    title: "Compliance Workstream",
+    description:
+      "Defines RSL fiscal validation rules, certificate lifecycle controls and regulatory test scenarios. Confirms submissions meet accreditation requirements and supports compliance sign-off ahead of production.",
+  },
+  {
+    title: "Business Workstream",
+    description:
+      "Aligns finance and operations processes, leads user acceptance, training and change management. Coordinates business readiness, hypercare planning and formal acceptance of the solution at go-live.",
+  },
 ] as const;
 
 export const governanceOrgChart = [
@@ -778,48 +1091,156 @@ export const projectPrinciples = [
   {
     title: "Collaboration",
     description:
-      "Partner closely with Barloworld stakeholders across business, IT and compliance throughout delivery.",
+      "Joint planning with Barloworld SMEs across business, IT and compliance, with shared ownership of outcomes from discovery through hypercare.",
     inline: true,
   },
   {
     title: "Transparency",
     description:
-      "Share progress, risks, decisions and dependencies openly at every stage of the project.",
+      "Open reporting on progress, RAID logs, decisions and dependencies via status updates, steering packs and accessible project documentation.",
     inline: true,
   },
   {
     title: "Accountability",
     description:
-      "Assign clear ownership of deliverables, milestones and outcomes across the project team.",
+      "Named owners for every deliverable, milestone and workstream output, with traceable actions, deadlines and clear escalation paths to go-live.",
     inline: true,
   },
   {
     title: "Quality",
     description:
-      "Apply rigorous standards to design, build, testing, validation and deployment activities.",
+      "Documented standards applied to design, build, testing, UAT and deployment, with formal review gates before each phase is signed off.",
     inline: true,
   },
   {
     title: "Continuous Communication",
     description:
-      "Maintain regular status reporting, workshops and steering forum engagement with stakeholders.",
+      "Regular status meetings, workshops and steering forums to keep sponsors, stakeholders and delivery teams aligned on priorities and risks.",
+    inline: true,
+  },
+  {
+    title: "Regulatory Compliance",
+    description:
+      "Every design, build and test decision validated against RSL fiscal rules and Barloworld compliance obligations before production sign-off.",
+    inline: true,
+  },
+  {
+    title: "Smooth Go-Live Transition",
+    description:
+      "Controlled cutover planning, rehearsal and hypercare support so Barloworld moves into production with minimal disruption and full operational confidence.",
     inline: true,
   },
 ] as const;
 
 export const workstreams = [
-  { title: "Business Workstream", items: ["Requirements", "Process Alignment", "User Readiness"] },
-  { title: "Technical Workstream", items: ["SAP Integration", "API Configuration", "Infrastructure"] },
-  { title: "Compliance Workstream", items: ["Fiscal Rules", "Validation", "Certification"] },
-  { title: "Training Workstream", items: ["Knowledge Transfer", "Documentation", "User Training"] },
+  {
+    title: "Business Workstream",
+    items: [
+      {
+        title: "Requirements",
+        description: "Capture fiscal, SAP and CRM compliance needs with Barloworld SMEs.",
+        inline: true,
+      },
+      {
+        title: "Process Alignment",
+        description: "Map invoice and billing flows to gateway submission paths.",
+        inline: true,
+      },
+      {
+        title: "User Readiness",
+        description: "Confirm finance and operations teams are prepared for go-live.",
+        inline: true,
+      },
+    ],
+  },
+  {
+    title: "Technical Workstream",
+    items: [
+      {
+        title: "SAP Integration",
+        description: "Configure ERP triggers, mappings and error handling.",
+        inline: true,
+      },
+      {
+        title: "API Configuration",
+        description: "Set up secure gateway connectivity and orchestration rules.",
+        inline: true,
+      },
+      {
+        title: "Infrastructure",
+        description: "Provision hosting, certificates and monitoring for production.",
+        inline: true,
+      },
+    ],
+  },
+  {
+    title: "Compliance Workstream",
+    items: [
+      {
+        title: "Fiscal Rules",
+        description: "Apply RSL validation and tax rules per Lesotho requirements.",
+        inline: true,
+      },
+      {
+        title: "Validation",
+        description: "Verify QR codes, certificates and submission payloads pre-production.",
+        inline: true,
+      },
+      {
+        title: "Certification",
+        description: "Complete accreditation tests and regulatory sign-off.",
+        inline: true,
+      },
+    ],
+  },
+  {
+    title: "Training Workstream",
+    items: [
+      {
+        title: "Knowledge Transfer",
+        description: "Hand over solution configuration to Barloworld IT and support teams.",
+        inline: true,
+      },
+      {
+        title: "Documentation",
+        description: "Deliver runbooks, user guides and operational procedures.",
+        inline: true,
+      },
+      {
+        title: "User Training",
+        description: "Enable finance and service desk users on day-to-day processing.",
+        inline: true,
+      },
+    ],
+  },
 ] as const;
 
 export const successFactors = [
-  "Strong stakeholder engagement",
-  "Clear communication",
-  "Early issue identification",
-  "Structured testing",
-  "Controlled deployment",
+  {
+    title: "Strong stakeholder engagement",
+    description: "Active sponsorship and SME participation throughout delivery.",
+    inline: true,
+  },
+  {
+    title: "Clear communication",
+    description: "Transparent status updates, RAID logs and decision tracking.",
+    inline: true,
+  },
+  {
+    title: "Early issue identification",
+    description: "Proactive risk monitoring with timely escalation and resolution.",
+    inline: true,
+  },
+  {
+    title: "Structured testing",
+    description: "Phased SIT, integration and UAT before production cutover.",
+    inline: true,
+  },
+  {
+    title: "Controlled deployment",
+    description: "Governed go-live with rollback plans and hypercare support.",
+    inline: true,
+  },
 ] as const;
 
 export const projectTimeline = [
@@ -835,12 +1256,36 @@ export const projectTimeline = [
 ] as const;
 
 export const keyMilestones = [
-  "Project Kick-off",
-  "Architecture Sign-off",
-  "SAP Integration Complete",
-  "UAT Complete",
-  "Go-Live",
-  "Project Closure",
+  {
+    title: "Project Kick-off",
+    description: "Formal start with scope, team, governance and delivery plan confirmed.",
+    inline: true,
+  },
+  {
+    title: "Architecture Sign-off",
+    description: "Approved solution design for SAP, CRM, gateway and security integration.",
+    inline: true,
+  },
+  {
+    title: "SAP Integration Complete",
+    description: "ERP connectivity tested with end-to-end fiscal submission flows.",
+    inline: true,
+  },
+  {
+    title: "UAT Complete",
+    description: "Business users sign off validated processes and exception handling.",
+    inline: true,
+  },
+  {
+    title: "Go-Live",
+    description: "Production cutover with live RSL fiscal reporting enabled.",
+    inline: true,
+  },
+  {
+    title: "Project Closure",
+    description: "Handover complete, documentation delivered and hypercare concluded.",
+    inline: true,
+  },
 ] as const;
 
 export const testingActivities = [
@@ -852,7 +1297,24 @@ export const testingActivities = [
   { title: "User Acceptance Testing", description: "Business user verification and sign-off." },
 ] as const;
 
-export const testingPyramid = ["UAT", "Performance", "Integration", "Unit"] as const;
+export const testingPyramid = [
+  {
+    title: "UAT",
+    description: "Business user verification and formal sign-off before go-live.",
+  },
+  {
+    title: "Performance",
+    description: "Validates throughput under expected invoice volumes.",
+  },
+  {
+    title: "Integration",
+    description: "Confirms SAP, CRM and Gateway work together end-to-end.",
+  },
+  {
+    title: "Unit",
+    description: "Tests individual components and services in isolation.",
+  },
+] as const;
 
 export const trainingAudience = [
   { title: "Finance Team", description: "Invoice processing and reporting." },
@@ -896,12 +1358,62 @@ export const escalationLevels = [
   "Executive Oversight",
 ] as const;
 
+export const supportChannels = [
+  "Dedicated support desk and service request portal",
+  "Email: services@ibd.co.ls",
+  "Phone: +266 62554433",
+  "Critical incidents flagged for immediate triage",
+] as const;
+
 export const servicePrinciples = [
-  "Accountability",
-  "Responsiveness",
-  "Transparency",
-  "Continuous Communication",
-  "Customer Success",
+  {
+    title: "Accountability",
+    description:
+      "Named owners for every incident from logging through resolution and formal closure.",
+    inline: true,
+  },
+  {
+    title: "Responsiveness",
+    description:
+      "Prioritised response aligned to SLA tiers, with critical outages escalated immediately.",
+    inline: true,
+  },
+  {
+    title: "Transparency",
+    description:
+      "Clear status updates, incident tracking and visibility for Barloworld stakeholders throughout.",
+    inline: true,
+  },
+  {
+    title: "Continuous Communication",
+    description:
+      "Regular service reviews, steering updates and proactive notification of material issues.",
+    inline: true,
+  },
+  {
+    title: "Customer Success",
+    description:
+      "Focus on platform availability, compliance continuity and long-term operational outcomes.",
+    inline: true,
+  },
+  {
+    title: "Proactive Monitoring",
+    description:
+      "Continuous platform and compliance monitoring to detect and resolve issues before business impact.",
+    inline: true,
+  },
+  {
+    title: "Regulatory Continuity",
+    description:
+      "RSL submission performance and compliance uptime maintained as core managed service commitments.",
+    inline: true,
+  },
+  {
+    title: "Structured Escalation",
+    description:
+      "Defined escalation paths ensure critical incidents reach the right expertise without delay.",
+    inline: true,
+  },
 ] as const;
 
 export const projectRisks = [
@@ -911,6 +1423,34 @@ export const projectRisks = [
   ["User Adoption", "Structured training and change management"],
   ["Connectivity Issues", "Retry mechanisms and offline queue processing"],
   ["Project Delays", "Formal governance and milestone tracking"],
+] as const;
+
+export const assessedRiskMatrix = [
+  {
+    category: "Technical",
+    risk: "Integration Complexity",
+    severity: "high",
+  },
+  {
+    category: "Data",
+    risk: "Data Quality",
+    severity: "medium",
+  },
+  {
+    category: "Regulatory",
+    risk: "Regulatory Changes",
+    severity: "medium",
+  },
+  {
+    category: "Adoption",
+    risk: "User Adoption",
+    severity: "medium",
+  },
+  {
+    category: "Schedule",
+    risk: "Project Delays",
+    severity: "medium",
+  },
 ] as const;
 
 export const riskPrinciples = [
@@ -946,14 +1486,29 @@ export const annualManagedServicesIncludes = [
 export const pricingSummary = [
   ["Implementation Services", "(Insert Commercial Amount)"],
   ["Annual Managed Services", "(Insert Annual Subscription)"],
+  ["Transaction-Based Pricing (if applicable)", "(Insert per transaction rate)"],
   ["Optional Professional Services", "(Insert if applicable)"],
 ] as const;
 
 export const pricingNotes = [
-  "Prices exclude any optional third-party licensing unless specifically stated.",
-  "Commercials remain valid for the period defined in the RFQ.",
+  "All amounts quoted in ZAR unless otherwise stated.",
+  "Volume assumption: ~400 invoices per month (subject to confirmation with BWE).",
+  "Prices exclude optional third-party licensing unless specifically stated.",
+  "Commercials remain valid for 190 business days from RFQ submission date.",
   "Final pricing is subject to agreed project scope and contractual terms.",
 ] as const;
+
+export const pricingAnnexureFootnote =
+  "Detailed pricing per Annexure D: Pricing Requirements (separate submission document)." as const;
+
+export {
+  appendices,
+  submissionSections,
+  primaryContact,
+  companyPostalAddress,
+  bbbeeGapStatement,
+  submissionPdfMergeOrder,
+} from "@/lib/submission-pack";
 
 export const supplierResponses = [
   ["Enterprise Compliance Gateway", "Fully Compliant"],
@@ -971,34 +1526,72 @@ export const supplierResponses = [
 export const whyInfinityClosing = [
   {
     title: "Revenue Services Lesotho Accredited",
-    description: "Certified provider of Electronic Billing Solutions.",
+    description:
+      "Certified Electronic Billing Solutions provider with direct RSL accreditation — ensuring fiscal invoices, digital certificates and QR codes meet Lesotho regulatory requirements from day one.",
   },
   {
     title: "Enterprise Integration Expertise",
-    description: "Proven experience integrating enterprise applications and compliance platforms.",
+    description:
+      "Proven capability connecting SAP ERP, CRM and compliance platforms through secure APIs — enabling automated invoice submission without disrupting existing finance and operations workflows.",
   },
   {
     title: "SAP Capability",
-    description: "Integration expertise for complex enterprise environments.",
+    description:
+      "Deep SAP integration experience across finance, distribution and equipment operations — supporting high-volume, multi-entity invoicing within Barloworld's enterprise landscape.",
   },
   {
     title: "Managed Services",
-    description: "Long-term operational support and optimisation.",
+    description:
+      "Ongoing application support, compliance monitoring and preventative maintenance — keeping the platform stable, current with regulatory changes and aligned to agreed SLA commitments.",
   },
   {
     title: "Future-Ready Platform",
-    description: "Designed for future regulatory and business growth.",
+    description:
+      "Extensible architecture designed to absorb future RSL rule changes, transaction growth and additional Barloworld business units without re-platforming or major rework.",
   },
 ] as const;
 
 export const conclusionBenefits = [
-  "Certified compliance",
-  "Enterprise integration",
-  "Secure API connectivity",
-  "Real-time monitoring",
-  "Complete audit traceability",
-  "Long-term managed support",
+  {
+    title: "Certified compliance",
+    description:
+      "RSL-accredited fiscal submission with digital certificates and QR validation meeting Lesotho regulatory requirements.",
+    inline: true,
+  },
+  {
+    title: "Enterprise integration",
+    description:
+      "Seamless SAP ERP and CRM connectivity — eliminating manual re-keying and duplicate data capture across finance and operations.",
+    inline: true,
+  },
+  {
+    title: "Secure API connectivity",
+    description:
+      "TLS-encrypted, authenticated integration between Barloworld systems, the Compliance Gateway and Revenue Services Lesotho.",
+    inline: true,
+  },
+  {
+    title: "Real-time monitoring",
+    description:
+      "Live dashboards and alerts for submission status, failures and compliance exceptions — enabling rapid operational response.",
+    inline: true,
+  },
+  {
+    title: "Complete audit traceability",
+    description:
+      "End-to-end logging of every invoice, certificate and regulatory transaction to support governance, audits and investigations.",
+    inline: true,
+  },
+  {
+    title: "Long-term managed support",
+    description:
+      "Ongoing application support, regulatory updates and SLA-backed service continuity beyond go-live.",
+    inline: true,
+  },
 ] as const;
+
+export const closingStatement =
+  "We appreciate the opportunity to participate in this procurement process and look forward to partnering with Barloworld Equipment to deliver a successful implementation." as const;
 
 export const closingQuote = "Building Enterprise Compliance Through Intelligent Integration.";
 
@@ -1010,45 +1603,4 @@ export const barloworldHubUnits = [
   "Field Service",
   "Finance",
   "Customers",
-] as const;
-
-export const appendices = [
-  {
-    id: "APPENDIX A",
-    title: "Revenue Services Lesotho Accreditation",
-    purpose: "Official accreditation confirming Infinity Business Dynamics as an approved Electronic Billing Solution provider.",
-  },
-  {
-    id: "APPENDIX B",
-    title: "Motheo Integrator Guide",
-    purpose: "Detailed API specifications, integration architecture, endpoint documentation and implementation guidance.",
-  },
-  {
-    id: "APPENDIX C",
-    title: "Enterprise Solution Architecture",
-    purpose: "Detailed technical architecture showing SAP ERP, CRM, Infinity Compliance Gateway, Motheo Compliance Engine and Revenue Services Lesotho integration.",
-  },
-  {
-    id: "APPENDIX D",
-    title: "API Capability Matrix",
-    purpose: "Detailed mapping between Barloworld RFQ requirements and supported API capabilities.",
-  },
-  { id: "APPENDIX E", title: "Company Registration Documents", purpose: null },
-  { id: "APPENDIX F", title: "Tax Clearance Certificate", purpose: null },
-  { id: "APPENDIX G", title: "Banking Confirmation Letter", purpose: null },
-  {
-    id: "APPENDIX H",
-    title: "Client References",
-    purpose: "Relevant implementation references and enterprise project experience.",
-  },
-  {
-    id: "APPENDIX I",
-    title: "Information Security & Governance Policies",
-    purpose: "Supporting policies relating to security, confidentiality and operational governance.",
-  },
-  {
-    id: "APPENDIX J",
-    title: "Acceptance of Barloworld RFQ Terms",
-    purpose: "Signed declarations acknowledging acceptance of the RFQ conditions, subject to final contract negotiations.",
-  },
 ] as const;

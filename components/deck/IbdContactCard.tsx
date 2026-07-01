@@ -3,14 +3,24 @@ import { ASSETS } from "@/lib/assets";
 import { coverMeta } from "@/lib/deck-content";
 
 const CONTACT_LINES = [
-  { icon: "📍", label: "Location", value: coverMeta.location },
+  {
+    icon: "👤",
+    label: "Primary Contact",
+    value: `${coverMeta.primaryContactName} — ${coverMeta.primaryContactRole}`,
+  },
+  { icon: "📍", label: "Address", value: coverMeta.address },
   { icon: "🌐", label: "Website", value: coverMeta.website, href: `https://${coverMeta.website}` },
   {
     icon: "📞",
-    label: "Contact",
+    label: "Tel",
     value: `${coverMeta.phone1} | ${coverMeta.phone2}`,
   },
-  { icon: "✉️", label: "Email", value: coverMeta.email, href: `mailto:${coverMeta.email}` },
+  {
+    icon: "✉️",
+    label: "Email",
+    value: coverMeta.primaryContactEmail,
+    href: `mailto:${coverMeta.primaryContactEmail}`,
+  },
   { icon: "🏛️", label: "TIN", value: coverMeta.tin },
 ] as const;
 

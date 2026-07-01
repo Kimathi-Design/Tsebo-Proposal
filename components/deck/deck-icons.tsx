@@ -3,6 +3,7 @@ import type { LucideIcon } from "lucide-react";
 import {
   Activity,
   AlertCircle,
+  AlertTriangle,
   Award,
   BadgeCheck,
   Banknote,
@@ -30,6 +31,7 @@ import {
   Hammer,
   Handshake,
   Headphones,
+  Info,
   Layers,
   Lightbulb,
   Lock,
@@ -219,8 +221,9 @@ export const EXECUTIVE_SUMMARY_CURRENT_ICONS = [
 ] as const;
 
 export const EXECUTIVE_SUMMARY_FUTURE_ICONS = [
-  Zap,
-  Flag,
+  ShieldCheck,
+  Scale,
+  Globe,
   Rocket,
 ] as const;
 
@@ -527,6 +530,24 @@ export const SECURITY_OBJECTIVE_ICONS = [
   Users,
 ] as const;
 
+export const SECURITY_FLOW_ICONS = [
+  Users,
+  ShieldCheck,
+  Network,
+  Shield,
+  Lock,
+  Globe,
+] as const;
+
+export const SECURITY_BADGE_ICONS = [
+  Lock,
+  FileBadge,
+  Users,
+  Lock,
+  FileSearch,
+  Activity,
+] as const;
+
 export const RESILIENCE_FEATURE_ICONS = [
   RefreshCw,
   Activity,
@@ -608,6 +629,13 @@ export const ESCALATION_LEVEL_ICONS = [
   Building2,
 ] as const;
 
+export const SLA_PRIORITY_ICONS = [
+  AlertCircle,
+  AlertTriangle,
+  Clock,
+  Info,
+] as const;
+
 export const RISK_TREATMENT_ICONS = [
   Search,
   ClipboardCheck,
@@ -684,6 +712,30 @@ export const WORKSTREAM_ICONS = [
   Server,
   ShieldCheck,
   BookOpen,
+] as const;
+
+export const PROJECT_TEAM_ICONS = [
+  Award,
+  Target,
+  Layers,
+  Database,
+  Network,
+  Scale,
+  FlaskConical,
+  BookOpen,
+  Headphones,
+] as const;
+
+export const GANTT_PHASE_ICONS = [
+  Flag,
+  Search,
+  Compass,
+  Hammer,
+  Network,
+  ClipboardCheck,
+  BookOpen,
+  Rocket,
+  Headphones,
 ] as const;
 
 export const DHL_STANDARDS_CARD_ICONS = [
