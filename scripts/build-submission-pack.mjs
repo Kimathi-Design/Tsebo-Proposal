@@ -43,11 +43,11 @@ const copies = [
     "support-g-supplier-code-of-conduct-signed.pdf",
   ],
   ["public/appendices/appendix-g-bwe-e-invoicing-gateway-api-spec.pdf", "annexure-b-e-invoicing-gateway-api-spec.pdf"],
-  ["public/appendices/appendix-d-business-registration-certificate.pdf", "mandatory-company-registration.pdf"],
-  ["public/appendices/appendix-c-tax-clearance-certificate.pdf", "mandatory-tax-clearance-certificate.pdf"],
+  ["Infinity Compliance Docs updated20260702.pdf", "mandatory-compliance-documents-2026.pdf"],
+  ["Infinity Banking Details.pdf", "mandatory-banking-details.pdf"],
+  ["Vat Reg Certificate.pdf", "mandatory-vat-registration-certificate.pdf"],
   ["public/appendices/appendix-a-rsl-accreditation-letter.pdf", "support-a-rsl-accreditation-letter.pdf"],
   ["public/appendices/appendix-b-motheo-integrator-guide.pdf", "support-b-motheo-integrator-guide.pdf"],
-  ["public/appendices/appendix-e-banking-confirmation-letter.pdf", "support-c-banking-confirmation-letter.pdf"],
 ];
 
 for (const [src, dest] of copies) {
@@ -125,16 +125,15 @@ await writeTextPdf(
 );
 
 const csv = `Line Item,Description,Amount (ZAR),Basis / Notes
-Implementation Services,One-time project delivery — design SAP/CRM integration security testing training and go-live,(Insert Commercial Amount),Fixed project fee
-Annual Managed Services,Annual subscription / licence — application support compliance monitoring and preventative maintenance,(Insert Annual Subscription),Per annum
-Transaction-Based Pricing,Per-invoice / volume-based fees if applicable,(Insert per transaction rate),Baseline ~400 invoices/month — volume tiers subject to confirmation with BWE
-Optional Professional Services,Ad-hoc enhancements and advisory,(Insert if applicable),Time and materials / quoted per request
+Year 1 — Licence & Implementation,Platform licence and full project delivery — design SAP/CRM integration security testing training and go-live,391500.00,One-time (Year 1)
+Year 2 onwards — Annual Maintenance,Annual subscription / licence — application support compliance monitoring regulatory updates and preventative maintenance,105225.00,Per annum from Year 2
 
 Assumptions,,
 Currency,All amounts in ZAR unless otherwise stated,
+Year 1,Includes licence and implementation as a single investment,
+Year 2+,Annual maintenance / subscription fee applies for each subsequent year,
 Volume baseline,~400 invoices per month (subject to confirmation with BWE),
 Validity,190 business days from RFQ submission date,
-Exclusions,Optional third-party licensing unless specifically stated,
 `;
 
 writeFileSync(join(outDir, "annexure-d-pricing-requirements.csv"), csv);
@@ -146,15 +145,15 @@ Infinity Business Dynamics (Pty) Ltd — Barloworld Equipment Lesotho E-Invoicin
 
 All amounts quoted in ZAR. Commercials valid for 190 business days from RFQ submission date.
 
-Implementation Services (one-time): (Insert Commercial Amount)
-Annual Managed Services / Licence (per annum): (Insert Annual Subscription)
-Transaction-Based Pricing (if applicable): (Insert per transaction rate)
-Optional Professional Services: (Insert if applicable)
+Year 1 — Licence & Implementation (one-time): ZAR 391,500.00
+  Includes platform licence and full implementation — design, SAP/CRM integration, testing, training and go-live.
+
+Year 2 onwards — Annual Maintenance / Subscription (per annum): ZAR 105,225.00
+  Application support, compliance monitoring, regulatory updates and preventative maintenance.
 
 Assumptions:
 • Baseline volume: ~400 invoices per month (subject to confirmation with BWE)
-• Prices exclude optional third-party licensing unless specifically stated
-• Final pricing subject to agreed scope and contractual terms
+• Annual maintenance fee applies from year two for the duration of the support agreement
 
 See annexure-d-pricing-requirements.csv for structured pricing model.`;
 

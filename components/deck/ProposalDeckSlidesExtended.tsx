@@ -46,6 +46,8 @@ import { CRM_FLOW_ICONS } from "@/components/deck/deck-icons";
 import { SlideEyebrow } from "@/components/deck/SlideEyebrow";
 import {
   aboutInfinityIntro,
+  companyCredentials,
+  lekukaDocumentTypes,
   submissionSections,
   architectureLayers,
   architecturePrinciples,
@@ -306,6 +308,8 @@ export function renderProposalSlidesExtended(index: number): ReactElement {
                 <DeckBody key={paragraph}>{paragraph}</DeckBody>
               ))}
             </div>
+            <DeckSectionLabel>Company Credentials</DeckSectionLabel>
+            <DeckBulletList compact items={[...companyCredentials]} />
           </DeckSlideBodySplit>
         </DeckSlideFrame>
       );
@@ -454,8 +458,9 @@ export function renderProposalSlidesExtended(index: number): ReactElement {
               Seamless
             </DeckTitle>
             <DeckBody>
-              The proposed solution has been designed to integrate directly with Barloworld
-              Equipment&apos;s SAP ERP environment without disrupting existing operational workflows.
+              The proposed solution integrates with Barloworld Equipment&apos;s SAP ECC6 environment
+              — covering SD billing, FI accounts receivable and CRM field service — without
+              disrupting existing operational workflows.
             </DeckBody>
             <DeckBody>
               SAP remains the authoritative source of transactional and financial information while
@@ -630,6 +635,8 @@ export function renderProposalSlidesExtended(index: number): ReactElement {
               The Compliance Gateway orchestrates each stage of the transaction before
               submission to the Revenue Services Lesotho Electronic Billing System.
             </DeckBody>
+            <DeckSectionLabel>Lekuka Document Types</DeckSectionLabel>
+            <DeckBulletList compact items={[...lekukaDocumentTypes]} />
             <DeckSectionLabel>Transaction Lifecycle</DeckSectionLabel>
             {transactionLifecycleSteps.map((step) => (
               <DeckBody key={step.step}>

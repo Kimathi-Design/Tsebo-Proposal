@@ -9,6 +9,19 @@ export const primaryContact = {
 
 export const companyPostalAddress = "P.O. Box 13145, Maseru 100, Lesotho" as const;
 
+/** Extracted from Infinity Compliance Docs (July 2026) */
+export const companyProfile = {
+  legalName: "INFINITY BUSINESS DYNAMICS (PTY) LTD",
+  tradingName: "INFINITY BUSINESS DYNAMICS",
+  registrationNo: "A2023/5840",
+  tin: "200116903-2",
+  taxClearanceCertificateId: "1245456124",
+  taxClearanceValidUntil: "12 May 2027",
+  businessLicenceRenewed: "23 April 2026",
+  businessLicenceExpiry: "23 April 2029",
+  registeredAddress: "Ha Tsosane, Maseru, Lesotho",
+} as const;
+
 export const bbbeeGapStatement = `Infinity Business Dynamics (Pty) Ltd is a Lesotho-registered enterprise operating primarily within the Kingdom of Lesotho. A formal B-BBEE (Broad-Based Black Economic Empowerment) certificate issued under the South African B-BBEE Codes is not applicable to our Lesotho incorporation.
 
 We confirm our commitment to transformation, local employment and enterprise development within Lesotho, and we will provide any additional empowerment or local-content documentation requested by Barloworld Equipment during due diligence.` as const;
@@ -52,7 +65,7 @@ export const submissionSections: readonly SubmissionSection[] = [
         id: "ANNEXURE D",
         title: "Pricing Requirements",
         purpose:
-          "Detailed pricing model — implementation, annual subscription and transaction-based fees (ZAR); ~400 invoices/month baseline.",
+          "Detailed pricing model — Year 1 licence & implementation (ZAR 391,500) and annual maintenance from year 2 (ZAR 105,225 p.a.).",
         file: "annexure-d-pricing-requirements.pdf",
       },
       {
@@ -81,8 +94,9 @@ export const submissionSections: readonly SubmissionSection[] = [
       {
         id: "§2.2",
         title: "Company Registration",
-        purpose: "Certificate of Incorporation and change-of-name certificate (if applicable).",
-        file: "mandatory-company-registration.pdf",
+        purpose:
+          "Business Identity Card, Certificate of Business Name and company registration (Reg. A2023/5840; renewed 23 April 2026).",
+        file: "mandatory-compliance-documents-2026.pdf",
       },
       {
         id: "§2.3",
@@ -101,8 +115,21 @@ export const submissionSections: readonly SubmissionSection[] = [
       {
         id: "§2.5",
         title: "Tax Clearance Certificate",
-        purpose: "Valid tax clearance certificate.",
-        file: "mandatory-tax-clearance-certificate.pdf",
+        purpose:
+          "Valid RSL tax clearance certificate (TIN 200116903-2; valid until 12 May 2027). Included in compliance pack.",
+        file: "mandatory-compliance-documents-2026.pdf",
+      },
+      {
+        id: "VAT",
+        title: "VAT Registration Certificate",
+        purpose: "Lesotho VAT registration certificate for Infinity Business Dynamics (Pty) Ltd.",
+        file: "mandatory-vat-registration-certificate.pdf",
+      },
+      {
+        id: "Banking",
+        title: "Banking Details",
+        purpose: "Confirmed banking details for supplier payments and remittances.",
+        file: "mandatory-banking-details.pdf",
       },
       {
         id: "§2.6",
@@ -137,14 +164,14 @@ export const submissionPdfMergeOrder = [
   "annexure-b-e-invoicing-gateway-api-spec.pdf",
   "annexure-e-framework-agreement-deviations.pdf",
   "annexure-f-nda-confidentiality-agreement-signed.pdf",
-  "mandatory-company-registration.pdf",
+  "mandatory-compliance-documents-2026.pdf",
   "mandatory-shareholder-identification.pdf",
   "mandatory-good-standing-letter.pdf",
-  "mandatory-tax-clearance-certificate.pdf",
+  "mandatory-vat-registration-certificate.pdf",
+  "mandatory-banking-details.pdf",
   "mandatory-bbbee-gap-statement.pdf",
   "support-a-rsl-accreditation-letter.pdf",
   "support-b-motheo-integrator-guide.pdf",
-  "support-c-banking-confirmation-letter.pdf",
   "support-f-supplier-self-assessment-signed.pdf",
   "support-g-supplier-code-of-conduct-signed.pdf",
 ] as const;

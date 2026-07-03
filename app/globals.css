@@ -1907,13 +1907,20 @@ html:not(.light) {
 }
 .deck-submission-sections {
   min-height: 0;
+  flex: 1 1 0;
 }
 .deck-submission-sections .deck-appendix-list {
-  gap: 0.5rem;
+  flex: 1 1 0;
+  min-height: 0;
+  gap: 0.375rem;
 }
 .deck-submission-sections .deck-appendix-list__item {
-  flex: 0 0 auto;
-  padding: 0.625rem 0.875rem;
+  flex: 1 1 0;
+  min-height: 3.125rem;
+  padding: 0.5625rem 0.875rem;
+}
+.deck-submission-sections .deck-appendix-list__row {
+  align-items: flex-start;
 }
 .deck-submission-sections .deck-type-card-title {
   font-size: 15px;

@@ -25,6 +25,7 @@ export const executiveLetter = {
   paragraphs: [
     "Infinity Business Dynamics appreciates the opportunity to submit this proposal for the design, supply, implementation and long-term support of an Enterprise Compliance Gateway (Electronic Billing System) for Barloworld Equipment Lesotho.",
     "As Revenue Services Lesotho continues to modernise tax administration through the Lekuka Electronic Billing System, organisations operating complex enterprise environments must ensure that fiscal transactions are processed securely, accurately and in real time while maintaining uninterrupted business operations.",
+    "Under the Lekuka mandate, invoices, credit notes, debit notes, receipts and payouts must be submitted to RSL in real time. Returned fiscal signatures and QR codes must appear on every printed customer document.",
     "For Barloworld Equipment, compliance extends beyond regulatory reporting. The solution must integrate seamlessly with existing SAP ERP and CRM environments, support multiple business processes and provide a resilient architecture capable of supporting future operational growth.",
     "To address these requirements, Infinity Business Dynamics proposes the Infinity Compliance Gateway, powered by the Motheo Compliance Engine. The solution introduces a dedicated enterprise integration and compliance layer between Barloworld's business systems and the Revenue Services Lesotho Lekuka platform.",
     "This architecture enables automated fiscal reporting, secure API integration, QR code generation, audit traceability and continuous compliance while preserving existing ERP workflows and operational efficiency.",
@@ -177,6 +178,32 @@ export const aboutInfinityIntro = [
   "Infinity Business Dynamics is an enterprise technology company specialising in systems integration, regulatory compliance platforms, digital transformation and managed technology services.",
   "We partner with organisations to modernise business operations through intelligent software solutions that improve efficiency, governance and regulatory compliance.",
   "Our multidisciplinary team combines expertise in enterprise architecture, SAP integration, API development, compliance automation and project delivery.",
+] as const;
+
+export const companyCredentials = [
+  {
+    title: "Registration",
+    description: "A2023/5840 — business licence renewed 23 April 2026 (expires 23 April 2029).",
+    inline: true,
+  },
+  {
+    title: "Taxpayer ID",
+    description: "TIN 200116903-2 with RSL tax clearance valid until 12 May 2027.",
+    inline: true,
+  },
+  {
+    title: "Registered address",
+    description: "Ha Tsosane, Maseru, Lesotho.",
+    inline: true,
+  },
+] as const;
+
+export const lekukaDocumentTypes = [
+  "Invoices",
+  "Credit notes",
+  "Debit notes",
+  "Receipts",
+  "Payouts",
 ] as const;
 
 export const coreCapabilities = [
@@ -388,14 +415,36 @@ export const enterprisePrinciples = [
 ] as const;
 
 export const sapIntegrationScope = [
-  "Customer Master",
-  "Accounts Receivable",
-  "Billing",
-  "Financial Accounting",
-  "Tax Configuration",
-  "Invoice Processing",
-  "Credit Notes",
-  "Debit Notes",
+  {
+    title: "SAP ECC6 SD Billing",
+    description: "Sales and distribution billing documents triggered at invoice post.",
+    inline: true,
+  },
+  {
+    title: "FI Accounts Receivable",
+    description: "Financial accounting invoices, credits and adjustments.",
+    inline: true,
+  },
+  {
+    title: "CRM Field Service Billing",
+    description: "Field service transactions routed through the same compliance path.",
+    inline: true,
+  },
+  {
+    title: "Customer Master",
+    description: "Validated customer and tax reference data for fiscal submission.",
+    inline: true,
+  },
+  {
+    title: "Tax Configuration",
+    description: "Lesotho VAT codes and fiscal fields aligned to Lekuka requirements.",
+    inline: true,
+  },
+  {
+    title: "Print Form Write-back",
+    description: "QR code URL, fiscal signature and receipt counter returned to SmartForms.",
+    inline: true,
+  },
 ] as const;
 
 export const sapIntegrationServices = [
@@ -490,6 +539,16 @@ export const apiServices = [
   {
     title: "Debit note submission",
     description: "Reports debit adjustments to correct or amend fiscal records.",
+    inline: true,
+  },
+  {
+    title: "Receipt submission",
+    description: "Submits customer receipts to RSL for fiscal signing and QR generation.",
+    inline: true,
+  },
+  {
+    title: "Payout submission",
+    description: "Reports payout transactions required under the Lekuka document set.",
     inline: true,
   },
   {
@@ -654,7 +713,7 @@ export const securityBusinessBenefits = [
 ] as const;
 
 export const transactionLifecycleSteps = [
-  { step: "01", title: "Transaction Created", description: "Invoice, Credit Note or Debit Note generated within SAP or CRM." },
+  { step: "01", title: "Transaction Created", description: "Invoice, credit note, debit note, receipt or payout generated in SAP SD/FI-AR or CRM." },
   { step: "02", title: "Validation", description: "Business rules and mandatory fields are validated." },
   { step: "03", title: "Transformation", description: "Transaction converted into the Revenue Services Lesotho API format." },
   { step: "04", title: "Fiscal Processing", description: "Transaction processed through the Motheo Compliance Engine." },
@@ -1484,18 +1543,16 @@ export const annualManagedServicesIncludes = [
 ] as const;
 
 export const pricingSummary = [
-  ["Implementation Services", "(Insert Commercial Amount)"],
-  ["Annual Managed Services", "(Insert Annual Subscription)"],
-  ["Transaction-Based Pricing (if applicable)", "(Insert per transaction rate)"],
-  ["Optional Professional Services", "(Insert if applicable)"],
+  ["Year 1 — Licence & Implementation", "ZAR 391,500.00"],
+  ["Year 2 onwards — Annual Maintenance (subscription)", "ZAR 105,225.00 per annum"],
 ] as const;
 
 export const pricingNotes = [
   "All amounts quoted in ZAR unless otherwise stated.",
+  "Year 1 fee includes platform licence and full implementation (design, integration, testing, training and go-live).",
+  "Annual maintenance applies from year two onward for application support, compliance monitoring and preventative maintenance.",
   "Volume assumption: ~400 invoices per month (subject to confirmation with BWE).",
-  "Prices exclude optional third-party licensing unless specifically stated.",
   "Commercials remain valid for 190 business days from RFQ submission date.",
-  "Final pricing is subject to agreed project scope and contractual terms.",
 ] as const;
 
 export const pricingAnnexureFootnote =
@@ -1506,6 +1563,7 @@ export {
   submissionSections,
   primaryContact,
   companyPostalAddress,
+  companyProfile,
   bbbeeGapStatement,
   submissionPdfMergeOrder,
 } from "@/lib/submission-pack";
@@ -1515,6 +1573,7 @@ export const supplierResponses = [
   ["SAP ERP Integration", "Supported"],
   ["CRM Integration", "Supported"],
   ["Revenue Services Lesotho Integration", "Supported"],
+  ["Lekuka Document Types (5)", "Invoices · Credits · Debits · Receipts · Payouts"],
   ["API Integration", "Supported"],
   ["Digital Certificates", "Supported"],
   ["QR Code Generation", "Supported"],
@@ -1547,7 +1606,7 @@ export const whyInfinityClosing = [
   {
     title: "Future-Ready Platform",
     description:
-      "Extensible architecture designed to absorb future RSL rule changes, transaction growth and additional Barloworld business units without re-platforming or major rework.",
+      "ERP-agnostic gateway architecture preserves Motheo and Lekuka investments — future ERP transitions require connector updates only, not a full compliance rebuild.",
   },
 ] as const;
 
