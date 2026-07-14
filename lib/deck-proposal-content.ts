@@ -1585,29 +1585,35 @@ export const commercialLineItems = [
   ...annualManagedServicesPricing,
 ] as const;
 
-/** Slide table — recommended Motheo POS package */
+/** Slide table — recommended Motheo POS package (EST-000227 items 1, 2, 5) */
 export const pricingSummary = [
   ["MS Dynamics Integration (once-off)", "LSL 97,500.00"],
   ["Managed Compliance Service — annual", "LSL 126,500.00"],
   ["Motheo POS — annual subscription", "LSL 45,500.00"],
-  ["Sub Total (excl. VAT)", "LSL 269,500.00"],
+  ["Sub Total", "LSL 269,500.00"],
   ["VAT (15%)", "LSL 40,425.00"],
-  ["Year 1 Total (incl. VAT)", "LSL 309,925.00"],
+  ["Total (Tax Inclusive)", "LSL 309,925.00"],
 ] as const;
 
-/** Optional Intelipos path from EST-000227 — alternative to Motheo POS */
+/**
+ * Optional Intelipos path from EST-000227 items 3–4 —
+ * offered if Tsebo elects to integrate Intelipos (can replace Motheo POS).
+ */
 export const pricingInteliposAlternative = [
   ["Intelipos Integration & Device Setup (once-off)", "LSL 45,200.00"],
   ["Intelipos Transactions Compliance Management (annual)", "LSL 35,000.00"],
+  ["Sub Total", "LSL 80,200.00"],
+  ["VAT (15%)", "LSL 12,030.00"],
+  ["Total (Tax Inclusive)", "LSL 92,230.00"],
 ] as const;
 
 export const pricingNotes = [
   `Estimate reference: ${commercialEstimate.reference} dated ${commercialEstimate.date}`,
   "Amounts shown in Lesotho Loti (LSL)",
-  "VAT is charged at 15% where applicable",
+  "VAT is charged at 15% under Sub Total; Total is tax inclusive",
   "Commercial validity: 30 days from estimate date",
   "Recommended package: Dynamics integration + Motheo Compliance Layer + Motheo POS",
-  "Motheo POS may replace Intelipos integration and annual fees if preferred",
+  "Optional: Intelipos integration & device setup plus annual Intelipos compliance — if Tsebo considers Intelipos instead of Motheo POS",
   "Banking: Nedbank Lesotho 11990152022 · Branch 390161",
 ] as const;
 

@@ -76,9 +76,16 @@ Recommended package (Dynamics + Motheo Compliance Layer + Motheo POS):
 5. Motheo POS Annual Subscription: LSL 45,500.00
    Sub Total: LSL 269,500.00
    VAT (15%): LSL 40,425.00
-   Year 1 Total: LSL 309,925.00
+   Total (Tax Inclusive): LSL 309,925.00
 
-Year 2 onwards (excl. VAT): LSL 172,000.00 p.a.
+Optional — if Tsebo considers integrating Intelipos (alternative to Motheo POS):
+3. Intelipos Integration & Device Setup (once-off): LSL 45,200.00
+4. Intelipos Transactions Compliance Management (annual): LSL 35,000.00
+   Sub Total: LSL 80,200.00
+   VAT (15%): LSL 12,030.00
+   Total (Tax Inclusive): LSL 92,230.00
+
+Year 2 onwards (excl. VAT): LSL 172,000.00 p.a. (Motheo path)
 
 See est-000227-pricing.pdf for the original estimate.`,
 );

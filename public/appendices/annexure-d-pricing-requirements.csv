@@ -2,15 +2,18 @@ Line Item,Description,Amount (LSL),Basis / Notes
 MS Dynamics Integration,MS Dynamics F&O invoices enabled for Lekuka compliance (once-off),97500.00,Once-off — EST-000227 Item 1
 Managed Compliance Service,Annual compliance platform fee and compliance management,126500.00,Annual — EST-000227 Item 2
 Motheo POS Annual Subscription,Motheo POS for cash sales (recommended cash-sale path),45500.00,Annual — EST-000227 Item 5
-Year 1 Sub Total (excl. VAT),Recommended Motheo POS package,269500.00,Items 1 + 2 + 5
-VAT (15%),Value Added Tax,40425.00,
-Year 1 Total (incl. VAT),Recommended package total,309925.00,
-Intelipos Integration & Device Setup,Alternative to Motheo POS — once-off setup,45200.00,Optional — EST-000227 Item 3
-Intelipos Compliance Management,Alternative to Motheo POS — annual,35000.00,Optional — EST-000227 Item 4
+Sub Total,Recommended Motheo POS package excl. VAT,269500.00,Items 1 + 2 + 5
+VAT (15%),Value Added Tax under Sub Total,40425.00,
+Total (Tax Inclusive),Recommended package total incl. VAT,309925.00,
+Intelipos Integration & Device Setup,Optional — once-off if integrating Intelipos,45200.00,Optional — EST-000227 Item 3
+Intelipos Compliance Management,Optional — annual if integrating Intelipos,35000.00,Optional — EST-000227 Item 4
+Intelipos Sub Total,Optional Intelipos path excl. VAT,80200.00,Items 3 + 4
+Intelipos VAT (15%),VAT under Intelipos Sub Total,12030.00,
+Intelipos Total (Tax Inclusive),Optional Intelipos path incl. VAT,92230.00,
 
 Assumptions,,
 Currency,All amounts in LSL per EST-000227 (12 Jul 2026),
 Bill To,Tsebo Solutions Group Lesotho (Pty) Ltd,
-Motheo POS vs Intelipos,Motheo POS (Item 5) may replace Intelipos Items 3 and 4,
+Motheo POS vs Intelipos,Intelipos Items 3–4 are optional if Tsebo considers Intelipos instead of Motheo POS (Item 5),
 Year 2+,Managed Compliance LSL 126500 + Motheo POS LSL 45500 = LSL 172000 p.a. excl. VAT,
 Banking,Nedbank Lesotho 11990152022 · Branch 390161 · Infinity Business Dynamics Pty Ltd,

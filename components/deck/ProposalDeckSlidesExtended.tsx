@@ -79,6 +79,7 @@ import {
   motheoRadialNodes,
   onlineProcessing,
   offlineProcessing,
+  pricingInteliposAlternative,
   pricingNotes,
   pricingSummary,
   projectPrinciples,
@@ -1198,6 +1199,19 @@ export function renderProposalSlidesExtended(index: number): ReactElement {
             rows={pricingSummary.map((row) => [row[0], row[1]])}
             compact
             featured
+          />
+          <DeckSectionLabel>
+            Optional — If Tsebo Considers Integrating Intelipos
+          </DeckSectionLabel>
+          <DeckBody>
+            Per EST-000227 items 3–4. Offered as an optional alternative to Motheo POS for cash-sale
+            fiscalisation — Integration service fee for Intelipos and device setup, plus annual
+            Intelipos transactions compliance management.
+          </DeckBody>
+          <DeckTable
+            headers={["Item", "Amount"]}
+            rows={pricingInteliposAlternative.map((row) => [row[0], row[1]])}
+            compact
           />
           <DeckSectionLabel>Pricing Notes</DeckSectionLabel>
           <DeckBulletList items={[...pricingNotes]} />
