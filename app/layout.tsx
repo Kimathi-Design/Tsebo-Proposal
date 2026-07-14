@@ -11,7 +11,7 @@ const jost = Jost({
 });
 
 export const metadata: Metadata = {
-  title: "Motheo Compliance Layer — Tsebo Solutions Group",
+  title: "Enterprise Tax Compliance Transformation — Tsebo Solutions Group",
   description:
     "Motheo Compliance Layer & Motheo POS — Infinity Business Dynamics proposal for Tsebo Solutions Group (Microsoft Dynamics integration).",
   robots: { index: false, follow: false },

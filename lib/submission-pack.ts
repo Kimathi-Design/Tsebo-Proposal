@@ -110,7 +110,7 @@ export const appendices: readonly SubmissionDocument[] = [
   },
 ] as const;
 
-/** Split across appendices slides A–F and G–L */
+/** Split for slides 40–41 */
 export const submissionSections: readonly SubmissionSection[] = [
   {
     label: "Solution & Commercial Appendices",

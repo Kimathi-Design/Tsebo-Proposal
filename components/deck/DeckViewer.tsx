@@ -7,7 +7,7 @@ import {
   useRef,
   useState,
 } from "react";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, Download } from "lucide-react";
 import { renderDeckSlide } from "@/components/deck/DeckSlides";
 import { DeckLoadingScreen } from "@/components/deck/DeckLoadingScreen";
@@ -148,15 +148,18 @@ export function DeckViewer() {
                 transformOrigin: "top left",
               }}
             >
-              <motion.div
-                key={current}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.2, ease: "easeOut" }}
-                className="deck-stage h-full w-full rounded-lg shadow-[0_24px_80px_-20px_rgba(13,15,26,0.18)]"
-              >
-                {renderDeckSlide(current)}
-              </motion.div>
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={current}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.3, ease: "easeOut" }}
+                  className="deck-stage h-full w-full rounded-lg shadow-[0_24px_80px_-20px_rgba(13,15,26,0.18)]"
+                >
+                  {renderDeckSlide(current)}
+                </motion.div>
+              </AnimatePresence>
             </div>
           </div>
         )}

@@ -5,23 +5,41 @@ import {
   Award,
   BadgeCheck,
   Banknote,
+  BarChart3,
   BookOpen,
+  Briefcase,
+  Building2,
   Calendar,
+  ClipboardCheck,
+  ClipboardList,
   FileCheck,
   FileSignature,
   FileText,
+  GitBranch,
+  GraduationCap,
+  Handshake,
   Headphones,
   Layers,
   LayoutList,
+  LineChart,
+  Lock,
   Mail,
+  Network,
   Package,
+  QrCode,
   Receipt,
+  RefreshCw,
+  Route,
+  Scale,
   Server,
   Shield,
+  ShieldCheck,
   Sparkles,
   Target,
+  Timer,
   Users,
   Workflow,
+  Wrench,
 } from "lucide-react";
 import type { ReactNode } from "react";
 import { BweMark, IbdMark } from "@/components/deck/IbdMark";
@@ -32,22 +50,43 @@ const SLIDE_ICONS: LucideIcon[] = [
   Mail, // 1 Executive Letter
   LayoutList, // 2 Table of Contents
   FileText, // 3 Executive Summary
-  Target, // 4 Tsebo Need & Challenges
-  Award, // 5 About IBD & Why Motheo
-  BadgeCheck, // 6 RSL Accreditation
-  Layers, // 7 Proposed Motheo Stack
-  Server, // 8 Microsoft Dynamics Integration
-  Receipt, // 9 Motheo POS
-  Workflow, // 10 Transaction Flow
-  Shield, // 11 Security, Monitoring & Continuity
-  Calendar, // 12 Delivery Plan & Timeline
-  Users, // 13 Team, Testing & Training
-  Headphones, // 14 Support & Managed Services
-  Banknote, // 15 Commercial Proposal
-  Sparkles, // 16 Conclusion
-  FileSignature, // 17 Proposal Acceptance
-  BookOpen, // 18 Appendices A–F
-  FileCheck, // 19 Appendices G–L
+  Target, // 4 Strategic Business Outcomes
+  Building2, // 5 Understanding Tsebo Solutions Group
+  ClipboardCheck, // 6 Business Challenges
+  Building2, // 7 About Infinity
+  Award, // 8 Why Infinity
+  BadgeCheck, // 9 RSL Accreditation
+  Layers, // 10 Motheo Compliance Layer
+  Network, // 11 Enterprise Solution Architecture
+  Server, // 12 Microsoft Dynamics Integration
+  Users, // 13 Motheo POS
+  Workflow, // 14 API Integration Framework
+  Route, // 15 Motheo Compliance Engine
+  Shield, // 16 Security Architecture
+  RefreshCw, // 17 Transaction Lifecycle
+  GitBranch, // 18 Online & Offline Processing
+  Lock, // 19 Digital Certificate Management
+  QrCode, // 20 QR Code Management
+  BarChart3, // 21 Compliance Monitoring & Analytics
+  ShieldCheck, // 22 Business Continuity & DR
+  LineChart, // 23 Compliance Analytics & Reporting
+  Sparkles, // 24 Implementation Methodology
+  Scale, // 25 Project Governance
+  Users, // 26 Project Organisation & Delivery Team
+  GitBranch, // 27 Project Implementation Plan
+  Calendar, // 28 Project Timeline
+  FileCheck, // 29 Testing & Quality Assurance
+  GraduationCap, // 30 Training & Change Management
+  Headphones, // 31 Support & Managed Services
+  Timer, // 32 Service Level Commitments
+  Lock, // 33 Risk Management
+  Banknote, // 34 Commercial Proposal
+  ClipboardList, // 35 Supplier Responses
+  Award, // 36 Why Infinity
+  Sparkles, // 37 Conclusion
+  FileSignature, // 38 Proposal Acceptance
+  BookOpen, // 39 Supporting Documentation
+  FileCheck, // 40 Company Compliance Documents
 ];
 
 type SectionBadgeProps = {

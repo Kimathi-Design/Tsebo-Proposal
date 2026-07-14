@@ -1,7 +1,7 @@
-/** Proposal copy — Motheo Compliance Layer & Motheo POS for Tsebo */
+/** Verbatim proposal copy — pages 1–41 */
 
 export const proposalCover = {
-  title: "MOTHEO COMPLIANCE LAYER",
+  title: "ENTERPRISE TAX COMPLIANCE TRANSFORMATION",
   subtitle: "Revenue Services Lesotho (RSL) Electronic Billing System (EBS)",
   tagline: "Microsoft Dynamics & Motheo POS Proposal",
   preparedFor: "TSEBO SOLUTIONS GROUP",
@@ -42,42 +42,58 @@ export const tableOfContentsSections = [
     section: "Executive",
     entries: [
       { title: "Executive Summary", page: 4 },
-      { title: "Tsebo Need & Challenges", page: 5 },
+      { title: "Strategic Business Outcomes", page: 5 },
+      { title: "Understanding Tsebo Solutions Group", page: 6 },
+      { title: "Business Challenges", page: 7 },
     ],
   },
   {
     section: "Company",
     entries: [
-      { title: "About IBD & Why Motheo", page: 6 },
-      { title: "RSL Accreditation", page: 7 },
+      { title: "About Infinity Business Dynamics", page: 8 },
+      { title: "Why Infinity", page: 9 },
+      { title: "Revenue Services Lesotho Accreditation", page: 10 },
     ],
   },
   {
     section: "Solution",
     entries: [
-      { title: "Proposed Motheo Stack", page: 8 },
-      { title: "Microsoft Dynamics Integration", page: 9 },
-      { title: "Motheo POS", page: 10 },
-      { title: "Transaction Flow", page: 11 },
-      { title: "Security, Monitoring & Continuity", page: 12 },
+      { title: "Motheo Compliance Layer", page: 11 },
+      { title: "Solution Architecture", page: 12 },
+      { title: "Dynamics Integration Architecture", page: 13 },
+      { title: "Motheo POS", page: 14 },
+      { title: "API Integration Framework", page: 15 },
+      { title: "Motheo Compliance Engine", page: 16 },
+      { title: "Security Architecture", page: 17 },
+      { title: "Transaction Lifecycle", page: 18 },
+      { title: "QR Code Framework", page: 21 },
+      { title: "Monitoring & Reporting", page: 22 },
+      { title: "Business Continuity", page: 23 },
     ],
   },
   {
     section: "Delivery",
     entries: [
-      { title: "Delivery Plan & Timeline", page: 13 },
-      { title: "Team, Testing & Training", page: 14 },
-      { title: "Support & Managed Services", page: 15 },
+      { title: "Implementation Methodology", page: 25 },
+      { title: "Project Governance", page: 26 },
+      { title: "Project Team", page: 27 },
+      { title: "Project Timeline", page: 29 },
+      { title: "Testing Strategy", page: 30 },
+      { title: "User Training", page: 31 },
+      { title: "Support Model", page: 32 },
+      { title: "Service Level Commitments", page: 33 },
+      { title: "Risk Management", page: 34 },
     ],
   },
   {
     section: "Commercial",
     entries: [
-      { title: "Commercial Proposal", page: 16 },
-      { title: "Conclusion", page: 17 },
-      { title: "Proposal Acceptance", page: 18 },
-      { title: "Appendices A–F", page: 19 },
-      { title: "Appendices G–L", page: 20 },
+      { title: "Commercial Proposal", page: 35 },
+      { title: "Annual Managed Services", page: 35 },
+      { title: "Supplier Responses", page: 36 },
+      { title: "Terms & Conditions Acceptance", page: 39 },
+      { title: "Appendices A–F", page: 40 },
+      { title: "Appendices G–L", page: 41 },
     ],
   },
 ] as const;
@@ -1508,6 +1524,7 @@ export const riskTreatment = ["Identify", "Assess", "Mitigate", "Monitor", "Clos
 
 export const implementationServicesIncludes = [
   "Solution Design",
+  "Enterprise Architecture",
   "Microsoft Dynamics Integration",
   "Motheo POS Deployment",
   "API Configuration",
@@ -1590,7 +1607,7 @@ export const pricingNotes = [
   "VAT is charged at 15% where applicable",
   "Commercial validity: 30 days from estimate date",
   "Recommended package: Dynamics integration + Motheo Compliance Layer + Motheo POS",
-  "Optional alternative: Intelipos integration (LSL 45,200 once-off) and Intelipos compliance management (LSL 35,000 p.a.) instead of Motheo POS",
+  "Motheo POS may replace Intelipos integration and annual fees if preferred",
   "Banking: Nedbank Lesotho 11990152022 · Branch 390161",
 ] as const;
 

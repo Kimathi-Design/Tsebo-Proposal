@@ -1303,7 +1303,7 @@ export function TestingPyramidDiagram({
   );
 }
 
-const GANTT_TOTAL_WEEKS = 7;
+const GANTT_TOTAL_WEEKS = 10;
 
 const GANTT_BAR_COLORS = [
   "var(--gms-accent)",
@@ -1330,7 +1330,7 @@ function parseWeekRange(duration: string): { start: number; end: number } {
 export function GanttChart({ phases }: { phases: readonly (readonly [string, string])[] }) {
   return (
     <div className="gantt-chart-visual flex h-full min-h-0 w-full flex-col">
-      <DeckVisualPanelLabel>6–7 Week Implementation Schedule</DeckVisualPanelLabel>
+      <DeckVisualPanelLabel>10-Week Implementation Schedule</DeckVisualPanelLabel>
       <div className="gantt-chart-visual__panel gms-card flex min-h-0 flex-1 flex-col overflow-hidden rounded-2xl">
         <div className="gantt-chart-visual__header">
           <div className="gantt-chart-visual__header-label">Phase</div>
