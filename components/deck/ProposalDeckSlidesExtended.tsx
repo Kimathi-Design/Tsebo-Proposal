@@ -70,8 +70,6 @@ import {
   gatewayIncludes,
   implementationLifecycle,
   implementationPhases,
-  implementationServicesIncludes,
-  annualManagedServicesIncludes,
   learningJourney,
   managedServices,
   motheoCoreServices,
@@ -80,7 +78,6 @@ import {
   onlineProcessing,
   offlineProcessing,
   pricingInteliposAlternative,
-  pricingNotes,
   pricingSummary,
   projectPrinciples,
   projectRisks,
@@ -1179,21 +1176,10 @@ export function renderProposalSlidesExtended(index: number): ReactElement {
           <SlideEyebrow index={34} />
           <DeckTitle highlight="Summary">Investment</DeckTitle>
           <DeckBody>
-            Infinity Business Dynamics proposes a transparent commercial model that combines
-            enterprise implementation, systems integration and ongoing managed services.
+            Estimate <span className="font-semibold">EST-000227</span> (12 Jul 2026) — recommended
+            Microsoft Dynamics + Motheo Compliance Layer + Motheo POS package.
           </DeckBody>
-          <DeckBody>
-            Commercials are per Estimate <span className="font-semibold">EST-000227</span> (12 Jul
-            2026). The recommended package integrates Microsoft Dynamics via Motheo Compliance Layer
-            and supplies Motheo POS for cash sale transactions.
-          </DeckBody>
-          <DeckSectionLabel>Implementation Services</DeckSectionLabel>
-          <DeckBody>Includes</DeckBody>
-          <DeckBulletList items={[...implementationServicesIncludes]} />
-          <DeckSectionLabel>Annual Managed Services</DeckSectionLabel>
-          <DeckBody>Includes:</DeckBody>
-          <DeckBulletList items={[...annualManagedServicesIncludes]} />
-          <DeckSectionLabel>Pricing Summary — Recommended Package</DeckSectionLabel>
+          <DeckSectionLabel>Recommended Package</DeckSectionLabel>
           <DeckTable
             headers={["Item", "Amount"]}
             rows={pricingSummary.map((row) => [row[0], row[1]])}
@@ -1201,20 +1187,22 @@ export function renderProposalSlidesExtended(index: number): ReactElement {
             featured
           />
           <DeckSectionLabel>
-            Optional — If Tsebo Considers Integrating Intelipos
+            Optional — If Integrating Intelipos (instead of Motheo POS)
           </DeckSectionLabel>
-          <DeckBody>
-            Per EST-000227 items 3–4. Offered as an optional alternative to Motheo POS for cash-sale
-            fiscalisation — Integration service fee for Intelipos and device setup, plus annual
-            Intelipos transactions compliance management.
-          </DeckBody>
           <DeckTable
             headers={["Item", "Amount"]}
             rows={pricingInteliposAlternative.map((row) => [row[0], row[1]])}
             compact
           />
-          <DeckSectionLabel>Pricing Notes</DeckSectionLabel>
-          <DeckBulletList items={[...pricingNotes]} />
+          <DeckSectionLabel>Notes</DeckSectionLabel>
+          <DeckBulletList
+            compact
+            items={[
+              "VAT at 15% under Sub Total; Total is tax inclusive",
+              "Currency: LSL · Validity: 30 days from estimate date",
+              "Intelipos is optional only if Tsebo elects that cash-sale path",
+            ]}
+          />
         </DeckSlideFrame>
       );
 
