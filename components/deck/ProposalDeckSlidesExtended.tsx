@@ -1198,11 +1198,32 @@ export function renderProposalSlidesExtended(index: number): ReactElement {
           <DeckBulletList
             compact
             items={[
-              "VAT at 15% under Sub Total; Total is tax inclusive",
-              "Currency: LSL · Validity: 30 days from estimate date",
+              "VAT at 15% under Sub Total; Total is tax inclusive · Currency: LSL",
               "Intelipos is optional only if Tsebo elects that cash-sale path",
             ]}
           />
+          <DeckSectionLabel>Banking Details</DeckSectionLabel>
+          <DeckBulletList
+            compact
+            columns={2}
+            items={[
+              "Bank Name: Nedbank Lesotho",
+              "Account: 11990152022",
+              "Branch Code: 390161",
+              "Account Holder: Infinity Business Dynamics Pty Ltd",
+            ]}
+          />
+          <DeckSectionLabel>Terms & Conditions</DeckSectionLabel>
+          <DeckBody>
+            <a
+              href="https://store.zoho.com/ResellerCustomerSignUp.do?id=30346ba7f4d3f077e5a3f0533d91c6a9"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="break-all text-deck-accent underline underline-offset-2"
+            >
+              https://store.zoho.com/ResellerCustomerSignUp.do?id=30346ba7f4d3f077e5a3f0533d91c6a9
+            </a>
+          </DeckBody>
         </DeckSlideFrame>
       );
 

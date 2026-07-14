@@ -1614,7 +1614,10 @@ export const pricingNotes = [
   "Commercial validity: 30 days from estimate date",
   "Recommended package: Dynamics integration + Motheo Compliance Layer + Motheo POS",
   "Optional: Intelipos integration & device setup plus annual Intelipos compliance — if Tsebo considers Intelipos instead of Motheo POS",
-  "Banking: Nedbank Lesotho 11990152022 · Branch 390161",
+  "Bank Name: Nedbank Lesotho",
+  "Account: 11990152022 · Branch Code: 390161",
+  "Account Holder: Infinity Business Dynamics Pty Ltd",
+  "Terms & Conditions: https://store.zoho.com/ResellerCustomerSignUp.do?id=30346ba7f4d3f077e5a3f0533d91c6a9",
 ] as const;
 
 export const pricingAnnexureFootnote =
