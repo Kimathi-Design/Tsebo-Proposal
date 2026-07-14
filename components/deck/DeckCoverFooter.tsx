@@ -1,11 +1,11 @@
-import { BweFooterLogo } from "@/components/deck/IbdMark";
+import { TseboFooterLogo } from "@/components/deck/IbdMark";
 import { SlideSectionCorner } from "@/components/deck/SlideEyebrow";
 import { coverMeta } from "@/lib/deck-content";
 
 const PREPARED_BY_LINES = [
   {
     icon: "📍",
-    lines: [coverMeta.preparedByDisplay, coverMeta.tagline, coverMeta.address],
+    lines: [coverMeta.preparedByDisplay, coverMeta.address],
   },
   {
     icon: "🌐",
@@ -95,7 +95,7 @@ export function DeckCoverFooter() {
           <div className="deck-cover-footer__lines">
             <div className="deck-cover-footer__client-row">
               <div className="deck-cover-footer__client-logo">
-                <BweFooterLogo className="h-10" />
+                <TseboFooterLogo className="h-10" />
               </div>
               <p className="deck-cover-footer__client">{coverMeta.preparedFor}</p>
             </div>

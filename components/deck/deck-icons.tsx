@@ -372,7 +372,7 @@ export const SAP_ARCHITECTURE_PANEL_ICONS = [
   Target,
 ] as const;
 
-export const SAP_INTEGRATION_FLOW_ICONS = [
+export const DYNAMICS_INTEGRATION_FLOW_ICONS = [
   BarChart3,
   Package,
   Users,
@@ -383,12 +383,18 @@ export const SAP_INTEGRATION_FLOW_ICONS = [
   Building2,
 ] as const;
 
-export const SAP_INTEGRATION_SIDE_ICONS = [
+/** @deprecated Use DYNAMICS_INTEGRATION_FLOW_ICONS */
+export const SAP_INTEGRATION_FLOW_ICONS = DYNAMICS_INTEGRATION_FLOW_ICONS;
+
+export const DYNAMICS_INTEGRATION_SIDE_ICONS = [
   Activity,
   FileSearch,
   RefreshCw,
   Mail,
 ] as const;
+
+/** @deprecated Use DYNAMICS_INTEGRATION_SIDE_ICONS */
+export const SAP_INTEGRATION_SIDE_ICONS = DYNAMICS_INTEGRATION_SIDE_ICONS;
 
 export const MOTHEO_RADIAL_NODE_ICONS = [
   CheckCircle2,

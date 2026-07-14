@@ -11,9 +11,9 @@ const jost = Jost({
 });
 
 export const metadata: Metadata = {
-  title: "Barloworld Equipment Lesotho — Enterprise Compliance Gateway Proposal",
+  title: "Motheo Compliance Layer — Tsebo Solutions Group",
   description:
-    "Enterprise Compliance Gateway (EBS) — Infinity Business Dynamics proposal for Barloworld Equipment Lesotho.",
+    "Motheo Compliance Layer & Motheo POS — Infinity Business Dynamics proposal for Tsebo Solutions Group (Microsoft Dynamics integration).",
   robots: { index: false, follow: false },
   icons: {
     icon: ASSETS.brands.ibdFavicon,

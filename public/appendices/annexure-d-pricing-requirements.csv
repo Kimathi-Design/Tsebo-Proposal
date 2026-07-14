@@ -1,10 +1,16 @@
-Line Item,Description,Amount (ZAR),Basis / Notes
-Year 1 — Licence & Implementation,Platform licence and full project delivery — design SAP/CRM integration security testing training and go-live,391500.00,One-time (Year 1)
-Year 2 onwards — Annual Maintenance,Annual subscription / licence — application support compliance monitoring regulatory updates and preventative maintenance,105225.00,Per annum from Year 2
+Line Item,Description,Amount (LSL),Basis / Notes
+MS Dynamics Integration,MS Dynamics F&O invoices enabled for Lekuka compliance (once-off),97500.00,Once-off — EST-000227 Item 1
+Managed Compliance Service,Annual compliance platform fee and compliance management,126500.00,Annual — EST-000227 Item 2
+Motheo POS Annual Subscription,Motheo POS for cash sales (recommended cash-sale path),45500.00,Annual — EST-000227 Item 5
+Year 1 Sub Total (excl. VAT),Recommended Motheo POS package,269500.00,Items 1 + 2 + 5
+VAT (15%),Value Added Tax,40425.00,
+Year 1 Total (incl. VAT),Recommended package total,309925.00,
+Intelipos Integration & Device Setup,Alternative to Motheo POS — once-off setup,45200.00,Optional — EST-000227 Item 3
+Intelipos Compliance Management,Alternative to Motheo POS — annual,35000.00,Optional — EST-000227 Item 4
 
 Assumptions,,
-Currency,All amounts in ZAR unless otherwise stated,
-Year 1,Includes licence and implementation as a single investment,
-Year 2+,Annual maintenance / subscription fee applies for each subsequent year,
-Volume baseline,~400 invoices per month (subject to confirmation with BWE),
-Validity,190 business days from RFQ submission date,
+Currency,All amounts in LSL per EST-000227 (12 Jul 2026),
+Bill To,Tsebo Solutions Group Lesotho (Pty) Ltd,
+Motheo POS vs Intelipos,Motheo POS (Item 5) may replace Intelipos Items 3 and 4,
+Year 2+,Managed Compliance LSL 126500 + Motheo POS LSL 45500 = LSL 172000 p.a. excl. VAT,
+Banking,Nedbank Lesotho 11990152022 · Branch 390161 · Infinity Business Dynamics Pty Ltd,

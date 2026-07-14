@@ -28,10 +28,10 @@ export function DeckHeroBrand({
   return (
     <div className={`space-y-2 ${className}`.trim()}>
       <p className={`font-semibold tracking-tight gradient-text-ibd ${titleSize}`}>
-        MOTHEO COMPLIANCE PLATFORM
+        MOTHEO COMPLIANCE LAYER
       </p>
       <p className={`font-medium text-[color:var(--gms-text-muted)] ${subtitleSize}`}>
-        SAP Integration &amp; Lekuka e-Invoicing Implementation
+        Microsoft Dynamics &amp; Motheo POS
       </p>
     </div>
   );

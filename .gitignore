@@ -27,3 +27,13 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
+
+# Local / source packs not needed in repo
+/BW appendexis/
+/Infinity Banking Details.pdf
+/Infinity Compliance Docs updated20260702.pdf
+/Vat Reg Certificate.pdf
+/Solutionzhere_E-Invoicing_Proposal_DHL_BWE.pdf
+/bwe-cover.png
+public/BW-Group-Motheo-Proposal.pdf
+public/DHL-Motheo-Proposal.pdf

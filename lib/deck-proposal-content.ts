@@ -1,36 +1,36 @@
-/** Verbatim proposal copy — pages 1–41 */
+/** Proposal copy — Motheo Compliance Layer & Motheo POS for Tsebo */
 
 export const proposalCover = {
-  title: "ENTERPRISE COMPLIANCE GATEWAY",
-  subtitle: "Electronic Billing System (EBS)",
-  tagline: "SAP ERP & CRM Integration",
-  preparedFor: "BARLOWORLD EQUIPMENT LS",
+  title: "MOTHEO COMPLIANCE LAYER",
+  subtitle: "Revenue Services Lesotho (RSL) Electronic Billing System (EBS)",
+  tagline: "Microsoft Dynamics & Motheo POS Proposal",
+  preparedFor: "TSEBO SOLUTIONS GROUP",
   preparedBy: "INFINITY BUSINESS DYNAMICS (PTY) LTD",
   preparedByTagline: "Harnessing the Power of Technology",
   location: "Maseru, Lesotho",
-  address: "P.O. Box 13145, Maseru 100, Lesotho",
+  address: "Lancers Road, House No.16, Maseru, Lesotho",
   website: "www.ibd.co.ls",
   email: "services@ibd.co.ls",
-  phone: "+266 62554433",
-  date: "29th of June 2026",
-  reference: "IBD-BWE-EBS-2026-001",
+  phone: "+266 6255 4433",
+  date: "14th of July 2026",
+  reference: "IBD-TSEBO-EBS-2026-001",
   accreditation: "Revenue Services Lesotho Accredited Solution Provider",
 } as const;
 
 export const executiveLetter = {
-  to: "Procurement Committee",
-  toOrg: "Barloworld Equipment Lesotho",
-  toLocation: "Maseru, Lesotho",
-  salutation: "Dear Evaluation Committee,",
+  to: "Procurement / Finance Leadership",
+  toOrg: "Tsebo Solutions Group",
+  toLocation: "Lesotho",
+  salutation: "Dear Tsebo Team,",
   paragraphs: [
-    "Infinity Business Dynamics appreciates the opportunity to submit this proposal for the design, supply, implementation and long-term support of an Enterprise Compliance Gateway (Electronic Billing System) for Barloworld Equipment Lesotho.",
-    "As Revenue Services Lesotho continues to modernise tax administration through the Lekuka Electronic Billing System, organisations operating complex enterprise environments must ensure that fiscal transactions are processed securely, accurately and in real time while maintaining uninterrupted business operations.",
+    "Infinity Business Dynamics appreciates the opportunity to submit this proposal for the supply, implementation and support of Motheo Compliance Layer and Motheo POS for Tsebo Solutions Group.",
+    "As Revenue Services Lesotho continues to modernise tax administration through the Lekuka Electronic Billing System, organisations must ensure that fiscal transactions are processed securely, accurately and in real time while maintaining uninterrupted business operations.",
     "Under the Lekuka mandate, invoices, credit notes, debit notes, receipts and payouts must be submitted to RSL in real time. Returned fiscal signatures and QR codes must appear on every printed customer document.",
-    "For Barloworld Equipment, compliance extends beyond regulatory reporting. The solution must integrate seamlessly with existing SAP ERP and CRM environments, support multiple business processes and provide a resilient architecture capable of supporting future operational growth.",
-    "To address these requirements, Infinity Business Dynamics proposes the Infinity Compliance Gateway, powered by the Motheo Compliance Engine. The solution introduces a dedicated enterprise integration and compliance layer between Barloworld's business systems and the Revenue Services Lesotho Lekuka platform.",
-    "This architecture enables automated fiscal reporting, secure API integration, QR code generation, audit traceability and continuous compliance while preserving existing ERP workflows and operational efficiency.",
-    "Our implementation approach combines enterprise architecture, SAP integration expertise, regulatory compliance and managed support services to deliver a scalable solution that aligns with Barloworld's strategic objectives.",
-    "We appreciate the opportunity to participate in this Request for Quotation and look forward to partnering with Barloworld Equipment on this important compliance transformation initiative.",
+    "For Tsebo Solutions Group, the arrangement is straightforward: Motheo Compliance Layer integrates with Microsoft Dynamics for account and enterprise billing, while Motheo POS handles cash sale transactions at the point of sale — both feeding the same certified fiscal engine.",
+    "Infinity Business Dynamics therefore proposes Motheo Compliance Layer as the certified compliance path between Tsebo's Microsoft Dynamics environment and the Revenue Services Lesotho Lekuka platform, together with Motheo POS for cash sales.",
+    "This architecture enables automated fiscal reporting, secure API integration, QR code generation, audit traceability and continuous compliance while preserving existing Dynamics workflows and operational efficiency.",
+    "Our implementation approach combines Dynamics integration, Motheo POS deployment, regulatory compliance and managed support services to deliver a practical solution aligned with Tsebo's operational model.",
+    "We appreciate the opportunity to partner with Tsebo Solutions Group on this compliance initiative and look forward to a successful delivery.",
   ],
   closing: "Yours faithfully,",
   signatureOrg: "Infinity Business Dynamics (Pty) Ltd",
@@ -42,69 +42,53 @@ export const tableOfContentsSections = [
     section: "Executive",
     entries: [
       { title: "Executive Summary", page: 4 },
-      { title: "Strategic Business Outcomes", page: 5 },
-      { title: "Understanding Barloworld Equipment", page: 6 },
-      { title: "Business Challenges", page: 7 },
+      { title: "Tsebo Need & Challenges", page: 5 },
     ],
   },
   {
     section: "Company",
     entries: [
-      { title: "About Infinity Business Dynamics", page: 8 },
-      { title: "Why Infinity", page: 9 },
-      { title: "Revenue Services Lesotho Accreditation", page: 10 },
+      { title: "About IBD & Why Motheo", page: 6 },
+      { title: "RSL Accreditation", page: 7 },
     ],
   },
   {
     section: "Solution",
     entries: [
-      { title: "Enterprise Compliance Gateway", page: 11 },
-      { title: "Enterprise Architecture", page: 12 },
-      { title: "SAP Integration Architecture", page: 13 },
-      { title: "CRM Integration", page: 14 },
-      { title: "API Integration Framework", page: 15 },
-      { title: "Motheo Compliance Engine", page: 16 },
-      { title: "Security Architecture", page: 17 },
-      { title: "Transaction Lifecycle", page: 18 },
-      { title: "QR Code Framework", page: 21 },
-      { title: "Monitoring & Reporting", page: 22 },
-      { title: "Business Continuity", page: 23 },
+      { title: "Proposed Motheo Stack", page: 8 },
+      { title: "Microsoft Dynamics Integration", page: 9 },
+      { title: "Motheo POS", page: 10 },
+      { title: "Transaction Flow", page: 11 },
+      { title: "Security, Monitoring & Continuity", page: 12 },
     ],
   },
   {
     section: "Delivery",
     entries: [
-      { title: "Implementation Methodology", page: 25 },
-      { title: "Project Governance", page: 26 },
-      { title: "Project Team", page: 27 },
-      { title: "Project Timeline", page: 29 },
-      { title: "Testing Strategy", page: 30 },
-      { title: "User Training", page: 31 },
-      { title: "Support Model", page: 32 },
-      { title: "Service Level Commitments", page: 33 },
-      { title: "Risk Management", page: 34 },
+      { title: "Delivery Plan & Timeline", page: 13 },
+      { title: "Team, Testing & Training", page: 14 },
+      { title: "Support & Managed Services", page: 15 },
     ],
   },
   {
     section: "Commercial",
     entries: [
-      { title: "Commercial Proposal", page: 35 },
-      { title: "Annual Managed Services", page: 35 },
-      { title: "Supplier Responses", page: 36 },
-      { title: "Terms & Conditions Acceptance", page: 39 },
-      { title: "Barloworld RFQ Annexures", page: 40 },
-      { title: "Mandatory Supporting Documents (RFQ §2)", page: 41 },
+      { title: "Commercial Proposal", page: 16 },
+      { title: "Conclusion", page: 17 },
+      { title: "Proposal Acceptance", page: 18 },
+      { title: "Appendices A–F", page: 19 },
+      { title: "Appendices G–L", page: 20 },
     ],
   },
 ] as const;
 
 export const executiveSummaryFlow = {
-  current: ["SAP ERP", "CRM", "Manual Compliance"],
+  current: ["Microsoft Dynamics", "Cash Sales", "Manual Compliance"],
   future: [
-    "Infinity Compliance Gateway",
-    "Motheo Compliance Engine",
+    "Motheo Compliance Layer",
+    "Motheo POS",
     "Revenue Services Lesotho",
-    "Future Enterprise Compliance",
+    "Future Motheo Compliance",
   ],
 } as const;
 
@@ -120,7 +104,7 @@ export const strategicOutcomes = [
     benefit: "Improved operational efficiency",
   },
   {
-    title: "Enterprise Visibility",
+    title: "Operational Visibility",
     description: "Real-time monitoring and operational dashboards.",
     benefit: "Enhanced audit readiness",
   },
@@ -131,7 +115,7 @@ export const strategicOutcomes = [
   },
   {
     title: "Future Scalability",
-    description: "Enterprise architecture designed for future growth and regulatory change.",
+    description: "Motheo platform ready for future growth and regulatory change.",
     benefit: "Future-proof regulatory compliance",
   },
 ] as const;
@@ -142,34 +126,34 @@ export const keyBusinessBenefits = [
   "Increased reporting accuracy",
   "Faster audit preparation",
   "Enhanced governance",
-  "Scalable enterprise platform",
+  "Scalable Motheo platform",
 ] as const;
 
-export const barloworldBusinessAreas = [
-  "Equipment Sales",
-  "Equipment Rental",
-  "Parts Distribution",
-  "Workshop Operations",
-  "Field Service",
+export const tseboBusinessAreas = [
+  "Facilities Management",
+  "Catering Services",
+  "Cleaning & Hygiene",
+  "Security Services",
+  "Remote Site Solutions",
+  "Energy & Water Management",
   "Customer Billing",
-  "Accounts Receivable",
-  "Finance Operations",
+  "Cash Sale Operations",
 ] as const;
 
 export const businessChallenges = [
-  "Maintaining uninterrupted SAP ERP operations.",
-  "Integrating enterprise systems with external regulatory platforms.",
-  "Managing digital certificates and secure communications.",
-  "Supporting high transaction volumes with minimal latency.",
+  "Keeping Microsoft Dynamics operations uninterrupted.",
+  "Connecting Dynamics invoices to the Lekuka fiscal platform.",
+  "Fiscalising cash sale receipts at the point of sale.",
+  "Managing digital certificates and secure submissions.",
   "Providing complete audit traceability.",
-  "Remaining compliant with future regulatory changes.",
+  "Staying aligned with future Revenue Services Lesotho changes.",
 ] as const;
 
 export const gatewayCapabilities = [
-  "Enterprise integration layer",
-  "Secure API gateway",
+  "Motheo Compliance Layer",
+  "Microsoft Dynamics connectivity",
+  "Motheo POS for cash sales",
   "Certificate management",
-  "High-volume processing",
   "Complete audit logging",
   "Regulatory update support",
 ] as const;
@@ -177,7 +161,7 @@ export const gatewayCapabilities = [
 export const aboutInfinityIntro = [
   "Infinity Business Dynamics is an enterprise technology company specialising in systems integration, regulatory compliance platforms, digital transformation and managed technology services.",
   "We partner with organisations to modernise business operations through intelligent software solutions that improve efficiency, governance and regulatory compliance.",
-  "Our multidisciplinary team combines expertise in enterprise architecture, SAP integration, API development, compliance automation and project delivery.",
+  "Our multidisciplinary team combines expertise in enterprise architecture, Dynamics integration, API development, compliance automation and project delivery.",
 ] as const;
 
 export const companyCredentials = [
@@ -213,9 +197,9 @@ export const coreCapabilities = [
       "Connecting business systems, data flows and compliance platforms across the enterprise landscape.",
   },
   {
-    title: "SAP ERP Integration",
+    title: "Microsoft Dynamics Integration",
     description:
-      "Specialist SAP ERP connectivity that preserves existing workflows while enabling fiscal compliance.",
+      "Microsoft Dynamics connectivity that preserves existing workflows while enabling fiscal compliance.",
   },
   {
     title: "Compliance Automation",
@@ -256,9 +240,9 @@ export const whyChooseInfinity = [
       "Proven capability designing secure middleware that connects enterprise systems with external regulatory and compliance platforms.",
   },
   {
-    title: "SAP ERP Integration Expertise",
+    title: "Microsoft Dynamics Integration Expertise",
     description:
-      "Specialist experience integrating SAP ERP environments with compliance gateways while preserving existing business workflows.",
+      "Proven experience integrating Microsoft Dynamics environments with compliance gateways while preserving existing business workflows.",
   },
   {
     title: "Secure API Architecture",
@@ -283,16 +267,16 @@ export const whyChooseInfinity = [
 ] as const;
 
 export const rslAccreditationIntro = [
-  "Infinity Business Dynamics is an accredited provider of Revenue Services Lesotho electronic billing solutions. This accreditation confirms that Infinity is authorised to implement and support Lekuka-compliant fiscal reporting for enterprise organisations operating in Lesotho.",
-  "Our proposed Enterprise Compliance Gateway leverages the certified Motheo Compliance Engine while adding enterprise integration, monitoring, security and orchestration capabilities specifically designed for large organisations. The gateway extends the certified core with the middleware, controls and operational tooling required for a complex SAP ERP and CRM environment.",
-  "This approach provides Barloworld Equipment with a certified, enterprise-grade solution that reduces implementation risk while supporting long-term operational success. Barloworld gains a proven compliance pathway without disrupting core ERP processes, together with the scalability to accommodate regulatory change and future business growth.",
+  "Infinity Business Dynamics is an accredited provider of Revenue Services Lesotho electronic billing solutions. This accreditation confirms that Infinity is authorised to implement and support Lekuka-compliant fiscal reporting for organisations operating in Lesotho.",
+  "For Tsebo, we propose Motheo Compliance Layer — powered by the certified Motheo Compliance Engine — as a straightforward compliance path for Microsoft Dynamics, together with Motheo POS for cash sale transactions. Monitoring, security and orchestration are included without over-engineering the architecture.",
+  "Tsebo gains a proven, accredited compliance pathway that preserves Dynamics workflows, fiscalises cash sales at the till, and scales with regulatory change — without the complexity of a heavyweight custom enterprise build.",
 ] as const;
 
 export const gatewayIncludes = [
   "Certified Motheo Compliance Engine",
-  "Enterprise Integration Layer",
-  "SAP ERP Connectivity",
-  "CRM Integration",
+  "Motheo Compliance Layer",
+  "Microsoft Dynamics Connectivity",
+  "Motheo POS (Cash Sales)",
   "Secure API Gateway",
   "Monitoring & Analytics",
   "Audit Logging",
@@ -301,20 +285,20 @@ export const gatewayIncludes = [
 
 export const rslAccreditationFlowSteps = [
   {
-    title: "Enterprise Users",
-    description: "Barloworld teams initiate invoices and compliance transactions.",
+    title: "Tsebo Users",
+    description: "Teams initiate invoices, receipts and compliance transactions.",
   },
   {
-    title: "SAP ERP & CRM",
-    description: "Core enterprise systems generate qualifying fiscal events.",
+    title: "Dynamics & Motheo POS",
+    description: "Microsoft Dynamics and Motheo POS generate qualifying fiscal events.",
   },
   {
-    title: "Infinity Compliance Gateway",
-    description: "Secure middleware orchestrates regulatory communication.",
+    title: "Motheo Compliance Layer",
+    description: "Certified layer orchestrates validation and regulatory communication.",
   },
   {
     title: "Motheo Compliance Engine",
-    description: "Certified engine validates and fiscalises each transaction.",
+    description: "Validates, signs and fiscalises each transaction.",
   },
   {
     title: "Revenue Services Lesotho",
@@ -325,19 +309,19 @@ export const rslAccreditationFlowSteps = [
 export const rslAccreditationFlow = rslAccreditationFlowSteps.map((step) => step.title);
 
 export const solutionEcosystemFlow = [
-  "Barloworld Users",
-  "SAP ERP",
-  "CRM",
-  "Infinity Compliance Gateway",
+  "Tsebo Users",
+  "Microsoft Dynamics",
+  "Motheo POS",
+  "Motheo Compliance Layer",
   "Motheo Compliance Engine",
   "Revenue Services Lesotho",
 ] as const;
 
-/** Compact five-step overview — Users → SAP/CRM → gateway → Motheo → RSL */
+/** Compact five-step overview — Users → Dynamics/POS → Motheo → RSL */
 export const solutionOverviewFlow = [
-  "Barloworld Users",
-  "SAP ERP & CRM",
-  "Infinity Compliance Gateway",
+  "Tsebo Users",
+  "Dynamics & Motheo POS",
+  "Motheo Compliance Layer",
   "Motheo Compliance Engine",
   "Revenue Services Lesotho",
 ] as const;
@@ -352,19 +336,19 @@ export const solutionFloatingCards = [
 
 export const solutionComponents = [
   {
-    title: "SAP ERP",
+    title: "Microsoft Dynamics",
     description:
-      "Financial transactions, billing, customer master data and accounts receivable remain within SAP as the system of record.",
+      "Financial transactions, billing, customer master data and accounts receivable remain within Microsoft Dynamics as the system of record.",
   },
   {
-    title: "CRM Platform",
+    title: "Motheo POS",
     description:
-      "Customer information, quotations, sales activities and service interactions continue to operate independently while sharing relevant billing information with the Compliance Gateway.",
+      "Cash sale transactions at the point of sale are fiscalised in real time, with receipts submitted through the Motheo Compliance Engine.",
   },
   {
-    title: "Infinity Compliance Gateway",
+    title: "Motheo Compliance Layer",
     description:
-      "Acts as the enterprise integration and orchestration platform responsible for: Transaction validation, API orchestration, Security enforcement, Monitoring, Error handling, Compliance reporting",
+      "Provides the Motheo compliance path responsible for: Transaction validation, API orchestration, Security enforcement, Monitoring, Error handling, Compliance reporting",
   },
   {
     title: "Motheo Compliance Engine",
@@ -378,7 +362,7 @@ export const solutionComponents = [
 ] as const;
 
 export const solutionBusinessBenefits = [
-  "No disruption to SAP",
+  "No disruption to Dynamics",
   "Enterprise-grade scalability",
   "Centralised compliance",
   "Secure integration",
@@ -414,20 +398,20 @@ export const enterprisePrinciples = [
   { title: "Auditability", description: "Providing complete transaction traceability." },
 ] as const;
 
-export const sapIntegrationScope = [
+export const dynamicsIntegrationScope = [
   {
-    title: "SAP ECC6 SD Billing",
-    description: "Sales and distribution billing documents triggered at invoice post.",
+    title: "Dynamics Sales Billing",
+    description: "Sales invoices and billing documents triggered on posting in Dynamics.",
     inline: true,
   },
   {
-    title: "FI Accounts Receivable",
+    title: "Dynamics Accounts Receivable",
     description: "Financial accounting invoices, credits and adjustments.",
     inline: true,
   },
   {
-    title: "CRM Field Service Billing",
-    description: "Field service transactions routed through the same compliance path.",
+    title: "Service & Contract Billing",
+    description: "Service and contract billing routed through the same Motheo compliance path.",
     inline: true,
   },
   {
@@ -441,13 +425,13 @@ export const sapIntegrationScope = [
     inline: true,
   },
   {
-    title: "Print Form Write-back",
-    description: "QR code URL, fiscal signature and receipt counter returned to SmartForms.",
+    title: "Document Write-back",
+    description: "QR code URL, fiscal signature and receipt counter returned to Dynamics document outputs.",
     inline: true,
   },
 ] as const;
 
-export const sapIntegrationServices = [
+export const dynamicsIntegrationServices = [
   "Secure API communication",
   "Data transformation",
   "Validation",
@@ -456,50 +440,50 @@ export const sapIntegrationServices = [
   "Retry mechanisms",
 ] as const;
 
-export const sapArchitectureFlow = [
-  "SAP FI",
-  "SAP SD",
+export const dynamicsArchitectureFlow = [
+  "Dynamics Finance",
+  "Dynamics Sales",
   "Customer Master",
   "Billing",
-  "SAP APIs",
-  "Infinity Compliance Gateway",
+  "Dynamics APIs",
+  "Motheo Compliance Layer",
   "Motheo Engine",
   "Lekuka",
 ] as const;
 
-export const sapSideCards = ["Monitoring", "Audit", "Retry", "Notifications"] as const;
+export const dynamicsSideCards = ["Monitoring", "Audit", "Retry", "Notifications"] as const;
 
-export const crmIntegrationServices = [
-  "Customer Synchronisation",
-  "Billing Events",
-  "Customer Validation",
-  "Sales Transactions",
-  "Invoice Requests",
-  "Service Billing",
+export const posIntegrationServices = [
+  "Cash Sale Capture",
+  "Receipt Fiscalisation",
+  "Tender Validation",
+  "Cash Sales",
+  "Receipt Issuance",
+  "POS Settlement",
 ] as const;
 
-export const crmBenefits = [
-  "Unified reporting",
-  "Consistent customer data",
-  "Reduced duplication",
-  "Improved governance",
+export const posBenefits = [
+  "Unified fiscal reporting",
+  "Consistent receipt data",
+  "No dual capture",
+  "Point-of-sale compliance",
 ] as const;
 
-export const crmFlowSteps = [
+export const posFlowSteps = [
   {
-    title: "CRM",
-    description: "Customer engagement, sales and service billing events.",
+    title: "Motheo POS",
+    description: "Cash sales captured and receipted at the point of sale.",
   },
   {
-    title: "Compliance Gateway",
-    description: "Routes CRM transactions into the unified compliance pipeline.",
+    title: "Compliance Layer",
+    description: "Routes POS receipts into Motheo Compliance Layer.",
   },
   {
-    title: "SAP",
-    description: "Authoritative financial and master data source of record.",
+    title: "Dynamics",
+    description: "Account sales remain in Microsoft Dynamics as system of record.",
   },
   {
-    title: "Motheo",
+    title: "Motheo Engine",
     description: "Validates, fiscalises and formats regulatory payloads.",
   },
   {
@@ -508,7 +492,7 @@ export const crmFlowSteps = [
   },
 ] as const;
 
-export const crmFlow = crmFlowSteps.map((step) => step.title);
+export const posFlow = posFlowSteps.map((step) => step.title);
 
 export const apiServices = [
   {
@@ -651,7 +635,7 @@ export const motheoRadialNodes = [
 export const motheoEnterpriseBenefits = [
   "Certified compliance",
   "Reliable processing",
-  "Enterprise scalability",
+  "Reliable operations",
   "Future regulatory readiness",
 ] as const;
 
@@ -677,7 +661,7 @@ export const securityFlow = [
   "Users",
   "Authentication",
   "API Gateway",
-  "Compliance Gateway",
+  "Motheo Compliance Layer",
   "Encryption Layer",
   "Revenue Services Lesotho",
 ] as const;
@@ -687,7 +671,7 @@ export const securityBadges = ["TLS", "Certificates", "RBAC", "Encryption", "Aud
 export const securityBusinessBenefits = [
   {
     title: "Secure enterprise communications",
-    description: "Encrypted, authenticated channels between SAP, CRM, gateway and RSL.",
+    description: "Encrypted, authenticated channels between Dynamics, Motheo POS, gateway and RSL.",
     inline: true,
   },
   {
@@ -697,11 +681,11 @@ export const securityBusinessBenefits = [
   },
   {
     title: "Compliance with regulatory security requirements",
-    description: "Meets RSL obligations and Barloworld enterprise security standards.",
+    description: "Meets RSL obligations and Tsebo enterprise security standards.",
     inline: true,
   },
   {
-    title: "Improved governance",
+    title: "Point-of-sale compliance",
     description: "RBAC and monitoring enforce accountability across users and systems.",
     inline: true,
   },
@@ -713,7 +697,7 @@ export const securityBusinessBenefits = [
 ] as const;
 
 export const transactionLifecycleSteps = [
-  { step: "01", title: "Transaction Created", description: "Invoice, credit note, debit note, receipt or payout generated in SAP SD/FI-AR or CRM." },
+  { step: "01", title: "Transaction Created", description: "Invoice, credit note, debit note, receipt or payout generated in Microsoft Dynamics or Motheo POS." },
   { step: "02", title: "Validation", description: "Business rules and mandatory fields are validated." },
   { step: "03", title: "Transformation", description: "Transaction converted into the Revenue Services Lesotho API format." },
   { step: "04", title: "Fiscal Processing", description: "Transaction processed through the Motheo Compliance Engine." },
@@ -870,7 +854,7 @@ export const dashboardBenefits = [
     inline: true,
   },
   {
-    title: "Improved governance",
+    title: "Point-of-sale compliance",
     description: "Audit-ready visibility for finance and compliance teams.",
     inline: true,
   },
@@ -981,7 +965,7 @@ export const resilienceBusinessBenefits = [
   },
   {
     title: "Business continuity",
-    description: "Core finance operations continue with minimal impact on Barloworld users.",
+    description: "Core finance operations continue with minimal impact on Tsebo users.",
     inline: true,
   },
 ] as const;
@@ -1033,7 +1017,7 @@ export const reportingBusinessBenefits = [
     inline: true,
   },
   {
-    title: "Improved governance",
+    title: "Point-of-sale compliance",
     description: "Scheduled reports strengthen oversight and audit readiness.",
     inline: true,
   },
@@ -1052,20 +1036,20 @@ export const reportingBusinessBenefits = [
 export const implementationPhases = [
   {
     phase: "Phase 1 – Discover",
-    summary: "Understand Barloworld's business processes, SAP environment, CRM landscape and compliance requirements.",
-    activities: ["Project Kick-off", "Stakeholder Workshops", "Requirements Gathering", "Infrastructure Assessment", "SAP & CRM Assessment", "Compliance Review"],
+    summary: "Understand Tsebo's business processes, Microsoft Dynamics landscape and compliance requirements.",
+    activities: ["Project Kick-off", "Stakeholder Workshops", "Requirements Gathering", "Infrastructure Assessment", "Dynamics & POS Assessment", "Compliance Review"],
     deliverables: ["Project Charter", "Requirements Specification", "Solution Scope", "Risk Register"],
   },
   {
     phase: "Phase 2 – Design",
     summary: "Design the enterprise solution architecture and integration framework.",
-    activities: ["Architecture Design", "API Mapping", "SAP Integration Design", "Security Design", "Compliance Configuration"],
+    activities: ["Architecture Design", "API Mapping", "Dynamics Integration Design", "Security Design", "Compliance Configuration"],
     deliverables: ["Solution Architecture", "Integration Design", "Technical Specification"],
   },
   {
     phase: "Phase 3 – Build",
-    summary: "Configure and develop the Compliance Gateway.",
-    activities: ["Gateway Configuration", "API Development", "SAP Integration", "CRM Integration", "Compliance Rules", "Certificate Configuration"],
+    summary: "Configure Motheo Compliance Layer and Motheo POS.",
+    activities: ["Gateway Configuration", "API Development", "Dynamics Integration", "Motheo POS", "Compliance Rules", "Certificate Configuration"],
     deliverables: ["Configured Platform", "Integration Services", "Test Environment"],
   },
   {
@@ -1085,7 +1069,7 @@ export const implementationPhases = [
 export const implementationLifecycle = ["Discover", "Design", "Build", "Validate", "Deploy", "Support"] as const;
 
 export const governanceObjectives = [
-  { title: "Strategic Oversight", description: "Ensure alignment with Barloworld's strategic objectives." },
+  { title: "Strategic Oversight", description: "Ensure alignment with Tsebo's strategic objectives." },
   { title: "Risk Management", description: "Identify, assess and mitigate project risks." },
   { title: "Quality Assurance", description: "Ensure all deliverables meet agreed quality standards." },
   { title: "Stakeholder Engagement", description: "Maintain regular communication with project stakeholders." },
@@ -1096,7 +1080,7 @@ export const governanceStructure = [
   {
     title: "Executive Steering Committee",
     description:
-      "Senior Barloworld leadership sets strategic direction, approves major decisions and confirms alignment with enterprise priorities. Convenes at stage gates to review progress, risks, budget and readiness for production.",
+      "Senior Tsebo leadership sets strategic direction, approves major decisions and confirms alignment with enterprise priorities. Convenes at stage gates to review progress, risks, budget and readiness for production.",
   },
   {
     title: "Project Sponsor",
@@ -1111,7 +1095,7 @@ export const governanceStructure = [
   {
     title: "Technical Workstream",
     description:
-      "Delivers SAP integration, API orchestration, infrastructure provisioning and security configuration for the Compliance Gateway. Ensures technical readiness, integration testing and performance validation before deployment.",
+      "Delivers Dynamics integration, Motheo POS setup, API orchestration, infrastructure provisioning and security configuration for Motheo Compliance Layer. Ensures technical readiness, integration testing and performance validation before deployment.",
   },
   {
     title: "Compliance Workstream",
@@ -1138,7 +1122,7 @@ export const projectTeam = [
   ["Executive Sponsor", "Executive oversight and governance"],
   ["Project Manager", "Project planning and delivery"],
   ["Enterprise Solution Architect", "Overall solution architecture"],
-  ["SAP Integration Specialist", "SAP integration and configuration"],
+  ["Dynamics Integration Specialist", "Microsoft Dynamics integration and configuration"],
   ["API Integration Engineer", "API development and orchestration"],
   ["Compliance Consultant", "Revenue Services Lesotho compliance"],
   ["QA & Test Lead", "Testing and quality assurance"],
@@ -1150,7 +1134,7 @@ export const projectPrinciples = [
   {
     title: "Collaboration",
     description:
-      "Joint planning with Barloworld SMEs across business, IT and compliance, with shared ownership of outcomes from discovery through hypercare.",
+      "Joint planning with Tsebo SMEs across business, IT and compliance, with shared ownership of outcomes from discovery through hypercare.",
     inline: true,
   },
   {
@@ -1180,13 +1164,13 @@ export const projectPrinciples = [
   {
     title: "Regulatory Compliance",
     description:
-      "Every design, build and test decision validated against RSL fiscal rules and Barloworld compliance obligations before production sign-off.",
+      "Every design, build and test decision validated against RSL fiscal rules and Tsebo compliance obligations before production sign-off.",
     inline: true,
   },
   {
     title: "Smooth Go-Live Transition",
     description:
-      "Controlled cutover planning, rehearsal and hypercare support so Barloworld moves into production with minimal disruption and full operational confidence.",
+      "Controlled cutover planning, rehearsal and hypercare support so Tsebo moves into production with minimal disruption and full operational confidence.",
     inline: true,
   },
 ] as const;
@@ -1197,7 +1181,7 @@ export const workstreams = [
     items: [
       {
         title: "Requirements",
-        description: "Capture fiscal, SAP and CRM compliance needs with Barloworld SMEs.",
+        description: "Capture fiscal, Dynamics and POS compliance needs with Tsebo SMEs.",
         inline: true,
       },
       {
@@ -1216,7 +1200,7 @@ export const workstreams = [
     title: "Technical Workstream",
     items: [
       {
-        title: "SAP Integration",
+        title: "Dynamics Integration",
         description: "Configure ERP triggers, mappings and error handling.",
         inline: true,
       },
@@ -1257,7 +1241,7 @@ export const workstreams = [
     items: [
       {
         title: "Knowledge Transfer",
-        description: "Hand over solution configuration to Barloworld IT and support teams.",
+        description: "Hand over solution configuration to Tsebo IT and support teams.",
         inline: true,
       },
       {
@@ -1304,14 +1288,14 @@ export const successFactors = [
 
 export const projectTimeline = [
   ["Project Initiation", "Week 1"],
-  ["Discovery & Assessment", "Week 1–2"],
-  ["Solution Design", "Week 2–3"],
-  ["Configuration & Development", "Week 3–6"],
-  ["Integration & Testing", "Week 6–7"],
-  ["User Acceptance Testing", "Week 8"],
-  ["Training", "Week 8"],
-  ["Production Go-Live", "Week 9"],
-  ["Hypercare Support", "Week 10"],
+  ["Discovery & Assessment", "Week 1"],
+  ["Solution Design", "Week 2"],
+  ["Dynamics Integration & Motheo POS Setup", "Week 2–4"],
+  ["Integration & Testing", "Week 4–5"],
+  ["User Acceptance Testing", "Week 5"],
+  ["Training", "Week 5"],
+  ["Production Go-Live", "Week 6"],
+  ["Hypercare Support", "Week 7"],
 ] as const;
 
 export const keyMilestones = [
@@ -1322,11 +1306,11 @@ export const keyMilestones = [
   },
   {
     title: "Architecture Sign-off",
-    description: "Approved solution design for SAP, CRM, gateway and security integration.",
+    description: "Approved solution design for Dynamics, Motheo POS, gateway and security integration.",
     inline: true,
   },
   {
-    title: "SAP Integration Complete",
+    title: "Dynamics Integration Complete",
     description: "ERP connectivity tested with end-to-end fiscal submission flows.",
     inline: true,
   },
@@ -1349,7 +1333,7 @@ export const keyMilestones = [
 
 export const testingActivities = [
   { title: "Unit Testing", description: "Individual components." },
-  { title: "Integration Testing", description: "SAP, CRM and Gateway integration." },
+  { title: "Integration Testing", description: "Dynamics, Motheo POS and Gateway integration." },
   { title: "Functional Testing", description: "Business process validation." },
   { title: "Performance Testing", description: "High transaction volumes." },
   { title: "Security Testing", description: "Authentication and encryption validation." },
@@ -1367,7 +1351,7 @@ export const testingPyramid = [
   },
   {
     title: "Integration",
-    description: "Confirms SAP, CRM and Gateway work together end-to-end.",
+    description: "Confirms Dynamics, Motheo POS and Gateway work together end-to-end.",
   },
   {
     title: "Unit",
@@ -1440,7 +1424,7 @@ export const servicePrinciples = [
   {
     title: "Transparency",
     description:
-      "Clear status updates, incident tracking and visibility for Barloworld stakeholders throughout.",
+      "Clear status updates, incident tracking and visibility for Tsebo stakeholders throughout.",
     inline: true,
   },
   {
@@ -1476,7 +1460,7 @@ export const servicePrinciples = [
 ] as const;
 
 export const projectRisks = [
-  ["Integration Complexity", "Early architecture validation and integration workshops"],
+  ["Dynamics Integration", "Early architecture validation and integration workshops"],
   ["Data Quality", "Data assessment and validation prior to integration"],
   ["Regulatory Changes", "Ongoing monitoring of RSL requirements"],
   ["User Adoption", "Structured training and change management"],
@@ -1524,9 +1508,8 @@ export const riskTreatment = ["Identify", "Assess", "Mitigate", "Monitor", "Clos
 
 export const implementationServicesIncludes = [
   "Solution Design",
-  "Enterprise Architecture",
-  "SAP ERP Integration",
-  "CRM Integration",
+  "Microsoft Dynamics Integration",
+  "Motheo POS Deployment",
   "API Configuration",
   "Security Configuration",
   "Testing",
@@ -1535,28 +1518,84 @@ export const implementationServicesIncludes = [
 ] as const;
 
 export const annualManagedServicesIncludes = [
+  "Motheo Compliance Layer — annual platform & compliance management",
+  "Motheo POS subscription (cash sales)",
   "Application Support",
-  "Compliance Monitoring",
   "Regulatory Updates",
   "Performance Optimisation",
-  "Preventative Maintenance",
 ] as const;
 
+/** Commercial model aligned to EST-000227 (Alliance-style estimate structure) */
+export const commercialEstimate = {
+  reference: "EST-000227",
+  date: "12 Jul 2026",
+  currency: "LSL",
+  onceOffTotal: "97,500.00",
+  annualTotal: "172,000.00",
+  subtotal: "269,500.00",
+  vat: "40,425.00",
+  vatRate: "15%",
+  total: "309,925.00",
+} as const;
+
+export const professionalServices = [
+  {
+    service: "MS Dynamics Integration",
+    description:
+      "Once-off implementation enabling Microsoft Dynamics F&O invoices to be Lekuka-compliant with fiscal information",
+    type: "Once-off",
+    amount: "97,500.00",
+  },
+] as const;
+
+export const annualManagedServicesPricing = [
+  {
+    service: "Managed Compliance Service",
+    description: "Annual Motheo Compliance Layer platform fee and compliance management",
+    type: "Annual",
+    amount: "126,500.00",
+  },
+  {
+    service: "Motheo POS",
+    description: "Annual Motheo POS subscription for cash sale fiscalisation",
+    type: "Annual",
+    amount: "45,500.00",
+  },
+] as const;
+
+export const commercialLineItems = [
+  ...professionalServices,
+  ...annualManagedServicesPricing,
+] as const;
+
+/** Slide table — recommended Motheo POS package */
 export const pricingSummary = [
-  ["Year 1 — Licence & Implementation", "ZAR 391,500.00"],
-  ["Year 2 onwards — Annual Maintenance (subscription)", "ZAR 105,225.00 per annum"],
+  ["MS Dynamics Integration (once-off)", "LSL 97,500.00"],
+  ["Managed Compliance Service — annual", "LSL 126,500.00"],
+  ["Motheo POS — annual subscription", "LSL 45,500.00"],
+  ["Sub Total (excl. VAT)", "LSL 269,500.00"],
+  ["VAT (15%)", "LSL 40,425.00"],
+  ["Year 1 Total (incl. VAT)", "LSL 309,925.00"],
+] as const;
+
+/** Optional Intelipos path from EST-000227 — alternative to Motheo POS */
+export const pricingInteliposAlternative = [
+  ["Intelipos Integration & Device Setup (once-off)", "LSL 45,200.00"],
+  ["Intelipos Transactions Compliance Management (annual)", "LSL 35,000.00"],
 ] as const;
 
 export const pricingNotes = [
-  "All amounts quoted in ZAR unless otherwise stated.",
-  "Year 1 fee includes platform licence and full implementation (design, integration, testing, training and go-live).",
-  "Annual maintenance applies from year two onward for application support, compliance monitoring and preventative maintenance.",
-  "Volume assumption: ~400 invoices per month (subject to confirmation with BWE).",
-  "Commercials remain valid for 190 business days from RFQ submission date.",
+  `Estimate reference: ${commercialEstimate.reference} dated ${commercialEstimate.date}`,
+  "Amounts shown in Lesotho Loti (LSL)",
+  "VAT is charged at 15% where applicable",
+  "Commercial validity: 30 days from estimate date",
+  "Recommended package: Dynamics integration + Motheo Compliance Layer + Motheo POS",
+  "Optional alternative: Intelipos integration (LSL 45,200 once-off) and Intelipos compliance management (LSL 35,000 p.a.) instead of Motheo POS",
+  "Banking: Nedbank Lesotho 11990152022 · Branch 390161",
 ] as const;
 
 export const pricingAnnexureFootnote =
-  "Detailed pricing per Annexure D: Pricing Requirements (separate submission document)." as const;
+  "Detailed pricing per Estimate EST-000227 (attached)." as const;
 
 export {
   appendices,
@@ -1569,9 +1608,9 @@ export {
 } from "@/lib/submission-pack";
 
 export const supplierResponses = [
-  ["Enterprise Compliance Gateway", "Fully Compliant"],
-  ["SAP ERP Integration", "Supported"],
-  ["CRM Integration", "Supported"],
+  ["Motheo Compliance Layer", "Fully Compliant"],
+  ["Microsoft Dynamics Integration", "Supported"],
+  ["Motheo POS (Cash Sales)", "Included"],
   ["Revenue Services Lesotho Integration", "Supported"],
   ["Lekuka Document Types (5)", "Invoices · Credits · Debits · Receipts · Payouts"],
   ["API Integration", "Supported"],
@@ -1591,12 +1630,12 @@ export const whyInfinityClosing = [
   {
     title: "Enterprise Integration Expertise",
     description:
-      "Proven capability connecting SAP ERP, CRM and compliance platforms through secure APIs — enabling automated invoice submission without disrupting existing finance and operations workflows.",
+      "Proven capability connecting Microsoft Dynamics, Motheo POS and compliance platforms through secure APIs — enabling automated invoice submission without disrupting existing finance and operations workflows.",
   },
   {
-    title: "SAP Capability",
+    title: "Dynamics Capability",
     description:
-      "Deep SAP integration experience across finance, distribution and equipment operations — supporting high-volume, multi-entity invoicing within Barloworld's enterprise landscape.",
+      "Microsoft Dynamics integration experience across finance and operations — supporting reliable fiscal submission within Tsebo's workplace management landscape.",
   },
   {
     title: "Managed Services",
@@ -1620,13 +1659,13 @@ export const conclusionBenefits = [
   {
     title: "Enterprise integration",
     description:
-      "Seamless SAP ERP and CRM connectivity — eliminating manual re-keying and duplicate data capture across finance and operations.",
+      "Seamless Microsoft Dynamics and Motheo POS connectivity — eliminating manual re-keying and duplicate data capture across finance and operations.",
     inline: true,
   },
   {
     title: "Secure API connectivity",
     description:
-      "TLS-encrypted, authenticated integration between Barloworld systems, the Compliance Gateway and Revenue Services Lesotho.",
+      "TLS-encrypted, authenticated integration between Tsebo systems, Motheo Compliance Layer and Revenue Services Lesotho.",
     inline: true,
   },
   {
@@ -1650,16 +1689,28 @@ export const conclusionBenefits = [
 ] as const;
 
 export const closingStatement =
-  "We appreciate the opportunity to participate in this procurement process and look forward to partnering with Barloworld Equipment to deliver a successful implementation." as const;
+  "We appreciate the opportunity to participate in this engagement and look forward to partnering with Tsebo Solutions Group to deliver a successful implementation." as const;
 
-export const closingQuote = "Building Enterprise Compliance Through Intelligent Integration.";
+export const closingQuote = "Practical compliance through Motheo — Dynamics integrated, cash sales covered.";
 
-export const barloworldHubUnits = [
-  "Sales",
-  "Rental",
-  "Parts",
-  "Workshop",
-  "Field Service",
+export const tseboHubUnits = [
+  "Facilities",
+  "Catering",
+  "Cleaning",
+  "Security",
+  "Remote Sites",
   "Finance",
-  "Customers",
+  "POS Sales",
 ] as const;
+
+/** @deprecated aliases for earlier export names */
+export const barloworldBusinessAreas = tseboBusinessAreas;
+export const barloworldHubUnits = tseboHubUnits;
+export const sapIntegrationScope = dynamicsIntegrationScope;
+export const sapIntegrationServices = dynamicsIntegrationServices;
+export const sapArchitectureFlow = dynamicsArchitectureFlow;
+export const sapSideCards = dynamicsSideCards;
+export const crmIntegrationServices = posIntegrationServices;
+export const crmBenefits = posBenefits;
+export const crmFlowSteps = posFlowSteps;
+export const crmFlow = posFlow;

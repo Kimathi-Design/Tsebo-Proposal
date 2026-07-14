@@ -20,7 +20,7 @@ export function DeckLoadingScreen() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.55, delay: 0.12, ease: [0.16, 1, 0.3, 1] }}
         >
-          Barloworld Equipment Lesotho — Enterprise Compliance Gateway
+          Tsebo Solutions Group — Motheo Compliance Layer
         </motion.p>
       </div>
     </div>

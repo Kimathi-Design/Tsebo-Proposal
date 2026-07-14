@@ -12,8 +12,8 @@ const SIZES = {
   lg: { px: 28, className: "h-7 w-7" },
 } as const;
 
-/** BWE mark — public/images/brands/bwe-logo.png */
-export function BweMark({ size = "sm", className = "" }: IbdMarkProps) {
+/** Tsebo mark — public/images/brands/tsebo-logo.png */
+export function TseboMark({ size = "sm", className = "" }: IbdMarkProps) {
   const heights = {
     sm: "h-3.5",
     md: "h-4",
@@ -22,19 +22,24 @@ export function BweMark({ size = "sm", className = "" }: IbdMarkProps) {
 
   return (
     <Image
-      src={ASSETS.brands.bweLogo}
+      src={ASSETS.brands.tseboLogo}
       alt=""
-      width={1799}
-      height={483}
+      width={222}
+      height={37}
       aria-hidden
       className={`w-auto shrink-0 object-contain ${heights[size]} ${className}`.trim()}
     />
   );
 }
 
-/** @deprecated Use BweMark */
+/** @deprecated Use TseboMark */
+export function BweMark(props: IbdMarkProps) {
+  return <TseboMark {...props} />;
+}
+
+/** @deprecated Use TseboMark */
 export function DhlMark(props: IbdMarkProps) {
-  return <BweMark {...props} />;
+  return <TseboMark {...props} />;
 }
 
 /** IBD mark — public/favicon-ibd.png */
@@ -73,17 +78,22 @@ export function MotheoMark({ size = "sm", className = "" }: IbdMarkProps) {
   );
 }
 
-/** Horizontal BWE wordmark for cover footer */
-export function BweFooterLogo({ className = "" }: { className?: string }) {
+/** Horizontal Tsebo wordmark for cover footer */
+export function TseboFooterLogo({ className = "" }: { className?: string }) {
   return (
     <Image
-      src={ASSETS.brands.bweLogo}
-      alt="Barloworld Equipment"
-      width={1799}
-      height={483}
+      src={ASSETS.brands.tseboLogo}
+      alt="Tsebo Solutions Group"
+      width={222}
+      height={37}
       className={`h-8 w-auto shrink-0 object-contain object-left ${className}`.trim()}
     />
   );
+}
+
+/** @deprecated Use TseboFooterLogo */
+export function BweFooterLogo(props: { className?: string }) {
+  return <TseboFooterLogo {...props} />;
 }
 
 /** Horizontal IBD wordmark for slide footers */

@@ -7,7 +7,7 @@ import {
   useRef,
   useState,
 } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, Download } from "lucide-react";
 import { renderDeckSlide } from "@/components/deck/DeckSlides";
 import { DeckLoadingScreen } from "@/components/deck/DeckLoadingScreen";
@@ -22,7 +22,7 @@ import {
   slideTitles,
 } from "@/lib/deck-content";
 
-const PROPOSAL_FILENAME = "BW-Group-Motheo-Proposal.pdf";
+const PROPOSAL_FILENAME = "Tsebo-Motheo-Proposal.pdf";
 const FIT_MARGIN = 20;
 
 function computeDeckScale(navHeight: number, container?: HTMLElement | null) {
@@ -148,18 +148,15 @@ export function DeckViewer() {
                 transformOrigin: "top left",
               }}
             >
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={current}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.3, ease: "easeOut" }}
-                  className="deck-stage h-full w-full rounded-lg shadow-[0_24px_80px_-20px_rgba(13,15,26,0.18)]"
-                >
-                  {renderDeckSlide(current)}
-                </motion.div>
-              </AnimatePresence>
+              <motion.div
+                key={current}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.2, ease: "easeOut" }}
+                className="deck-stage h-full w-full rounded-lg shadow-[0_24px_80px_-20px_rgba(13,15,26,0.18)]"
+              >
+                {renderDeckSlide(current)}
+              </motion.div>
             </div>
           </div>
         )}

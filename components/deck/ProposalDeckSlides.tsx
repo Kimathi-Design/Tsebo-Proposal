@@ -4,37 +4,13 @@ import { ASSETS } from "@/lib/assets";
 import { DeckCoverFooter } from "@/components/deck/DeckCoverFooter";
 import { DeckCoverTitle } from "@/components/deck/DeckCoverHero";
 import { DeckHeaderBrand, SlideEyebrow } from "@/components/deck/SlideEyebrow";
-import { ClosingBackdrop } from "@/components/deck/visuals/ClosingBackdrop";
+import { ExecutiveSummaryVisual } from "@/components/deck/visuals/ProposalDiagrams";
 import {
-  BadgeRow,
-  CertificateCycleDiagram,
-  ComplianceMatrix,
-  DashboardMockup,
-  EscalationDiagram,
-  ExecutiveSummaryVisual,
-  FloatingCardsFlow,
-  GanttChart,
-  HorizontalWorkflow,
   HubSpokeDiagram,
-  InvoiceQrMockup,
-  LayeredArchitectureDiagram,
-  LearningJourneyDiagram,
-  OnlineOfflineCompare,
-  RadialEngineDiagram,
-  RiskHeatMap,
-  SideCardRow,
   SplitCompareDiagram,
-  SupportLifecycleDiagram,
-  TestingPyramidDiagram,
-  ValueCardsVisual,
-  VerticalFlowDiagram,
-  WorkstreamConverge,
 } from "@/components/deck/visuals/ProposalDiagrams";
-import {
-  DeckClosingQuote,
-  DeckSectionedTableOfContents,
-  DeckSignoffTaglineLogo,
-} from "@/components/deck/DeckSectionedToc";
+import { IbdFooterLogo } from "@/components/deck/IbdMark";
+import { DeckSectionedTableOfContents } from "@/components/deck/DeckSectionedToc";
 import {
   DeckBody,
   DeckBulletList,
@@ -43,105 +19,34 @@ import {
   DeckSectionLabel,
   DeckSlideFrame,
   DeckSlideBodySplit,
-  DeckTable,
   DeckTitle,
 } from "@/components/deck/DeckSlideFrame";
 import {
-  appendices,
-  architectureLayers,
-  architecturePrinciples,
-  availableReports,
-  barloworldBusinessAreas,
-  barloworldHubUnits,
+  aboutInfinityIntro,
+  tseboBusinessAreas,
+  tseboHubUnits,
   businessChallenges,
-  certificateLifecycle,
-  certificateServices,
-  closingQuote,
-  conclusionBenefits,
+  companyCredentials,
   coreCapabilities,
-  crmBenefits,
-  crmFlow,
-  crmIntegrationServices,
-  enterprisePrinciples,
-  escalationLevels,
   executiveLetter,
-  gatewayIncludes,
   gatewayCapabilities,
-  implementationLifecycle,
-  implementationPhases,
-  implementationServicesIncludes,
-  annualManagedServicesIncludes,
   keyBusinessBenefits,
-  keyMilestones,
-  learningJourney,
-  managedServices,
-  motheoCoreServices,
-  motheoEnterpriseBenefits,
-  motheoRadialNodes,
-  onlineProcessing,
-  offlineProcessing,
-  pricingNotes,
-  pricingSummary,
-  projectPrinciples,
-  projectRisks,
-  projectTeam,
-  projectTimeline,
-  qrCallouts,
-  qrFeatures,
-  recoveryWorkflow,
-  resilienceFeatures,
-  riskPrinciples,
-  riskTreatment,
-  rslAccreditationFlow,
-  sapArchitectureFlow,
-  sapIntegrationScope,
-  sapIntegrationServices,
-  sapSideCards,
-  serviceLevels,
-  servicePrinciples,
-  solutionBusinessBenefits,
-  solutionComponents,
-  solutionEcosystemFlow,
-  solutionFloatingCards,
   strategicOutcomes,
-  successFactors,
-  supplierResponses,
-  supportLifecycle,
-  testingActivities,
-  testingPyramid,
-  trainingAudience,
-  trainingDeliverables,
-  transactionLifecycleSteps,
-  transactionWorkflow,
   whyChooseInfinity,
-  whyInfinityClosing,
-  workstreams,
-  apiBusinessBenefits,
-  apiFeatures,
-  apiGatewayFlow,
-  apiServices,
-  dashboardModules,
-  governanceObjectives,
-  governanceOrgChart,
-  governanceStructure,
-  securityBadges,
-  securityControls,
-  securityFlow,
-  securityPrinciples,
 } from "@/lib/deck-proposal-content";
 import {
+  BWE_HUB_UNIT_ICONS,
+  BUSINESS_CHALLENGE_ICONS,
   CORE_SERVICE_AREA_ICONS,
-  GOVERNANCE_OBJECTIVE_ICONS,
-  MOTHEO_COMPONENT_ICONS,
+  GATEWAY_CAPABILITY_ICONS,
   STRATEGIC_OUTCOME_ICONS,
   WHY_INFINITY_CARD_ICONS,
-  deckIcon,
   mapDeckIcons,
 } from "@/components/deck/deck-icons";
 import { renderProposalSlidesExtended } from "@/components/deck/ProposalDeckSlidesExtended";
 
 export function renderProposalSlide(index: number) {
-  if (index >= 5) {
+  if (index >= 6) {
     return renderProposalSlidesExtended(index);
   }
 
@@ -167,37 +72,34 @@ export function renderProposalSlide(index: number) {
           <SlideEyebrow index={1} />
           <DeckTitle>Letter of Submission</DeckTitle>
           <div className="space-y-4">
-            <div className="deck-type-body">
+            <div className="deck-type-body space-y-1">
               <p>
-                <span className="font-medium text-[color:var(--gms-text)]">To:</span>{" "}
+                <span className="font-semibold text-[color:var(--gms-text)]">To:</span>{" "}
                 {executiveLetter.to}
               </p>
-              <p className="mt-1">{executiveLetter.toOrg}</p>
+              <p className="font-semibold text-[color:var(--gms-text)]">{executiveLetter.toOrg}</p>
               <p>{executiveLetter.toLocation}</p>
             </div>
-            <p className="deck-type-body">
+            <p className="deck-type-body font-semibold text-[color:var(--gms-text)]">
               {executiveLetter.salutation}
             </p>
-            {executiveLetter.paragraphs.slice(0, 5).map((paragraph) => (
-              <DeckBody key={paragraph}>{paragraph}</DeckBody>
+            {executiveLetter.paragraphs.map((paragraph) => (
+              <DeckBody key={paragraph.slice(0, 48)}>{paragraph}</DeckBody>
             ))}
-            <p className="deck-type-body text-deck-accent">The implementation includes:</p>
-            <DeckBulletList compact items={[...gatewayIncludes]} />
-            {executiveLetter.paragraphs.slice(5).map((paragraph) => (
-              <DeckBody key={paragraph}>{paragraph}</DeckBody>
-            ))}
-          </div>
-          <div
-            className="mt-8 shrink-0 border-t border-[color:var(--gms-border)]"
-            aria-hidden
-          />
-          <div className="h-40 shrink-0" aria-hidden />
-          <div className="shrink-0">
-            <DeckBody>{executiveLetter.closing}</DeckBody>
-            <p className="deck-type-body mt-3 font-semibold">
-              {executiveLetter.signatureOrg}
-            </p>
-            <DeckSignoffTaglineLogo tagline={executiveLetter.signatureTagline} />
+            <div className="flex items-end justify-between gap-6 pt-4">
+              <div>
+                <p className="deck-type-body font-semibold text-[color:var(--gms-text)]">
+                  {executiveLetter.closing}
+                </p>
+                <p className="deck-type-body mt-3 font-semibold text-[color:var(--gms-text)]">
+                  {executiveLetter.signatureOrg}
+                </p>
+                <p className="deck-type-body mt-1 text-[color:var(--gms-text-muted)]">
+                  {executiveLetter.signatureTagline}
+                </p>
+              </div>
+              <IbdFooterLogo className="h-10 shrink-0 translate-y-[30px] self-end" />
+            </div>
           </div>
         </DeckSlideFrame>
       );
@@ -219,48 +121,34 @@ export function renderProposalSlide(index: number) {
         <DeckSlideFrame index={3}>
           <SlideEyebrow index={3} />
           <DeckSlideBodySplit visual={<ExecutiveSummaryVisual />}>
-            <DeckTitle highlight="Intelligent Integration">
-              Enabling Enterprise Compliance Through
+            <DeckTitle highlight="Motheo Compliance">
+              Enabling Lekuka Compliance Through
             </DeckTitle>
             <DeckBody>
-              Barloworld Equipment operates a sophisticated enterprise environment that supports
-              equipment sales, rental operations, aftermarket parts, workshop services and customer
-              support across multiple business functions.
+              Tsebo Solutions Group delivers Integrated Workplace Management Solutions — facilities,
+              catering, cleaning, security, remote sites and related services — generating both
+              enterprise invoices and cash-sale receipts.
             </DeckBody>
             <DeckBody>
-              The introduction of Revenue Services Lesotho&apos;s Electronic Billing System (EBS)
-              requires qualifying fiscal transactions to be validated, digitally signed and reported
-              through the Lekuka platform in accordance with statutory requirements.
+              Revenue Services Lesotho&apos;s Electronic Billing System (EBS) requires qualifying fiscal
+              transactions to be validated, digitally signed and reported through Lekuka in real
+              time, with fiscal signatures and QR codes on customer documents.
             </DeckBody>
             <DeckBody>
-              For Barloworld Equipment, compliance must be achieved without disrupting existing SAP
-              ERP and CRM business processes.
+              For Tsebo, this is a straightforward arrangement: Motheo Compliance Layer integrates
+              with Microsoft Dynamics for account billing, and Motheo POS covers cash sale
+              transactions — without disrupting day-to-day operations.
             </DeckBody>
-            <DeckBody>
-              Infinity Business Dynamics proposes the Infinity Compliance Gateway, powered by the
-              Motheo Compliance Engine, as a secure middleware platform that bridges enterprise
-              systems with the Revenue Services Lesotho compliance ecosystem.
-            </DeckBody>
-            <DeckBody>
-              The solution provides an intelligent compliance layer that automates fiscal validation,
-              transaction reporting, QR code generation, certificate management and regulatory
-              monitoring while preserving operational continuity.
-            </DeckBody>
-            <DeckSectionLabel>Expected Business Outcomes</DeckSectionLabel>
-            <DeckBulletList
-              items={[
-                "Automated fiscal reporting",
-                "Seamless SAP ERP and CRM integration",
-                "Reduced compliance risk",
-                "Improved operational efficiency",
-                "Enhanced audit readiness",
-                "Future-proof regulatory compliance",
-              ]}
+            <DeckSectionLabel>Expected Outcomes</DeckSectionLabel>
+            <DeckOutcomeCardList
+              items={strategicOutcomes.map((item) => ({
+                title: item.title,
+                description: item.description,
+              }))}
+              icons={STRATEGIC_OUTCOME_ICONS}
             />
-            <DeckBody>
-              The proposed solution enables Barloworld Equipment to meet statutory obligations while
-              maintaining enterprise-grade security, scalability and business continuity.
-            </DeckBody>
+            <DeckSectionLabel>Key Benefits</DeckSectionLabel>
+            <DeckBulletList compact columns={2} items={[...keyBusinessBenefits]} />
           </DeckSlideBodySplit>
         </DeckSlideFrame>
       );
@@ -269,32 +157,73 @@ export function renderProposalSlide(index: number) {
       return (
         <DeckSlideFrame index={4}>
           <SlideEyebrow index={4} />
-          <DeckTitle highlight="Delivering Value Beyond Compliance">
-            Strategic Business Outcomes
-          </DeckTitle>
-          <DeckBody>
-            The implementation of the Infinity Compliance Gateway provides measurable business value
-            across finance, operations, governance and customer service.
-          </DeckBody>
-          <DeckBody>Compliance is only one outcome of the proposed solution.</DeckBody>
-          <DeckBody>
-            The platform also improves operational efficiency, strengthens governance and provides
-            a scalable foundation for future digital transformation initiatives.
-          </DeckBody>
           <DeckSlideBodySplit
             visual={
-              <DeckOutcomeCardList
-                items={strategicOutcomes.map((item) => ({
-                  title: item.title,
-                  description: item.description,
-                }))}
-                icons={STRATEGIC_OUTCOME_ICONS}
-              />
+              <div className="flex h-full min-h-0 flex-1 flex-col gap-4">
+                <HubSpokeDiagram
+                  center="Tsebo"
+                  nodes={tseboHubUnits}
+                  gateway="Motheo Compliance Layer"
+                  icons={BWE_HUB_UNIT_ICONS}
+                />
+                <SplitCompareDiagram
+                  leftTitle="Business Challenges"
+                  rightTitle="Motheo Capabilities"
+                  leftItems={businessChallenges}
+                  rightItems={gatewayCapabilities}
+                  leftIcons={BUSINESS_CHALLENGE_ICONS}
+                  rightIcons={GATEWAY_CAPABILITY_ICONS}
+                />
+              </div>
             }
           >
-            <DeckSectionLabel>Key Business Benefits</DeckSectionLabel>
-            <DeckBulletList items={[...keyBusinessBenefits]} />
+            <DeckTitle highlight="Need & Challenges">Tsebo</DeckTitle>
+            <DeckBody>
+              Tsebo Solutions Group is a trusted leader in Integrated Workplace Management
+              Solutions across corporate, healthcare, education, mining, industrial and event
+              environments.
+            </DeckBody>
+            <DeckBody>
+              Operations span facilities management, catering, cleaning and hygiene, security,
+              remote site solutions, energy and water management — generating invoices and cash-sale
+              receipts that must meet Lekuka reporting obligations.
+            </DeckBody>
+            <DeckBody>
+              Motheo Compliance Layer and Motheo POS address those obligations through Microsoft
+              Dynamics connectivity and point-of-sale fiscalisation — without a heavyweight custom
+              build.
+            </DeckBody>
+            <DeckSectionLabel>Key Business Areas</DeckSectionLabel>
+            <DeckBulletList compact columns={2} items={[...tseboBusinessAreas]} />
           </DeckSlideBodySplit>
+        </DeckSlideFrame>
+      );
+
+    case 5:
+      return (
+        <DeckSlideFrame index={5}>
+          <SlideEyebrow index={5} />
+          <DeckTitle highlight="Accredited Motheo Partner">Why Infinity</DeckTitle>
+          <DeckBody>
+            Tsebo needs an accredited Motheo partner who can integrate Microsoft Dynamics, deploy
+            Motheo POS for cash sales, and support Lekuka compliance ongoing.
+          </DeckBody>
+          {aboutInfinityIntro.map((paragraph) => (
+            <DeckBody key={paragraph.slice(0, 48)}>{paragraph}</DeckBody>
+          ))}
+          <DeckSectionLabel>Company Credentials</DeckSectionLabel>
+          <DeckBulletList compact items={[...companyCredentials]} />
+          <DeckSectionLabel>Core Capabilities</DeckSectionLabel>
+          <DeckFeatureGrid
+            uniform
+            variant="capability"
+            items={mapDeckIcons([...coreCapabilities].slice(0, 6), CORE_SERVICE_AREA_ICONS)}
+          />
+          <DeckSectionLabel>Why Choose Infinity</DeckSectionLabel>
+          <DeckFeatureGrid
+            variant="premium"
+            items={mapDeckIcons([...whyChooseInfinity].slice(0, 6), WHY_INFINITY_CARD_ICONS)}
+          />
         </DeckSlideFrame>
       );
 

@@ -49,8 +49,8 @@ export function DeckSectionedTableOfContents() {
             return (
               <p
                 key={row.key}
-                className="deck-toc__section self-end"
-                style={{ gridColumn: "2 / -1", gridRow }}
+                className="deck-toc__section self-end justify-self-start text-left"
+                style={{ gridColumn: 2, gridRow }}
               >
                 {row.label}
               </p>

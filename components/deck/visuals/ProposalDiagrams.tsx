@@ -29,8 +29,8 @@ import {
   GOVERNANCE_STRUCTURE_ICONS,
   SUPPLIER_RESPONSE_ICONS,
   MOTHEO_RADIAL_NODE_ICONS,
-  SAP_INTEGRATION_FLOW_ICONS,
-  SAP_INTEGRATION_SIDE_ICONS,
+  DYNAMICS_INTEGRATION_FLOW_ICONS,
+  DYNAMICS_INTEGRATION_SIDE_ICONS,
   SOLUTION_ECOSYSTEM_SIDE_ICONS,
   SOLUTION_ECOSYSTEM_STEP_ICONS,
 } from "@/components/deck/deck-icons";
@@ -420,7 +420,7 @@ const SECURITY_FLOW_LABELS = [
   "Users",
   "Authentication",
   "API Gateway",
-  "Compliance Gateway",
+  "Motheo Compliance Layer",
   "Encryption",
   "RSL",
 ] as const;
@@ -618,7 +618,7 @@ function getHubNodePosition(
 export function HubSpokeDiagram({
   center,
   nodes,
-  gateway = "Infinity Compliance Gateway",
+  gateway = "Motheo Compliance Layer",
   icons,
 }: {
   center: string;
@@ -680,12 +680,13 @@ export function HubSpokeDiagram({
             className="hub-spoke-visual__center gms-card absolute z-20 flex -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-full text-center"
           >
             <Image
-              src={ASSETS.brands.bweLogo}
+              src={ASSETS.brands.tseboLogo}
               alt=""
-              width={1799}
-              height={483}
+              width={222}
+              height={37}
               aria-hidden
-              className="hub-spoke-visual__center-logo relative z-10 shrink-0 object-contain"
+              className="hub-spoke-visual__center-logo relative z-10 shrink-0"
+              style={{ width: "7.25rem", height: "auto", maxHeight: "1.75rem" }}
             />
             <p className="hub-spoke-visual__center-label relative z-10">{center}</p>
           </div>
@@ -887,17 +888,17 @@ function EcosystemFlowSegment({
   );
 }
 
-/** Enterprise ecosystem flow per PAGE 11 — users → SAP/CRM branch → gateway → Motheo → RSL + side cards */
+/** Enterprise ecosystem flow — users → Dynamics/POS → gateway → Motheo → RSL + side cards */
 export function SolutionEcosystemVisual({
   sideCards,
 }: {
   sideCards: readonly string[];
 }) {
   const steps = [
-    { title: "Barloworld Users", icon: SOLUTION_ECOSYSTEM_STEP_ICONS[0] },
-    { title: "SAP ERP", icon: SOLUTION_ECOSYSTEM_STEP_ICONS[1] },
-    { title: "CRM", icon: SOLUTION_ECOSYSTEM_STEP_ICONS[2] },
-    { title: "Infinity Compliance Gateway", icon: SOLUTION_ECOSYSTEM_STEP_ICONS[3] },
+    { title: "Tsebo Users", icon: SOLUTION_ECOSYSTEM_STEP_ICONS[0] },
+    { title: "Microsoft Dynamics", icon: SOLUTION_ECOSYSTEM_STEP_ICONS[1] },
+    { title: "Motheo POS", icon: SOLUTION_ECOSYSTEM_STEP_ICONS[2] },
+    { title: "Motheo Compliance Layer", icon: SOLUTION_ECOSYSTEM_STEP_ICONS[3] },
     { title: "Motheo Compliance Engine", icon: SOLUTION_ECOSYSTEM_STEP_ICONS[4] },
     { title: "Revenue Services Lesotho", icon: SOLUTION_ECOSYSTEM_STEP_ICONS[5] },
   ] as const;
@@ -992,8 +993,8 @@ export function SolutionOverviewVisual({
   );
 }
 
-/** SAP integration architecture — vertical flow + compact side-card strip (fits narrow horizontal panel) */
-export function SapIntegrationVisual({
+/** Dynamics integration architecture — vertical flow + compact side-card strip */
+export function DynamicsIntegrationVisual({
   flow,
   sideCards,
 }: {
@@ -1005,7 +1006,7 @@ export function SapIntegrationVisual({
       <div className="sap-integration-visual__flow min-h-0 flex-1 overflow-hidden">
         <VerticalFlowDiagram
           items={flow}
-          icons={SAP_INTEGRATION_FLOW_ICONS}
+          icons={DYNAMICS_INTEGRATION_FLOW_ICONS}
           compact
           centerContent
         />
@@ -1020,8 +1021,8 @@ export function SapIntegrationVisual({
               <div className="deck-flow-step-card__number-col deck-flow-step-card__number-col--compact">
                 <FlowStepTile compact>
                   {deckIcon(
-                    SAP_INTEGRATION_SIDE_ICONS[index] ??
-                      SAP_INTEGRATION_SIDE_ICONS[SAP_INTEGRATION_SIDE_ICONS.length - 1]!,
+                    DYNAMICS_INTEGRATION_SIDE_ICONS[index] ??
+                      DYNAMICS_INTEGRATION_SIDE_ICONS[DYNAMICS_INTEGRATION_SIDE_ICONS.length - 1]!,
                     "sm",
                   )}
                 </FlowStepTile>
@@ -1302,7 +1303,7 @@ export function TestingPyramidDiagram({
   );
 }
 
-const GANTT_TOTAL_WEEKS = 10;
+const GANTT_TOTAL_WEEKS = 7;
 
 const GANTT_BAR_COLORS = [
   "var(--gms-accent)",
@@ -1329,7 +1330,7 @@ function parseWeekRange(duration: string): { start: number; end: number } {
 export function GanttChart({ phases }: { phases: readonly (readonly [string, string])[] }) {
   return (
     <div className="gantt-chart-visual flex h-full min-h-0 w-full flex-col">
-      <DeckVisualPanelLabel>10-Week Implementation Schedule</DeckVisualPanelLabel>
+      <DeckVisualPanelLabel>6–7 Week Implementation Schedule</DeckVisualPanelLabel>
       <div className="gantt-chart-visual__panel gms-card flex min-h-0 flex-1 flex-col overflow-hidden rounded-2xl">
         <div className="gantt-chart-visual__header">
           <div className="gantt-chart-visual__header-label">Phase</div>
